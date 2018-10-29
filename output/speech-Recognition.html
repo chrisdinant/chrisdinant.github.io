@@ -7,8 +7,8 @@
 <head>
           <title>Transferred Learnings</title>
         <meta charset="utf-8" />
-        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Transferred Learnings Full Atom Feed" />
-        <link href="/feeds/data-science.atom.xml" type="application/atom+xml" rel="alternate" title="Transferred Learnings Categories Atom Feed" />
+        <link href="https://chrisdinant.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Transferred Learnings Full Atom Feed" />
+        <link href="https://chrisdinant.github.io/feeds/data-science.atom.xml" type="application/atom+xml" rel="alternate" title="Transferred Learnings Categories Atom Feed" />
 
 
 
@@ -21,7 +21,7 @@
 
 <body>
         <header id="banner" class="body">
-                <h1><a href="/">Transferred Learnings <strong></strong></a></h1>
+                <h1><a href="https://chrisdinant.github.io/">Transferred Learnings <strong></strong></a></h1>
         </header><!-- /#banner -->
 <!-- Sidebar -->
             <div id="sidebar">
@@ -39,9 +39,9 @@
                 <!-- Nav -->
                     <nav id="nav">
                         <ul>                            
-                            <li><a href="/pages/about-me.html">Whose blog is this?</a></li>
-                            <li><a href="/category/data-science">Data Science</a></li>
-                            <li><a href="/category/not-data-science">Not Data Science</a></li>
+                            <li><a href="https://chrisdinant.github.io/pages/about-me.html">Whose blog is this?</a></li>
+                            <li><a href="https://chrisdinant.github.io/category/data-science">Data Science</a></li>
+                            <li><a href="https://chrisdinant.github.io/category/not-data-science">Not Data Science</a></li>
                         </ul>
                     </nav>
 
@@ -82,21 +82,21 @@
 <div class="inner">
         <article class="box post post-excerpt">
                 <header> 
-                <h2><a href="/speech-Recognition.html" rel="bookmark" title="Permalink to Kaggle Tensorflow Speech Recognition Challenge">Kaggle Tensorflow Speech Recognition Challenge</a></h2> 
+                <h2><a href="https://chrisdinant.github.io/speech-Recognition.html" rel="bookmark" title="Permalink to Kaggle Tensorflow Speech Recognition Challenge">Kaggle Tensorflow Speech Recognition Challenge</a></h2> 
                 <p>A walk through of my approach</p>
                 </header>
                 <div class="info">
                     <span class="date" datetime="2018-03-14T00:00:00+01:00"><span class="month">Mar</span> <span class="day">14</span> <span class="month"> 2018</span></span>
                     <ul class="stats">
-                                    <li><a href="mailto:?Subject=Kaggle Tensorflow Speech Recognition Challenge&Body=I%20saw%20this%20and%20thought%20of%20you!%20 /speech-Recognition.html" class="icon fa-envelope">&nbsp;</a></li>
-                                    <li><a href="http://reddit.com/submit?url=/speech-Recognition.html&title=#Kaggle Tensorflow Speech Recognition Challenge" class="icon fa-reddit">&nbsp;</a></li>
-                                    <li><a href="https://twitter.com/share?url=/speech-Recognition.html&text=&hashtags=GnotC" class="icon fa-twitter">&nbsp;</a></li>
-                                    <li><a href="https://www.facebook.com/sharer.php?u=/speech-Recognition.html" class="icon fa-facebook">&nbsp;</a></li>
+                                    <li><a href="mailto:?Subject=Kaggle Tensorflow Speech Recognition Challenge&Body=I%20saw%20this%20and%20thought%20of%20you!%20 https://chrisdinant.github.io/speech-Recognition.html" class="icon fa-envelope">&nbsp;</a></li>
+                                    <li><a href="http://reddit.com/submit?url=https://chrisdinant.github.io/speech-Recognition.html&title=#Kaggle Tensorflow Speech Recognition Challenge" class="icon fa-reddit">&nbsp;</a></li>
+                                    <li><a href="https://twitter.com/share?url=https://chrisdinant.github.io/speech-Recognition.html&text=&hashtags=GnotC" class="icon fa-twitter">&nbsp;</a></li>
+                                    <li><a href="https://www.facebook.com/sharer.php?u=https://chrisdinant.github.io/speech-Recognition.html" class="icon fa-facebook">&nbsp;</a></li>
                                 </ul>
                 </div><!-- /.post-info -->
                 <div class="entry-content"> &nbsp; </div><!-- /.entry-content -->
         </article>
-    <p><img alt="Spectrogram" src="/images/spec_large.png" style="width: 2000px; height: auto; max-width: 100%;"/>
+    <p><img alt="Spectrogram" src="https://chrisdinant.github.io/images/spec_large.png" style="width: 2000px; height: auto; max-width: 100%;"/>
 <em>spectrogram</em></p>
 <hr/>
 <p>From November 2017 to January 2018 the Google Brain team hosted a speech recognition challenge on Kaggle. The goal of this challenge was to write a program that can correctly identify one of 10 words being spoken in a one-second long audio file. Having just made up my mind to start seriously studying data science with the goal of turning a new corner in my career, I decided to tackle this as my first serious kaggle challenge.
@@ -107,7 +107,7 @@ The training data supplied by Google Brain consists of ca. 60,000 1-second-long�
 One important thing you need to do to clean up the data was mentioned in a Discussion comment on Kaggle: There are quite a few files with extremely low sound volumes. Some of these are corrupt and only contain noise and some are basically background noise without any spoken word. To remove or correctly label these files it helps to sort all files on dynamic range of the output volume and then check if there's a threshold minimum sound level below which all files are basically silence. It turns out that output volume by itself is not sufficient to separate corrupt/silence from good files, so I ended up doing some manual cleaning by listening to suspect files and looking at a lot of spectrograms (see below).  </p>
 <p><strong>Preprocessing</strong><br/>
 When you are classifying audio you can either use the raw wav data itself or you can transform the audio into spectrograms. A spectrogram is a visual representation of sound with a time and a frequency axis and pixel intensities representing the amplitude or energy of the sound at that moment and at that frequency. There's bunch of parameters to play around with when making spectrograms that will affect how much information can be extracted from the frequency or the time domains. I haven't done an exhaustive analysis of all these parameters with regards to suitability for deep learning because it would take forever. Instead I plotted a bunch of spectrograms with different dimensions and intensity ranges etc for different words and picked what looked easiest to classify as a different word visually.  </p>
-<p><img ,="" alt="yes_spectrograms" src="/images/yes_specs.png" style="width: 100%;"/>
+<p><img ,="" alt="yes_spectrograms" src="https://chrisdinant.github.io/images/yes_specs.png" style="width: 100%;"/>
 <em>Some different visualizations of the audio source of someone saying 'yes'. I chose the spectrogram in the right bottom as input for most of my networks. The advantage of using spectrograms over raw wav data is that you can approach it as an image classification problem, which most of us are already very familiar with. I attempted both approaches.</em> </p>
 <p>To speed up eventual training of the network I decided to do most of the preprocessing separately and save individual train and validation sets as numpy arrays in .npy files. The amount of data is small enough that this can be done on my home pc. Google Brain suggests that you split the data in 'train' 'validation' and 'test' sets based on file names in a 'validation.txt' and 'test.txt' file that they supply. Since they also supply a test set on Kaggle that is used for the leaderboard scoring I decided to combine the 'validation' and 'test' text files into one validation set. Preprocessing included creating spectrograms, normalizing around zero, creating 'label' or 'Y' arrays with integers 0–11 for the ten main classes plus 'silence' and 'unknown'. For the CTC model I did not use the 'unknown' label. All 32 classes were treated as equal.  </p>
 <p>Because I approached this challenge as a deep learning training exercise I implemented a bunch of different network designs. Getting practical training like this was fantastic. I learned more from this one project than I did in the ten MOOCs I started before. (Ok, I exaggerate slightly). I will discuss a few of my design attempts and the things to pay attention to when implementing them.  </p>
@@ -115,7 +115,7 @@ When you are classifying audio you can either use the raw wav data itself or you
 With spectrograms you use a specific algorithm to extract features from wav files, but you have to fine tune a bunch of parameters. A well designed neural network should be able to learn features from the raw wav files by itself and potentially get more informative features than one could get from a spectrogram. This first model is an attempt to do that. The initial design was heavily inspired by a Kaggle discussion post by user ttagu99. This is the result of an early attempt with a 6-layer 1D convolutional network.</p>
 <table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody>
 <tr><td style="text-align: center;">
-<img ,="" alt="classification and confusion reports" src="/images/confusion.png" style="margin-left: auto; margin-right: auto; text-align: center;width: 640px; height: auto; max-width: 100%;"/>
+<img ,="" alt="classification and confusion reports" src="https://chrisdinant.github.io/images/confusion.png" style="margin-left: auto; margin-right: auto; text-align: center;width: 640px; height: auto; max-width: 100%;"/>
 </td></tr>
 </tbody></table>
 <p style="text-align: center; font-size: 0.8em;"><i>The network scores on the validation set. Top: sklearn classification report. Bottom: sklearn confusion matrix.</i></p>
@@ -124,7 +124,7 @@ With spectrograms you use a specific algorithm to extract features from wav file
 A residual neural network, or ResNet, is basically a deep convolutional NN with shortcuts. Every couple of layers there is an identity connection back to a layer a few levels up. These shortcut connections are thought to help the network generalize better. And this definitely works: I don't need any dropout layers anymore. What happens is that the network depth defaults to using as many shortcut connections as possible. This keeps the network small and therefore helps generalization. The residual layers in between the shortcuts are updated only when needed.  </p>
 <table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody>
 <tr><td style="text-align: center;">
-<img ,="" alt="resnet" src="/images/resnet.png" style="margin-left: auto; margin-right: auto; text-align: center;width: 414px; height: auto; max-width: 100%;"/>
+<img ,="" alt="resnet" src="https://chrisdinant.github.io/images/resnet.png" style="margin-left: auto; margin-right: auto; text-align: center;width: 414px; height: auto; max-width: 100%;"/>
 </td></tr>
 </tbody></table>
 <p style="text-align: center; font-size: 0.8em;"><i>Small subset of ResNet model with two shortcut connections</i></p>
@@ -172,7 +172,7 @@ Around the time of the submission deadline for the Kaggle challenge the final mo
 A speech-to-text model takes a spectrogram (or raw wav data) as input and outputs letters or words. What such a network needs to do is identify so-called phonemes in each RNN input, translate them into letters and combine letters into correct words.</p>
 <table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody>
 <tr><td style="text-align: center;">
-<img ,="" alt="ctc" src="/images/CTC_example.png" style="margin-left: auto; margin-right: auto; text-align: center;width: 237px; height: auto; max-width: 100%;"/>
+<img ,="" alt="ctc" src="https://chrisdinant.github.io/images/CTC_example.png" style="margin-left: auto; margin-right: auto; text-align: center;width: 237px; height: auto; max-width: 100%;"/>
 </td></tr>
 </tbody></table>
 <p style="text-align: center; font-size: 0.8em;"><i></i></p>
@@ -221,10 +221,10 @@ It’s been 15 years since I left University. It was great fun to learn so much 
   </div><!-- /.entry-content -->
   <!-- Pagination -->
             <div class="pagination">
-              <a class="button previous" href="/bayes-and-binomial-theorems.html">
+              <a class="button previous" href="https://chrisdinant.github.io/bayes-and-binomial-theorems.html">
              Bayes and Binomial Theorems
          </a>
-              <a href="/entropy-and-information-gain.html" class="button next">Entropy and Information Gain</a>
+              <a href="https://chrisdinant.github.io/entropy-and-information-gain.html" class="button next">Entropy and Information Gain</a>
             </div>
   <!-- disqus  -->         
 </div>

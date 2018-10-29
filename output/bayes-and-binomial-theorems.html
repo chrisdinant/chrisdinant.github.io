@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+
+<head>
+          <title>Transferred Learnings</title>
+        <meta charset="utf-8" />
+        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Transferred Learnings Full Atom Feed" />
+        <link href="/feeds/data-science.atom.xml" type="application/atom+xml" rel="alternate" title="Transferred Learnings Categories Atom Feed" />
+
+
+
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <link rel="stylesheet" href="/theme/css/jupyter.css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <!--[if lte IE 8]><script src="/theme/js/ie/html5shiv.js"></script><![endif]-->
+        <!--[if lte IE 8]><link rel="stylesheet" href="/theme/css/ie8.css" /><![endif]-->
+</head>
+
+<body>
+        <header id="banner" class="body">
+                <h1><a href="/">Transferred Learnings <strong></strong></a></h1>
+        </header><!-- /#banner -->
+<!-- Sidebar -->
+            <div id="sidebar">
+
+                <!-- Logo -->
+                    <h1 id="logo"><a href="/">Transferred Learnings</a></h1>
+                    <!-- Text -->
+                    <section class="box text-style1">
+                        <div class="inner">
+                            <p>
+                                <strong>My long term memory is very short</strong><br />
+                            </p>
+                        </div>
+                    </section>
+                <!-- Nav -->
+                    <nav id="nav">
+                        <ul>                            
+                            <li><a href="/pages/about-me.html">Whose blog is this?</a></li>
+                            <li><a href="/category/data-science">Data Science</a></li>
+                            <li><a href="/category/not-data-science">Not Data Science</a></li>
+                        </ul>
+                    </nav>
+
+                <!-- Search -->
+                    <!-- <section class="box search">
+                        <form method="post" action="#">
+                            <input type="text" class="text" name="search" placeholder="Search" />
+                        </form>
+                    </section> -->
+
+                
+
+                <!-- Recent Posts -->
+                    <section class="box recent-posts">
+                        <header>
+                            <h2>Contact Me</h2>
+                        </header>
+                        <ul>
+                            <li><a class="icon fa-envelope" href="mailto:chris.dinant@gmail.com"> Email</a></li>
+                            <li><a class="icon fa-twitter" href="https://twitter.com/chrisdinant"> Twitter</a></li>
+                            <li><a class="icon fa-linkedin" href="https://www.linkedin.com/in/chris-dinant/"> LinkedIn</a></li>
+                            <li><a class="icon fa-github" href="https://github.com/chrisdinant"> Github</a></li>
+                            
+                        </ul>
+                    </section>
+
+
+
+                <!-- Copyright -->
+                    <ul id="copyright">
+                        <li>Powered by <a href="http://getpelican.com/">Pelican</a>.</li>
+                        <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+                        <li>Modified under a <a href="https://creativecommons.org/licenses/by/3.0/">CC:BY</a> license.</li>
+                    </ul>
+
+            </div><!-- /#menu -->
+<div id="content">
+<div class="inner">
+        <article class="box post post-excerpt">
+                <header> 
+                <h2><a href="/bayes-and-binomial-theorems.html" rel="bookmark" title="Permalink to Bayes and Binomial Theorems">Bayes and Binomial Theorems</a></h2> 
+                <p>Our intuitions about test accuracy are often very inaccurate</p>
+                </header>
+                <div class="info">
+                    <span class="date" datetime="2018-02-06T00:00:00+01:00"><span class="month">Feb</span> <span class="day">06</span> <span class="month"> 2018</span></span>
+                    <ul class="stats">
+                                    <li><a href="mailto:?Subject=Bayes and Binomial Theorems&Body=I%20saw%20this%20and%20thought%20of%20you!%20 /bayes-and-binomial-theorems.html" class="icon fa-envelope">&nbsp;</a></li>
+                                    <li><a href="http://reddit.com/submit?url=/bayes-and-binomial-theorems.html&title=#Bayes and Binomial Theorems" class="icon fa-reddit">&nbsp;</a></li>
+                                    <li><a href="https://twitter.com/share?url=/bayes-and-binomial-theorems.html&text=&hashtags=GnotC" class="icon fa-twitter">&nbsp;</a></li>
+                                    <li><a href="https://www.facebook.com/sharer.php?u=/bayes-and-binomial-theorems.html" class="icon fa-facebook">&nbsp;</a></li>
+                                </ul>
+                </div><!-- /.post-info -->
+                <div class="entry-content"> &nbsp; </div><!-- /.entry-content -->
+        </article>
+    <p><strong>Bayes Theorem</strong><br/>
+In statistics there are many situations where you want to determine the probability that a sample for which you have certain measurement belongs to a certain set. Say you want to know the chance that you have HIV if you test positive. No test is perfect, so this probability will depend on the test sensitivity, but also on the specificity and on the incidence in the population, or set, that you belong to. Bayes Theorem is a simply the logic you have to apply to estimate such probabilities.<br/>
+<br/>
+As a cancer researcher my attention was naturally drawn to this paper currently trending on Pubmed: <a href="https://www.ncbi.nlm.nih.gov/pubmed/29348365/"><i>Detection and localization of surgically resectable cancers with a multi-analyte blood test.</i></a> This is a perfect practical example for applying Bayes rule! And most of the information we need is right there in the abstract: "<i>The </i>sensitivities<i> ranged from 69% to 98% for the detection of five cancer types (ovary, liver, stomach, pancreas, and esophagus)...</i>" and "<i>The </i>specificity<i> of CancerSEEK was &gt; 99%: only 7 of 812 healthy controls scored positive.</i>" Wow, a <i>sensitivity</i> of up to 98% and a <i>specificity</i> of more than 99%? This sounds like a fool proof test! Right? Now we just need to know the incidences for these cancers and we can see how likely it is that you have that type of cancer given a positive test score.<br/>
+<br/>
+<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody>
+<tr><td style="text-align: center;">
+<img ,="" alt="doctor john" src="/images/dr-john.jpg" style="margin-left: auto; margin-right: auto; text-align: center;width: 640px; height: auto; max-width: 100%;"/>
+</td></tr><br/>
+</tbody></table>
+<p style="text-align: center; font-size: 0.8em;"><i>The Doctor is in.</i></p>
+<div class="sub">
+<br/></div>
+This is Bayes Theorem in math notation:<br/>
+<br/>
+</p>
+<div class="math">$$P(A|B)=\dfrac{P(B|A)\cdot{P(A)}}{P(B)}$$</div>
+<p>
+<br/>
+<br/>
+Now replace <i>'A'</i> with <i>'having cancer'</i> and <i>'B'</i> with <i>'testing positive'</i> so we can read this as: "The probability of having cancer given a positive test result (the '<i>posterior</i>', what we want to calculate) is equal to the probability of testing positive given that you have cancer (this is the '<i>sensitivity</i>') times the probability of having cancer (the '<i>prior</i>', which is the incidence of cancer in your population) divided by the probability of testing positive." The <i>specificity</i> is encompassed in the denominator as follows:<br/>
+<br/>
+</p>
+<div class="math">$$P(B)=P(B|A)\cdot{P(A)}+P(B|\neg{A})\cdot{P(\neg{A})}$$</div>
+<p>
+<br/>
+<br/>
+where
+<span class="math">\(P(B|\neg{A})\)</span>
+is the probability of a <i>positive test</i> given that you <i>do not have cancer</i>, which is the inverse of the <i>specificity</i>, or the chance of getting a false positive result. The other parts of the denominator are the <i>sensitivity</i> times the <i>prior</i>, as seen in the numerator and the probability of <i>not having cancer</i> in your population.<br/>
+For the incidence of cancer (I picked esophagus cancer for this calculation), Google tells us this is about 4 people per 100,000. So let's put in the numbers:<br/>
+<br/>
+</p>
+<div class="math">$$P(A|B)=\dfrac{0.98\cdot{0.00004}}{(0.98\cdot{0.00004})+(1-0.99)\cdot{(1-0.00004)}}=0.0039$$</div>
+<p>
+<br/>
+<br/>
+So if you go in without any symptoms (which is what you want if you want to avoid these cancers, symptoms often mean it is already too late), and take this test, a positive result will increase your risk from  0.004% to 0.4%. Still not very scary, right? Is that surprising?<br/>
+<br/>
+What we can learn from this is that intuition from numbers about test <i>accuracy </i>is often very inaccurate. If you are a doctor using these kind of tests you better know what probabilities you are dealing with (don't worry, doctors know this) and do an independent second screen for the same cancer. Because this brings us to the real power of Bayes Theorem: After the first test, our <i>posterior</i> becomes the new <i>prior</i>: we can update our probabilities in light of new information! In other words: after taking the test you don't belong to the general population anymore, now you're a part of the population that tested positive. And in this population the cancer incidence is 0.4%. Just change the numbers for the <i>sensitivity</i>, <i>specificity</i> and replace the old <i>prior</i> with the <i>posterior</i> and you get a new <i>posterior</i>. If this second test (perhaps a scan of some sorts) is equally effective as the blood test above, then a positive outcome will increase the likelihood of you really having cancer from 0.4% to almost 30%. Still not super likely, but a bit more cause for worry.<br/>
+<br/>
+Where a test like this really works well though is when you know you are in a high-risk population, e.g. when you have a genetic disposition for a certain kind of cancer (a BRCA1 or BRCA2 mutation for example). In such cases the sample space is drastically reduced and the test can be almost perfect. In the case of BRCA1 mutations where your chance of getting ovarian cancer sometime during your lifetime increases from 1.4% to almost 40% a positive test result will be correct more than 98% of the time.<br/>
+<br/>
+<br/>
+<br/>
+<b>Combining the Bayes and the Binomial Theorem</b><br/>
+This is the binomial theorem:
+</p>
+<div class="math">$$\binom{n}{k}\cdot{p^k}\cdot{(1-p)}^{(n-k)}$$</div>
+<p>
+<br/>
+The first part is the binomial equation and is pronounced <i>n choose k</i>, I (plan to) talk about this in another post, and p stands for <i>probability</i>. The binomial theorem is used to calculate probabilities when there is a binary outcome of an event <i>k</i> out of <i>n</i> total events and the probability of outcome <i>k</i> equals <i>p</i>. Example: <i>What is the probability that you throw exactly 23 sixes (k = 23) in 30 throws (n=30) of a die (p = 1/6)? </i>With the binomial theorem this is a piece of cake. (
+<span class="math">\(7.2^{-13}\)</span>)
+<br/>
+<br/>
+<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody>
+<tr><td style="text-align: center;">
+<img ,="" alt="dices" src="/images/dice.jpeg" style="margin-left: auto; margin-right: auto; text-align: center;width: 192px; height: auto; max-width: 100%;"/>
+</td></tr><br/>
+</tbody></table>
+<p style="text-align: center; font-size: 0.8em;"><i></i></p>
+<br/>
+<br/>
+<br/>
+It gets a bit more interesting when you combine Bayes with the Binomial Theorem.<br/>
+Let's give a nerdy cell biologist example: Say you have two cell lines in culture (U2OS and HeLa for example) and you transfer both cell lines into a new flask. The next day you go back to the incubator and see that you have forgotten to label the flasks, so you don't know which is which. How can you find out? Here's what you could do: U2OS and HeLa don't look exactly the same under a microscope.<br/>
+<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody>
+<tr><td style="text-align: center;">
+<img ,="" alt="hela" src="/images/hela.jpg" style="margin-left: auto; margin-right: auto; text-align: center;width: 320px; height: auto; max-width: 100%;"/>
+</td></tr><br/>
+</tbody></table>
+<p style="text-align: center; font-size: 0.8em;"><i></i></p><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody>
+<tr><td style="text-align: center;">
+<img ,="" alt="u2os" src="/images/u2os.jpg" style="margin-left: auto; margin-right: auto; text-align: center;width: 320px; height: auto; max-width: 100%;"/>
+</td></tr><br/>
+</tbody></table>
+<p style="text-align: center; font-size: 0.8em;"><i></i></p>
+It's not directly straight forward unless you have a lot of experience what the difference is, but image analysis software can measure a bunch of features for each cell line and give you numbers to work with. Let's say that a feature describing the shape (<i>s</i>) of a nucleus falls within a certain range <i>r </i>(the values don't matter) 20% of the time for U2OS cells and 23% of the time for HeLa cells. Now you take one image of 180 cells of one of the dishes and measure this shape value. In 51 cells the value for <i>s </i>falls in range <i>r</i>. Now we can use Bayes and the Binomial Theorem together to determine if we're looking at U2OS or HeLa!<br/>
+<br/>
+</p>
+<div class="math">$$P(\text{HeLa}|51 \text{ out of } 180) = \dfrac{P(51 \text{ out of }180 | \text{HeLa}) \cdot{P(\text{HeLa})}}{P(51 \text{ out of } 180)}$$</div>
+<p>
+<br/>
+<br/>
+This gives <br/>
+<br/>
+</p>
+<div class="math">$$\dfrac{\displaystyle\binom{180}{51}\cdot{0.23^{51}}\cdot{(1-0.23)^{(180-51)}} \cdot{0.5}}{\text{the numerator again} + \displaystyle\binom{180}{51}\cdot{0.2^{51}}\cdot{(1-0.2)^{(180-51)}} \cdot{0.5}} = 0.9000$$</div>
+<p>
+</p>
+<br/>
+<br/>
+Which makes it 90.0% certain that you are looking at HeLa cells. I would be confident enough to label the flasks correctly now. Which I did... ahem.<br/>
+<br/>
+<br/>
+This blog post was inspired by this course on coursera.org: <a href="https://www.coursera.org/learn/datasciencemathskills">https://www.coursera.org/learn/datasciencemathskills</a> 
+<p>Δ9</p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+
+  </div><!-- /.entry-content -->
+  <!-- Pagination -->
+            <div class="pagination">
+              <a href="/speech-Recognition.html" class="button next">Kaggle Tensorflow Speech Recognition Challenge</a>
+            </div>
+  <!-- disqus  -->         
+</div>
+</div>
+        <!-- This jQuery line finds any span that contains code highlighting classes and then selects the parent <pre> tag and adds a border. 
+        This is done as a workaround to visually distinguish the code inputs and outputs -->
+        <script>
+            $( ".hll, .n, .c, .err, .s1, .ss, .bp, .vc, .vg, .vi, .il, .kn, .nn" ).parent( "pre" ).css( "border", "1px solid #DEDEDE" );
+        </script>
+<!-- /#contentinfo -->
+
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+
+<head>
+          <title>Transferred Learnings</title>
+        <meta charset="utf-8" />
+        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Transferred Learnings Full Atom Feed" />
+        <link href="/feeds/not-data-science.atom.xml" type="application/atom+xml" rel="alternate" title="Transferred Learnings Categories Atom Feed" />
+
+
+
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <link rel="stylesheet" href="/theme/css/jupyter.css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <!--[if lte IE 8]><script src="/theme/js/ie/html5shiv.js"></script><![endif]-->
+        <!--[if lte IE 8]><link rel="stylesheet" href="/theme/css/ie8.css" /><![endif]-->
+</head>
+
+<body>
+        <header id="banner" class="body">
+                <h1><a href="/">Transferred Learnings <strong></strong></a></h1>
+        </header><!-- /#banner -->
+<!-- Sidebar -->
+            <div id="sidebar">
+
+                <!-- Logo -->
+                    <h1 id="logo"><a href="/">Transferred Learnings</a></h1>
+                    <!-- Text -->
+                    <section class="box text-style1">
+                        <div class="inner">
+                            <p>
+                                <strong>My long term memory is very short</strong><br />
+                            </p>
+                        </div>
+                    </section>
+                <!-- Nav -->
+                    <nav id="nav">
+                        <ul>                            
+                            <li><a href="/pages/about-me.html">Whose blog is this?</a></li>
+                            <li><a href="/category/data-science">Data Science</a></li>
+                            <li><a href="/category/not-data-science">Not Data Science</a></li>
+                        </ul>
+                    </nav>
+
+                <!-- Search -->
+                    <!-- <section class="box search">
+                        <form method="post" action="#">
+                            <input type="text" class="text" name="search" placeholder="Search" />
+                        </form>
+                    </section> -->
+
+                
+
+                <!-- Recent Posts -->
+                    <section class="box recent-posts">
+                        <header>
+                            <h2>Contact Me</h2>
+                        </header>
+                        <ul>
+                            <li><a class="icon fa-envelope" href="mailto:chris.dinant@gmail.com"> Email</a></li>
+                            <li><a class="icon fa-twitter" href="https://twitter.com/chrisdinant"> Twitter</a></li>
+                            <li><a class="icon fa-linkedin" href="https://www.linkedin.com/in/chris-dinant/"> LinkedIn</a></li>
+                            <li><a class="icon fa-github" href="https://github.com/chrisdinant"> Github</a></li>
+                            
+                        </ul>
+                    </section>
+
+
+
+                <!-- Copyright -->
+                    <ul id="copyright">
+                        <li>Powered by <a href="http://getpelican.com/">Pelican</a>.</li>
+                        <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+                        <li>Modified under a <a href="https://creativecommons.org/licenses/by/3.0/">CC:BY</a> license.</li>
+                    </ul>
+
+            </div><!-- /#menu -->
+<div id="content">
+<div class="inner">
+        <article class="box post post-excerpt">
+                <header> 
+                <h2><a href="/custom-pixels.html" rel="bookmark" title="Permalink to Music Video">Music Video</a></h2> 
+                <p>Custom pixel replacement for video with FFMPEG</p>
+                </header>
+                <div class="info">
+                    <span class="date" datetime="2018-10-28T00:00:00+02:00"><span class="month">Oct</span> <span class="day">28</span> <span class="month"> 2018</span></span>
+                    <ul class="stats">
+                                    <li><a href="mailto:?Subject=Music Video&Body=I%20saw%20this%20and%20thought%20of%20you!%20 /custom-pixels.html" class="icon fa-envelope">&nbsp;</a></li>
+                                    <li><a href="http://reddit.com/submit?url=/custom-pixels.html&title=#Music Video" class="icon fa-reddit">&nbsp;</a></li>
+                                    <li><a href="https://twitter.com/share?url=/custom-pixels.html&text=&hashtags=GnotC" class="icon fa-twitter">&nbsp;</a></li>
+                                    <li><a href="https://www.facebook.com/sharer.php?u=/custom-pixels.html" class="icon fa-facebook">&nbsp;</a></li>
+                                </ul>
+                </div><!-- /.post-info -->
+                <div class="entry-content"> &nbsp; </div><!-- /.entry-content -->
+        </article>
+    <p>Here's my children dancing around in the yard to my song.<br/>
+Have a watch:</p>
+<iframe allow="autoplay; encrypted-media" allowfullscreen="" frameborder="0" height="315" src="https://www.youtube.com/embed/7qvhSWrXff4" width="560"></iframe>
+<p>This video was created by a custom python script that replaces pixels of low resolution images with jpegs of 20x20 pixels. Four different jpegs replace pixels of four grey intensity ranges. The python script uses ffmpeg to pipe individual frames of a video to the pixel replacement function and then pipe the new images into a new video file. In this video I use two jpeg sets, one with dots and lines and one with colored circles that look like hama beads (<a href="http://www.hama.dk/welcome-to-a-color">http://www.hama.dk/welcome-to-a-color</a>...).  </p>
+<p>Here's the import piece of code that extracts frames, replaces pixels and saves the frames back into a video:</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">extract_frames</span><span class="p">(</span><span class="n">rate</span> <span class="o">=</span> <span class="mi">6</span><span class="p">,</span> <span class="n">outf</span> <span class="o">=</span> <span class="s1">'perl_light2.avi'</span><span class="p">):</span>    
+    <span class="n">command</span> <span class="o">=</span> <span class="p">[</span><span class="n">FFMPEG_BIN</span><span class="p">,</span>
+                <span class="s1">'-i'</span><span class="p">,</span> <span class="s1">'IMG_1981.MOV'</span><span class="p">,</span>
+                <span class="s1">'-f'</span><span class="p">,</span> <span class="s1">'image2pipe'</span><span class="p">,</span>
+                <span class="s1">'-r'</span><span class="p">,</span> <span class="s1">'</span><span class="si">%d</span><span class="s1">'</span> <span class="o">%</span> <span class="n">rate</span><span class="p">,</span>
+                <span class="s1">'-pix_fmt'</span><span class="p">,</span> <span class="s1">'rgb24'</span><span class="p">,</span>
+                <span class="s1">'-vcodec'</span><span class="p">,</span> <span class="s1">'rawvideo'</span><span class="p">,</span> <span class="s1">'-'</span><span class="p">]</span>
+    <span class="n">pipe</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span><span class="n">command</span><span class="p">,</span> <span class="n">stdout</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span> <span class="n">bufsize</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">8</span><span class="p">)</span>
+    <span class="n">cmdstring</span> <span class="o">=</span> <span class="p">[</span><span class="n">FFMPEG_BIN</span><span class="p">,</span>
+                 <span class="s1">'-y'</span><span class="p">,</span>
+                 <span class="s1">'-r'</span><span class="p">,</span> <span class="s1">'</span><span class="si">%d</span><span class="s1">'</span> <span class="o">%</span> <span class="n">rate</span><span class="p">,</span>
+                 <span class="s1">'-f'</span><span class="p">,</span><span class="s1">'image2pipe'</span><span class="p">,</span>
+                 <span class="s1">'-vcodec'</span><span class="p">,</span> <span class="s1">'mjpeg'</span><span class="p">,</span>
+                 <span class="s1">'-i'</span><span class="p">,</span> <span class="s1">'pipe:'</span><span class="p">,</span>
+                 <span class="s1">'-vcodec'</span><span class="p">,</span> <span class="n">codec</span><span class="p">,</span>             
+                 <span class="n">outf</span><span class="p">]</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span><span class="n">cmdstring</span><span class="p">,</span> <span class="n">stdin</span><span class="o">=</span><span class="n">sp</span><span class="o">.</span><span class="n">PIPE</span><span class="p">)</span>  
+
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">55</span><span class="p">)):</span>         
+        <span class="n">raw_image</span> <span class="o">=</span> <span class="n">pipe</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1280</span><span class="o">*</span><span class="mi">720</span><span class="o">*</span><span class="mi">3</span><span class="p">)</span>
+        <span class="c1"># transform the byte read into a numpy array</span>
+        <span class="n">image</span> <span class="o">=</span>  <span class="n">np</span><span class="o">.</span><span class="n">frombuffer</span><span class="p">(</span><span class="n">raw_image</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">'uint8'</span><span class="p">)</span>
+        <span class="n">image</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">1280</span><span class="p">,</span><span class="mi">720</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>    
+        <span class="c1"># throw away the data in the pipe's buffer.</span>
+        <span class="n">pipe</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+        <span class="n">image</span> <span class="o">=</span> <span class="n">rgb2gray</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>        
+        <span class="n">ori</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+        <span class="c1">#crop = ori.crop((260,530,460,730))</span>
+        <span class="n">small</span> <span class="o">=</span> <span class="n">ori</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="mi">72</span><span class="p">,</span><span class="mi">128</span><span class="p">))</span>
+        <span class="c1"># morph the first couple of frames from noise to the first image</span>
+        <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>            
+            <span class="n">first_frame</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span><span class="mi">72</span><span class="p">)</span><span class="o">*</span><span class="mi">255</span>
+            <span class="n">inc</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">small</span><span class="p">)</span> <span class="o">-</span> <span class="n">first_frame</span><span class="p">)</span><span class="o">/</span><span class="mi">30</span>        
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">30</span><span class="p">):</span>
+                <span class="n">first_frame</span> <span class="o">=</span> <span class="n">first_frame</span> <span class="o">+</span> <span class="n">inc</span>
+                <span class="n">frame</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">first_frame</span><span class="p">)</span>
+                <span class="n">frame</span> <span class="o">=</span> <span class="n">perlize</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">board</span><span class="p">)</span>
+                <span class="n">p</span><span class="o">.</span><span class="n">stdin</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">frame</span><span class="o">.</span><span class="n">tobytes</span><span class="p">(</span><span class="s1">'jpeg'</span><span class="p">,</span> <span class="s1">'RGB'</span><span class="p">))</span>              
+        <span class="n">frame</span> <span class="o">=</span> <span class="n">perlize</span><span class="p">(</span><span class="n">small</span><span class="p">,</span> <span class="n">board</span><span class="p">)</span>        
+        <span class="n">frame</span> <span class="o">=</span> <span class="n">frame</span><span class="o">.</span><span class="n">tobytes</span><span class="p">(</span><span class="s1">'jpeg'</span><span class="p">,</span><span class="s1">'RGB'</span><span class="p">)</span>
+        <span class="n">p</span><span class="o">.</span><span class="n">stdin</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
+
+    <span class="n">p</span><span class="o">.</span><span class="n">stdin</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+<p>Δ9</p>
+
+  </div><!-- /.entry-content -->
+  <!-- Pagination -->
+            <div class="pagination">
+              <a class="button previous" href="/naive-Bayes.html">
+             What's so naive about naive Bayes?
+         </a>
+            </div>
+  <!-- disqus  -->         
+</div>
+</div>
+        <!-- This jQuery line finds any span that contains code highlighting classes and then selects the parent <pre> tag and adds a border. 
+        This is done as a workaround to visually distinguish the code inputs and outputs -->
+        <script>
+            $( ".hll, .n, .c, .err, .s1, .ss, .bp, .vc, .vg, .vi, .il, .kn, .nn" ).parent( "pre" ).css( "border", "1px solid #DEDEDE" );
+        </script>
+<!-- /#contentinfo -->
+
+</body>
+</html>

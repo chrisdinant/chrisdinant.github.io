@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+
+<head>
+          <title>Transferred Learnings</title>
+        <meta charset="utf-8" />
+
+
+
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <link rel="stylesheet" href="/theme/css/jupyter.css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <!--[if lte IE 8]><script src="/theme/js/ie/html5shiv.js"></script><![endif]-->
+        <!--[if lte IE 8]><link rel="stylesheet" href="/theme/css/ie8.css" /><![endif]-->
+</head>
+
+<body>
+        <header id="banner" class="body">
+                <h1><a href="./">Transferred Learnings <strong></strong></a></h1>
+        </header><!-- /#banner -->
+<!-- Sidebar -->
+            <div id="sidebar">
+
+                <!-- Logo -->
+                    <h1 id="logo"><a href="/">Transferred Learnings</a></h1>
+                    <!-- Text -->
+                    <section class="box text-style1">
+                        <div class="inner">
+                            <p>
+                                <strong>My long term memory is very short</strong><br />
+                            </p>
+                        </div>
+                    </section>
+                <!-- Nav -->
+                    <nav id="nav">
+                        <ul>                            
+                            <li><a href="./pages/about-me.html">Whose blog is this?</a></li>
+                            <li><a href="./category/data-science">Data Science</a></li>
+                            <li><a href="./category/not-data-science">Not Data Science</a></li>
+                        </ul>
+                    </nav>
+
+                <!-- Search -->
+                    <!-- <section class="box search">
+                        <form method="post" action="#">
+                            <input type="text" class="text" name="search" placeholder="Search" />
+                        </form>
+                    </section> -->
+
+                
+
+                <!-- Recent Posts -->
+                    <section class="box recent-posts">
+                        <header>
+                            <h2>Contact Me</h2>
+                        </header>
+                        <ul>
+                            <li><a class="icon fa-envelope" href="mailto:chris.dinant@gmail.com"> Email</a></li>
+                            <li><a class="icon fa-twitter" href="https://twitter.com/chrisdinant"> Twitter</a></li>
+                            <li><a class="icon fa-linkedin" href="https://www.linkedin.com/in/chris-dinant/"> LinkedIn</a></li>
+                            <li><a class="icon fa-github" href="https://github.com/chrisdinant"> Github</a></li>
+                            
+                        </ul>
+                    </section>
+
+
+
+                <!-- Copyright -->
+                    <ul id="copyright">
+                        <li>Powered by <a href="http://getpelican.com/">Pelican</a>.</li>
+                        <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+                        <li>Modified under a <a href="https://creativecommons.org/licenses/by/3.0/">CC:BY</a> license.</li>
+                    </ul>
+
+            </div><!-- /#menu -->
+<div id="content">
+<div class="inner">
+        <article class="box post post-excerpt">
+                <header> 
+                <h2><a href="./speech-Recognition.html" rel="bookmark" title="Permalink to Kaggle Tensorflow Speech Recognition Challenge">Kaggle Tensorflow Speech Recognition Challenge</a></h2> 
+                <p>A walk through of my approach</p>
+                </header>
+                <div class="info">
+                    <span class="date" datetime="2018-03-14T00:00:00+01:00"><span class="month">Mar</span> <span class="day">14</span> <span class="month"> 2018</span></span>
+                    <ul class="stats">
+                                    <li><a href="mailto:?Subject=Kaggle Tensorflow Speech Recognition Challenge&Body=I%20saw%20this%20and%20thought%20of%20you!%20 ./speech-Recognition.html" class="icon fa-envelope">&nbsp;</a></li>
+                                    <li><a href="http://reddit.com/submit?url=./speech-Recognition.html&title=#Kaggle Tensorflow Speech Recognition Challenge" class="icon fa-reddit">&nbsp;</a></li>
+                                    <li><a href="https://twitter.com/share?url=./speech-Recognition.html&text=&hashtags=GnotC" class="icon fa-twitter">&nbsp;</a></li>
+                                    <li><a href="https://www.facebook.com/sharer.php?u=./speech-Recognition.html" class="icon fa-facebook">&nbsp;</a></li>
+                                </ul>
+                </div><!-- /.post-info -->
+                <div class="entry-content"> &nbsp; </div><!-- /.entry-content -->
+        </article>
+    <p><img alt="Spectrogram" src="./images/spec_large.png" style="width: 2000px; height: auto; max-width: 100%;"/>
+<em>spectrogram</em></p>
+<hr/>
+<p>From November 2017 to January 2018 the Google Brain team hosted a speech recognition challenge on Kaggle. The goal of this challenge was to write a program that can correctly identify one of 10 words being spoken in a one-second long audio file. Having just made up my mind to start seriously studying data science with the goal of turning a new corner in my career, I decided to tackle this as my first serious kaggle challenge.
+In this post I will talk about ResNets, RNNs, 1D and 2D convolution, Connectionist Temporal Classification and more. Let's go!</p>
+<hr/>
+<p><strong>Exploratory Data Analysis</strong><br/>
+The training data supplied by Google Brain consists of ca. 60,000 1-second-long .wav files in 32 directories that are named by the word spoken in the files. Only 10 of these are classes you need to identify, the others should go in the 'unknown' or 'silence' classes. There are a couple of things you can do to get a grip on the data you're working with. This data set is not completely cleaned up for you. For example, some files are not exactly 1 second long. And there are no 'silence' files as such. What you get is a few longer recordings with 'background' noises that you can split up into 1 second fragments yourself. You can also mix background noises with word files to get some different 'environments' for your sounds to live in during training.
+One important thing you need to do to clean up the data was mentioned in a Discussion comment on Kaggle: There are quite a few files with extremely low sound volumes. Some of these are corrupt and only contain noise and some are basically background noise without any spoken word. To remove or correctly label these files it helps to sort all files on dynamic range of the output volume and then check if there's a threshold minimum sound level below which all files are basically silence. It turns out that output volume by itself is not sufficient to separate corrupt/silence from good files, so I ended up doing some manual cleaning by listening to suspect files and looking at a lot of spectrograms (see below).  </p>
+<p><strong>Preprocessing</strong><br/>
+When you are classifying audio you can either use the raw wav data itself or you can transform the audio into spectrograms. A spectrogram is a visual representation of sound with a time and a frequency axis and pixel intensities representing the amplitude or energy of the sound at that moment and at that frequency. There's bunch of parameters to play around with when making spectrograms that will affect how much information can be extracted from the frequency or the time domains. I haven't done an exhaustive analysis of all these parameters with regards to suitability for deep learning because it would take forever. Instead I plotted a bunch of spectrograms with different dimensions and intensity ranges etc for different words and picked what looked easiest to classify as a different word visually.  </p>
+<p><img ,="" alt="yes_spectrograms" src="./images/yes_specs.png" style="width: 100%;"/>
+<em>Some different visualizations of the audio source of someone saying 'yes'. I chose the spectrogram in the right bottom as input for most of my networks. The advantage of using spectrograms over raw wav data is that you can approach it as an image classification problem, which most of us are already very familiar with. I attempted both approaches.</em> </p>
+<p>To speed up eventual training of the network I decided to do most of the preprocessing separately and save individual train and validation sets as numpy arrays in .npy files. The amount of data is small enough that this can be done on my home pc. Google Brain suggests that you split the data in 'train' 'validation' and 'test' sets based on file names in a 'validation.txt' and 'test.txt' file that they supply. Since they also supply a test set on Kaggle that is used for the leaderboard scoring I decided to combine the 'validation' and 'test' text files into one validation set. Preprocessing included creating spectrograms, normalizing around zero, creating 'label' or 'Y' arrays with integers 0–11 for the ten main classes plus 'silence' and 'unknown'. For the CTC model I did not use the 'unknown' label. All 32 classes were treated as equal.  </p>
+<p>Because I approached this challenge as a deep learning training exercise I implemented a bunch of different network designs. Getting practical training like this was fantastic. I learned more from this one project than I did in the ten MOOCs I started before. (Ok, I exaggerate slightly). I will discuss a few of my design attempts and the things to pay attention to when implementing them.  </p>
+<p><strong>Raw wav files, 1D convolutions</strong><br/>
+With spectrograms you use a specific algorithm to extract features from wav files, but you have to fine tune a bunch of parameters. A well designed neural network should be able to learn features from the raw wav files by itself and potentially get more informative features than one could get from a spectrogram. This first model is an attempt to do that. The initial design was heavily inspired by a Kaggle discussion post by user ttagu99. This is the result of an early attempt with a 6-layer 1D convolutional network.</p>
+<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody>
+<tr><td style="text-align: center;">
+<img ,="" alt="classification and confusion reports" src="./images/confusion.png" style="margin-left: auto; margin-right: auto; text-align: center;width: 640px; height: auto; max-width: 100%;"/>
+</td></tr>
+</tbody></table>
+<p style="text-align: center; font-size: 0.8em;"><i>The network scores on the validation set. Top: sklearn classification report. Bottom: sklearn confusion matrix.</i></p>
+<p>It is not very effective yet. Some of the mistakes it makes are easy to understand. It often confuses 'no' with 'go' and 'off' with 'up'. Theses words have very similar vowel sounds, so confusion can be expected. Some mistakes are less obvious: does it really think 'right' is 'left' 16 times? Maybe it's the 't' at the end? This image also illustrates how unbalanced the classes are if you combine all the 'extra' classes into one 'unknown' class (~500 vs ~8300 samples). I dealt with this by using the 'class_weight' argument in the Keras fit function. This parameter accepts a dictionary mapping classes to a weight float and 'rebalances' the training set by punishing misclassification of an underrepresented class more heavily. Another way of balancing the training set better is by creating batches with equal amounts of samples from each class. I assume one would use the leftover 'unknown' samples in subsequent epochs, but I haven't tried this myself. I don't know which balancing trick is best. After some tweaking of the Conv1D model I got to a score on the Kaggle leaderboard of around 83%. Not very good yet, but instead of tweaking more on this model now I wanted to try some other network architectures.  </p>
+<p><strong>ResNet</strong><br/>
+A residual neural network, or ResNet, is basically a deep convolutional NN with shortcuts. Every couple of layers there is an identity connection back to a layer a few levels up. These shortcut connections are thought to help the network generalize better. And this definitely works: I don't need any dropout layers anymore. What happens is that the network depth defaults to using as many shortcut connections as possible. This keeps the network small and therefore helps generalization. The residual layers in between the shortcuts are updated only when needed.  </p>
+<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody>
+<tr><td style="text-align: center;">
+<img ,="" alt="resnet" src="./images/resnet.png" style="margin-left: auto; margin-right: auto; text-align: center;width: 414px; height: auto; max-width: 100%;"/>
+</td></tr>
+</tbody></table>
+<p style="text-align: center; font-size: 0.8em;"><i>Small subset of ResNet model with two shortcut connections</i></p>
+<p>Blocks of 2 Conv2D layers with BatchNormalization and ReLu activation are separated by a connection layer adding the previous connection layer to the output of the blocks. Every three of such blocks is then further separated by a Conv2D layer with stride 2 in order to learn larger scale features. In Keras, this is how I implemented this:</p>
+<div class="highlight"><pre><span></span><span class="n">filters</span> <span class="o">=</span> <span class="p">[</span><span class="mi">32</span><span class="p">,</span><span class="mi">64</span><span class="p">,</span><span class="mi">128</span><span class="p">]</span> <span class="n">input_img</span> <span class="o">=</span> <span class="n">Input</span><span class="p">(</span><span class="n">shape</span> <span class="o">=</span> <span class="p">(</span><span class="mi">61</span><span class="p">,</span><span class="mi">75</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">block</span><span class="p">(</span><span class="n">filters</span><span class="p">,</span> <span class="n">inp</span><span class="p">):</span>
+  <span class="n">inp</span> <span class="o">=</span> <span class="n">BatchNormalization</span><span class="p">()(</span><span class="n">inp</span><span class="p">)</span>
+  <span class="n">act_1</span> <span class="o">=</span> <span class="n">Activation</span><span class="p">(</span><span class="s1">'relu'</span><span class="p">)(</span><span class="n">layer_1</span><span class="p">)</span>
+  <span class="n">conv_1</span> <span class="o">=</span> <span class="n">Conv2D</span><span class="p">(</span><span class="n">filters</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="n">padding</span> <span class="o">=</span> <span class="s1">'same'</span><span class="p">)(</span><span class="n">act_1</span><span class="p">)</span>
+  <span class="n">layer_2</span> <span class="o">=</span> <span class="n">BatchNormalization</span><span class="p">()(</span><span class="n">conv_1</span><span class="p">)</span>
+  <span class="n">act_2</span> <span class="o">=</span> <span class="n">Activation</span><span class="p">(</span><span class="s1">'relu'</span><span class="p">)(</span><span class="n">layer_2</span><span class="p">)</span>
+  <span class="n">conv_2</span> <span class="o">=</span> <span class="n">Conv2D</span><span class="p">(</span><span class="n">filters</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="n">padding</span> <span class="o">=</span> <span class="s1">'same'</span><span class="p">)(</span><span class="n">act_2</span><span class="p">)</span>
+  <span class="k">return</span><span class="p">(</span><span class="n">conv_2</span><span class="p">)</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">Conv2D</span><span class="p">(</span><span class="n">filters</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="n">padding</span> <span class="o">=</span> <span class="s1">'same'</span><span class="p">)(</span><span class="n">input_img</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">MaxPooling2D</span><span class="p">(</span><span class="n">padding</span> <span class="o">=</span> <span class="s1">'same'</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">Add</span><span class="p">()([</span><span class="n">block</span><span class="p">(</span><span class="n">filters</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">y</span><span class="p">),</span><span class="n">y</span><span class="p">])</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">Add</span><span class="p">()([</span><span class="n">block</span><span class="p">(</span><span class="n">filters</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">x</span><span class="p">),</span><span class="n">x</span><span class="p">])</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">Add</span><span class="p">()([</span><span class="n">block</span><span class="p">(</span><span class="n">filters</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">y</span><span class="p">),</span><span class="n">y</span><span class="p">])</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">Conv2D</span><span class="p">(</span><span class="n">filters</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="n">strides</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="n">padding</span> <span class="o">=</span> <span class="s1">'same'</span><span class="p">,</span>
+           <span class="n">activation</span> <span class="o">=</span> <span class="s1">'relu'</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">Add</span><span class="p">()([</span><span class="n">block</span><span class="p">(</span><span class="n">filters</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">x</span><span class="p">),</span><span class="n">x</span><span class="p">])</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">Add</span><span class="p">()([</span><span class="n">block</span><span class="p">(</span><span class="n">filters</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">y</span><span class="p">),</span><span class="n">y</span><span class="p">])</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">Add</span><span class="p">()([</span><span class="n">block</span><span class="p">(</span><span class="n">filters</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">x</span><span class="p">),</span><span class="n">x</span><span class="p">])</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">Conv2D</span><span class="p">(</span><span class="n">filters</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="n">strides</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="n">padding</span> <span class="o">=</span> <span class="s1">'same'</span><span class="p">,</span>
+           <span class="n">activation</span> <span class="o">=</span> <span class="s1">'relu'</span><span class="p">)(</span><span class="n">y</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">Add</span><span class="p">()([</span><span class="n">block</span><span class="p">(</span><span class="n">filters</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">y</span><span class="p">),</span><span class="n">y</span><span class="p">])</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">Add</span><span class="p">()([</span><span class="n">block</span><span class="p">(</span><span class="n">filters</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">x</span><span class="p">),</span><span class="n">x</span><span class="p">])</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">Add</span><span class="p">()([</span><span class="n">block</span><span class="p">(</span><span class="n">filters</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">y</span><span class="p">),</span><span class="n">y</span><span class="p">])</span>
+
+<span class="n">x2</span> <span class="o">=</span> <span class="n">GlobalAveragePooling2D</span><span class="p">()(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">x2</span> <span class="o">=</span> <span class="n">Dense</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">classes</span><span class="p">),</span> <span class="n">activation</span> <span class="o">=</span> <span class="s1">'softmax'</span><span class="p">)(</span><span class="n">x2</span><span class="p">)</span>
+</pre></div>
+<p>This model performed really well. It reached almost 98% accuracy on the validation set and 85% on the kaggle leaderboard. This discrepancy between validation and test sets is concerning, and something I will get to in more depth below, but it has to do with the test set containing a lot of words that are not given to us in the training set. So called unknown unknowns. The next architecture I looked into to improve the model was Recurrent Neural Networks.</p>
+<p><strong>ResNet into RNN</strong><br/>
+One axis of a spectrogram represents the frequency and the other axis the time dimension of the sound file. There is something to be said for not treating these two dimensions as equal in a convolutional neural network. Recurrent Neural Networks or RNNs are used for modeling sequences, for example to predict what should come next. In our case they can be used to keep track of what happened first, and what came after, something that a ResNet wouldn’t do. What I mean is that a normal convolutional network might think that ‘yse’ and ‘yes’ are the same word, because it has no notion of the sequence of the sound. What I tried to do was to add an RNN layer to the end of my pretty well-performing ResNet and play around with that. As you can see in the code above there is one MaxPooling layer and two Conv2D layers with stride 2 which reduce the size of the input from (61,75,1) to (8,10,128) at the end of the network. The first dimension here (8) represents the time dimension, but RNNs take 3D inputs and (including the batch) our ResNet takes 4D. So to get from the final residual+shortcut layer into an RNN layer we have to use a Reshape layer in Keras. This is how you can do this:</p>
+<div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">Reshape</span><span class="p">((</span><span class="mi">8</span><span class="p">,</span><span class="mi">1280</span><span class="p">))(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">TimeDistributed</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">512</span><span class="p">))(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">x_RNN</span> <span class="o">=</span> <span class="n">LSTM</span><span class="p">(</span><span class="mi">256</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+<p>We combine the 2nd and 3rd dimensions into one large vector resulting in 8 timepoints with 1280 numbers describing the convolved frequency distributions. A TimeDistributed wrapper layer is required to get the RNN layer (LSTM in this case) to use the 8 time rows as sequential inputs. After a couple of tweaks and iterations a combined ResNet RNN model gave an 87% accuracy on the Kaggle leaderboard. My best try and good for circa 200th place out of 1300 or so. I thought this was pretty ok for my first Kaggle project. But I still felt like trying some stuff and learning more deep learning tricks.</p>
+<p><strong>Connectionist Temporal Classification (speech-to-text)</strong><br/>
+Around the time of the submission deadline for the Kaggle challenge the final module of Andrew Ng’s Coursera deep learning with python course about sequence models was opened to the public. I had applied some RNN layers in the combined model above, but I did not really know how it worked, so I took the course to learn all about RNNs. This post is not a review for this course, but suffice it to say I would recommend it to everyone interested in the math internals of RNNs. Besides the basics and not-so-basics of RNNs, I was particularly intrigued with a speech-to-text method that Andrew mentions but doesn’t really go deeper into called Connectionist Temporal Classification, or CTC. I was really excited by this because I have had an idea for a project in the back of my mind involving speech-to-text for a while, but it was still very abstract, I didn’t know at all where to start. But now someone was actually giving me a very concrete place to start.
+A speech-to-text model takes a spectrogram (or raw wav data) as input and outputs letters or words. What such a network needs to do is identify so-called phonemes in each RNN input, translate them into letters and combine letters into correct words.</p>
+<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody>
+<tr><td style="text-align: center;">
+<img ,="" alt="ctc" src="./images/CTC_example.png" style="margin-left: auto; margin-right: auto; text-align: center;width: 237px; height: auto; max-width: 100%;"/>
+</td></tr>
+</tbody></table>
+<p style="text-align: center; font-size: 0.8em;"><i></i></p>
+<p>So for spoken English words, you want to network to output one-hot vectors with length 28 (the alphabet plus ‘space’ and ‘blank’) for each timepoint and then somehow determine how ‘wrong’ the prediction is so we can do backprop. This is what CTC does. It takes the output , ”<em> _ </em> Y _ EEEE _ SSS _ _ ”, for example and reduces it to ‘yes’ by collapsing connecting multiples of letters and ignoring ‘blanks’ between different letters. If the output gives a ‘blank’ between two identical letters (“E _ E”) it considers it as two separate letters. A ‘blank’ should not be confused with a ‘space’, but I didn’t have to worry about this because all my inputs were single words.
+With Keras you can use the backend function ctc_batch_cost() for the implementation, but it requires four parameters (y_true, y_pred, input_length and label_length) instead of only y_true and y_pred, which means you can’t use it as a conventional loss function and plug it into your compile statement. I found a repo on github with a working Keras implementation of Baidu’s DeepSpeech model, which uses CTC, and took the parts I needed for mine.</p>
+<div class="highlight"><pre><span></span><span class="n">y_pred</span> <span class="o">=</span> <span class="n">TimeDistributed</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="n">output_dim</span><span class="p">,</span> <span class="n">activation</span> <span class="o">=</span> <span class="s1">'softmax'</span><span class="p">))(</span><span class="n">X</span><span class="p">)</span>
+
+<span class="c1"># ctc</span>
+<span class="n">y_true</span> <span class="o">=</span> <span class="n">Input</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">'the_labels'</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="bp">None</span><span class="p">,],</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">'int32'</span><span class="p">)</span>
+<span class="n">input_length</span> <span class="o">=</span> <span class="n">Input</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">'input_length'</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">'int32'</span><span class="p">)</span>
+<span class="n">label_length</span> <span class="o">=</span> <span class="n">Input</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">'label_length'</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">'int32'</span><span class="p">)</span>
+
+<span class="c1"># Keras doesn't currently support loss funcs with extra parameters</span>
+<span class="c1"># so CTC loss is implemented in a lambda layer</span>
+<span class="n">loss_out</span> <span class="o">=</span> <span class="n">Lambda</span><span class="p">(</span><span class="n">ctc_lambda_func</span><span class="p">,</span> <span class="n">output_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,),</span>
+                  <span class="n">name</span><span class="o">=</span><span class="s1">'ctc'</span><span class="p">)([</span><span class="n">y_pred</span><span class="p">,</span>
+                               <span class="n">y_true</span><span class="p">,</span>
+                               <span class="n">input_length</span><span class="p">,</span>
+                               <span class="n">label_length</span><span class="p">])</span>
+<span class="n">test_model</span> <span class="o">=</span> <span class="n">Model</span><span class="p">(</span><span class="n">inputs</span> <span class="o">=</span> <span class="n">X_input</span><span class="p">,</span> <span class="n">outputs</span> <span class="o">=</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">Model</span><span class="p">(</span><span class="n">inputs</span> <span class="o">=</span> <span class="p">[</span><span class="n">X_input</span><span class="p">,</span>
+                        <span class="n">y_true</span><span class="p">,</span>
+                        <span class="n">input_length</span><span class="p">,</span>
+                        <span class="n">label_length</span><span class="p">],</span>
+              <span class="n">outputs</span> <span class="o">=</span> <span class="n">loss_out</span><span class="p">)</span>
+</pre></div>
+<p>Here y_pred is the TimeDistributed output of the RNN with length 28 (output_dim) one-hot vectors. Together with the other three parameters it is fed into the ctc_batch_cost function which is wrapped in a Lambda layer and then I create one model for training (“model”) and one for testing/validating (“test_model”) that doesn’t include the Lambda layer. When you run model.Compile() it needs a loss function, so you give it a dummy function that takes y_true and y_pred as parameters and simply returns y_pred. Then, training the model you give the .fit() function a list of four inputs:  </p>
+<ol>
+<li>the training set,</li>
+<li>an array y_true with alphabet indexes of the labels, padded with the ‘blank’ index to a common length for all samples ([25, 5, 19, 27, 27, 27, 27, 27] for ‘yes’),</li>
+<li>a one-dimensional array input_length with the length of your ‘alphabet’ for each sample (len(Y_train) 28’s as a vector), and</li>
+<li>a one-dimensional array label_length with the length of the y_true vectors (8 for me) len(Y_train) times.  </li>
+</ol>
+<p>The outputs parameter of the .fit() function takes an array of zeros with length len(Y_train), our dummy loss function does nothing with it anyway.
+I think it’s very exciting that I got this to work. Using the raw output of this model (the upstream layers are a Conv1D and two Bidirectional LSTMs) reaches a score of 83% on the Kaggle LB, but this is without trying to run some kind of spellcheck or language model on the predicted words. I saw a lot of “ye”’s and “riget”s etc. I will play around with it some more and see what more I can get out of it.  </p>
+<p><strong>Outlier detection</strong><br/>
+As I shortly mentioned above, the test set contains a lot of words, and also voices, that are not in the training set. This means that to get a really good score your model has to learn features of unknown unknowns. From what I have read on the Discussion forum at Kaggle after the deadline most of the top scorers used a lot of feature engineering to create more “unknown” samples. You can for example cut and paste pieces of words together to create new words, or you can use pitch shifting or reversing the samples. I tried a bit of this but was not very successful. Another thing I saw many top scorers do is unsupervised training on the test set to learn what kind of features are present there that are not in the train set. This seemed to give a large improvement in scores, but it feels a bit like cheating to me.
+I myself took quite a lot of time trying different forms of outlier or anomaly detection. This means trying to get the network to reject sounds that it has not heard before and put them in the ‘unknown’ class. I tried training autoencoders and variational autoencoders on the 10 main classes, but these models always remained equally good at decoding unseen spectrograms as they were at decoding the inputs I trained with. I tried open set recognition but I gave up after trying for a few weeks to understand exactly how they were doing this. In the end it would have been nice if some of these techniques improved my models, but if not a super score on the leaderboard studying this did give me a lot of new knowledge and experience so I’m glad I did.  </p>
+<p><strong>Conclusion</strong><br/>
+It’s been 15 years since I left University. It was great fun to learn so much in so little time again. Besides getting a better idea about what it takes to do speech recognition, I also learned a bit more about doing Kaggle challenges and what it takes to score high. When I started I thought that if I find some trick that the other participants didn’t then I would score better than them, but now I realize much better what it really takes to score high. Those guys definitely know a lot more tricks than I do!</p>
+<hr/>
+<p><em>Originally published with <a href="https://towardsdatascience.com/kaggle-tensorflow-speech-recognition-challenge-b46a3bca2501">Towards Data Science</a></em></p>
+<p><em>Implementation of the ResNet and CTC models at <a href="https://github.com/chrisdinant/speech">https://github.com/chrisdinant/speech</a></em><br/>
+Δ9</p>
+
+  </div><!-- /.entry-content -->
+  <!-- Pagination -->
+            <div class="pagination">
+              <a class="button previous" href="./bayes-and-binomial-theorems.html">
+             Bayes and Binomial Theorems
+         </a>
+              <a href="./entropy-and-information-gain.html" class="button next">Entropy and Information Gain</a>
+            </div>
+  <!-- disqus  -->         
+</div>
+</div>
+        <!-- This jQuery line finds any span that contains code highlighting classes and then selects the parent <pre> tag and adds a border. 
+        This is done as a workaround to visually distinguish the code inputs and outputs -->
+        <script>
+            $( ".hll, .n, .c, .err, .s1, .ss, .bp, .vc, .vg, .vi, .il, .kn, .nn" ).parent( "pre" ).css( "border", "1px solid #DEDEDE" );
+        </script>
+<!-- /#contentinfo -->
+
+</body>
+</html>

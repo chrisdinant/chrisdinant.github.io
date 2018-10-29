@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+
+<head>
+          <title>Transferred Learnings</title>
+        <meta charset="utf-8" />
+
+
+    <meta name="tags" content="entropy" />
+
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <link rel="stylesheet" href="/theme/css/jupyter.css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <!--[if lte IE 8]><script src="/theme/js/ie/html5shiv.js"></script><![endif]-->
+        <!--[if lte IE 8]><link rel="stylesheet" href="/theme/css/ie8.css" /><![endif]-->
+</head>
+
+<body>
+        <header id="banner" class="body">
+                <h1><a href="./">Transferred Learnings <strong></strong></a></h1>
+        </header><!-- /#banner -->
+<!-- Sidebar -->
+            <div id="sidebar">
+
+                <!-- Logo -->
+                    <h1 id="logo"><a href="/">Transferred Learnings</a></h1>
+                    <!-- Text -->
+                    <section class="box text-style1">
+                        <div class="inner">
+                            <p>
+                                <strong>My long term memory is very short</strong><br />
+                            </p>
+                        </div>
+                    </section>
+                <!-- Nav -->
+                    <nav id="nav">
+                        <ul>                            
+                            <li><a href="./pages/about-me.html">Whose blog is this?</a></li>
+                            <li><a href="./category/data-science">Data Science</a></li>
+                            <li><a href="./category/not-data-science">Not Data Science</a></li>
+                        </ul>
+                    </nav>
+
+                <!-- Search -->
+                    <!-- <section class="box search">
+                        <form method="post" action="#">
+                            <input type="text" class="text" name="search" placeholder="Search" />
+                        </form>
+                    </section> -->
+
+                
+
+                <!-- Recent Posts -->
+                    <section class="box recent-posts">
+                        <header>
+                            <h2>Contact Me</h2>
+                        </header>
+                        <ul>
+                            <li><a class="icon fa-envelope" href="mailto:chris.dinant@gmail.com"> Email</a></li>
+                            <li><a class="icon fa-twitter" href="https://twitter.com/chrisdinant"> Twitter</a></li>
+                            <li><a class="icon fa-linkedin" href="https://www.linkedin.com/in/chris-dinant/"> LinkedIn</a></li>
+                            <li><a class="icon fa-github" href="https://github.com/chrisdinant"> Github</a></li>
+                            
+                        </ul>
+                    </section>
+
+
+
+                <!-- Copyright -->
+                    <ul id="copyright">
+                        <li>Powered by <a href="http://getpelican.com/">Pelican</a>.</li>
+                        <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+                        <li>Modified under a <a href="https://creativecommons.org/licenses/by/3.0/">CC:BY</a> license.</li>
+                    </ul>
+
+            </div><!-- /#menu -->
+<div id="content">
+<div class="inner">
+        <article class="box post post-excerpt">
+                <header> 
+                <h2><a href="./entropy-and-information-gain.html" rel="bookmark" title="Permalink to Entropy and Information Gain">Entropy and Information Gain</a></h2> 
+                <p>The more homogeneous a set, the higher the entropy and the lower the amount of information.</p>
+                </header>
+                <div class="info">
+                    <span class="date" datetime="2018-03-17T00:00:00+01:00"><span class="month">Mar</span> <span class="day">17</span> <span class="month"> 2018</span></span>
+                    <ul class="stats">
+                                    <li><a href="mailto:?Subject=Entropy and Information Gain&Body=I%20saw%20this%20and%20thought%20of%20you!%20 ./entropy-and-information-gain.html" class="icon fa-envelope">&nbsp;</a></li>
+                                    <li><a href="http://reddit.com/submit?url=./entropy-and-information-gain.html&title=#Entropy and Information Gain" class="icon fa-reddit">&nbsp;</a></li>
+                                    <li><a href="https://twitter.com/share?url=./entropy-and-information-gain.html&text=&hashtags=GnotC" class="icon fa-twitter">&nbsp;</a></li>
+                                    <li><a href="https://www.facebook.com/sharer.php?u=./entropy-and-information-gain.html" class="icon fa-facebook">&nbsp;</a></li>
+                                </ul>
+                </div><!-- /.post-info -->
+                <div class="entry-content"> &nbsp; </div><!-- /.entry-content -->
+        </article>
+    <p>Neither 'Entropy' nor 'Information' are concepts with very intuitive definitions. Most people learn about entropy in chemistry class where it is used to describe the amount of 'order' in a system. But how do you translate 'order' into a mathematical equation? And what about information?  </p>
+<p>In data science the terms 'Entropy' and 'Information Gain' are usually used in the context of decision trees. Here entropy describes the 'purity' of a set, which of course is equivalent to the order of a system in chemistry. Decision trees try to split up a dataset based on differences in a single feature such that the split results in the 'purest' branches, meaning the lowest amount of variation in the target variable. Then the branches are split again according to the same criterion, until we reach the point where all branches are pure, or we decide the model is strong enough. The entropy (or often you will see <i>cross-entropy </i>or<i> deviance</i> (<i>D</i>)) of a set is defined as follows:
+</p>
+<div class="math">$$D=-\sum_{k=1}^K\hat{p}_{mk}\log\hat{p}_{mk}$$</div>
+<p>
+where
+<span class="math">\(p_{mk}\)</span>
+is the probability, or fraction of the set <i>m</i>, for all data points of class <i>K</i>. The lower the entropy, the more pure the set. The split that results in the lowest sum of proportional entropies is chosen for each node. This combined in the definition for information gain which describes how much purer children are to their parent node.
+</p>
+<div class="math">$$IG=D_{ps}-\sum_{c=1}^C\hat{p}_{cs}D_{cs}$$</div>
+<p>
+This is simply the difference in entropy of the parent <i>p</i> at split <i>s </i>and the average entropy of its children <i>C</i>.<br/>
+<br/>
+Some intuition:<br/>
+The more homogeneous a set, the higher the entropy and the lower the amount of information it contains. You want to increase the amount of information at each split to get accurate classifications.  </p>
+<p><em>This was published previously on my old blog</em><br/>
+Δ9</p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+
+  </div><!-- /.entry-content -->
+  <!-- Pagination -->
+            <div class="pagination">
+              <a class="button previous" href="./speech-Recognition.html">
+             Kaggle Tensorflow Speech Recognition Challenge
+         </a>
+              <a href="./naive-Bayes.html" class="button next">What's so naive about naive Bayes?</a>
+            </div>
+  <!-- disqus  -->         
+</div>
+</div>
+        <!-- This jQuery line finds any span that contains code highlighting classes and then selects the parent <pre> tag and adds a border. 
+        This is done as a workaround to visually distinguish the code inputs and outputs -->
+        <script>
+            $( ".hll, .n, .c, .err, .s1, .ss, .bp, .vc, .vg, .vi, .il, .kn, .nn" ).parent( "pre" ).css( "border", "1px solid #DEDEDE" );
+        </script>
+<!-- /#contentinfo -->
+
+</body>
+</html>

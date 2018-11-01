@@ -3,9 +3,9 @@ Date: 2018-10-28
 Slug: naive-Bayes
 tags: naive-Bayes
 headline: Assuming feature independence tends to help classification accuracy
+cover: /images/naive-art_ivan_generalic.jpg
 
-![Naive Art]({filename}/images/naive-art_ivan_generalic.jpg)
-*Naive art by Ivan Generalic*
+*Cover art: Naive art by Ivan Generalic*
 
 Naive Bayes (NB) is 'naive' because it makes the assumption that features of a measurement are independent of each other. This is naive because it is (almost) never true. Here is why NB works anyway.  
 

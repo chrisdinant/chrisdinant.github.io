@@ -1,102 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-
-
 <head>
-          <title>Transferred Learnings</title>
-        <meta charset="utf-8" />
+    <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
 
-    <meta name="tags" content="naive-Bayes" />
+  <title>What's so naive about naive Bayes?</title>
 
-        <link rel="stylesheet" href="/theme/css/main.css" />
-        <link rel="stylesheet" href="/theme/css/jupyter.css" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <!--[if lte IE 8]><script src="/theme/js/ie/html5shiv.js"></script><![endif]-->
-        <!--[if lte IE 8]><link rel="stylesheet" href="/theme/css/ie8.css" /><![endif]-->
+
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="referrer" content="origin" />
+  <meta name="generator" content="Pelican" />
+  <link href="./" rel="canonical" />
+
+  <!-- Feed -->
+
+  <link href="./theme/css/style.css" type="text/css" rel="stylesheet" />
+
+  <!-- Code highlight color scheme -->
+      <link href="./theme/css/code_blocks/github.css" rel="stylesheet">
+
+
+  <!-- Custom fonts -->
+  <link href='https://fonts.googleapis.com/css?family=Montserrat:400,300' rel='stylesheet' type='text/css' />
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css" />
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+
+  <link href="./naive-Bayes.html" rel="canonical" />
+
+    <meta name="description" content="Assuming feature independence tends to help classification accuracy">
+
+    <meta name="author" content="Chris Dinant">
+
+    <meta name="tags" content="naive-Bayes">
+
+
+
+
+<!-- Open Graph -->
+<meta property="og:site_name" content="Transferred Learnings"/>
+<meta property="og:title" content="What's so naive about naive Bayes?"/>
+<meta property="og:description" content="Assuming feature independence tends to help classification accuracy"/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="./naive-Bayes.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2018-10-28 00:00:00+02:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="./author/chris-dinant.html">
+<meta property="article:section" content="data-science"/>
+<meta property="article:tag" content="naive-Bayes"/>
+<meta property="og:image" content=".//images/naive-art_ivan_generalic.jpg">
+
+<!-- Twitter Card -->
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "name": "What's so naive about naive Bayes?",
+  "headline": "What's so naive about naive Bayes?",
+  "datePublished": "2018-10-28 00:00:00+02:00",
+  "dateModified": "",
+  "author": {
+    "@type": "Person",
+    "name": "Chris Dinant",
+    "url": "./author/chris-dinant.html"
+  },
+  "image": ".//images/naive-art_ivan_generalic.jpg",
+  "url": "./naive-Bayes.html",
+  "description": "Assuming feature independence tends to help classification accuracy"
+}
+</script>
 </head>
+<!-- TODO : Body class -->
+<body class="home-template">
 
-<body>
-        <header id="banner" class="body">
-                <h1><a href="./">Transferred Learnings <strong></strong></a></h1>
-        </header><!-- /#banner -->
-<!-- Sidebar -->
-            <div id="sidebar">
+<nav id="menu">
+  <a class="close-button">Close</a>
+  <div class="nav-wrapper">
+    <p class="nav-label">Menu</p>
+    <ul>
 
-                <!-- Logo -->
-                    <h1 id="logo"><a href="/">Transferred Learnings</a></h1>
-                    <!-- Text -->
-                    <section class="box text-style1">
-                        <div class="inner">
-                            <p>
-                                <strong>My long term memory is very short</strong><br />
-                            </p>
-                        </div>
-                    </section>
-                <!-- Nav -->
-                    <nav id="nav">
-                        <ul>                            
-                            <li><a href="./pages/about-me.html">Whose blog is this?</a></li>
-                            <li><a href="./category/data-science">Data Science</a></li>
-                            <li><a href="./category/not-data-science">Not Data Science</a></li>
-                        </ul>
-                    </nav>
+                  <li class="nav-data-science active" role="presentation"><a href="./category/data-science.html">data-science</a></li>
+                  <li role="presentation"><a href="./category/not-data-science.html">not-data-science</a></li>
 
-                <!-- Search -->
-                    <!-- <section class="box search">
-                        <form method="post" action="#">
-                            <input type="text" class="text" name="search" placeholder="Search" />
-                        </form>
-                    </section> -->
+    </ul>
+  </div>
+</nav>
+    <!-- Progressbar -->
+    <div class="progress-container">
+        <span class="progress-bar"></span>
+    </div>
 
-                
+    <!-- Page Header -->
+    <!-- Set your background image for this header on the line below. -->
+    <header id="post-header" class="has-cover">
+      <div class="inner">
+        <nav id="navigation">
+            <span class="blog-logo">
+              <a href="./"><img src="/extra/delta9.png" alt="Blog Logo" /></a>
+            </span>
+          <span id="menu-button" class="nav-button">
+            <a class="menu-button"><i class="ic ic-menu"></i> Menu</a>
+          </span>
+        </nav>
+        <h1 class="post-title">What's so naive about naive Bayes?</h1>
+        <!-- TODO : Proper class for headline -->
+          <span class="blog-description">Assuming feature independence tends to help classification accuracy</span>
+        <span class="post-meta">
+                <a href="./author/chris-dinant.html">Chris Dinant</a>
+            | <time datetime="Sun 28 October 2018">Sun 28 October 2018</time>
+        </span>
+        <!-- TODO : Modified check -->
+            <div class="post-cover cover" style="background-image: url('.//images/naive-art_ivan_generalic.jpg')">
+      </div>
+    </header>
 
-                <!-- Recent Posts -->
-                    <section class="box recent-posts">
-                        <header>
-                            <h2>Contact Me</h2>
-                        </header>
-                        <ul>
-                            <li><a class="icon fa-envelope" href="mailto:chris.dinant@gmail.com"> Email</a></li>
-                            <li><a class="icon fa-twitter" href="https://twitter.com/chrisdinant"> Twitter</a></li>
-                            <li><a class="icon fa-linkedin" href="https://www.linkedin.com/in/chris-dinant/"> LinkedIn</a></li>
-                            <li><a class="icon fa-github" href="https://github.com/chrisdinant"> Github</a></li>
-                            
-                        </ul>
-                    </section>
+  <section id="wrapper">
+    <a class="hidden-close"></a>
 
-
-
-                <!-- Copyright -->
-                    <ul id="copyright">
-                        <li>Powered by <a href="http://getpelican.com/">Pelican</a>.</li>
-                        <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-                        <li>Modified under a <a href="https://creativecommons.org/licenses/by/3.0/">CC:BY</a> license.</li>
-                    </ul>
-
-            </div><!-- /#menu -->
-<div id="content">
-<div class="inner">
-        <article class="box post post-excerpt">
-                <header> 
-                <h2><a href="./naive-Bayes.html" rel="bookmark" title="Permalink to What's so naive about naive Bayes?">What's so naive about naive Bayes?</a></h2> 
-                <p>Assuming feature independence tends to help classification accuracy</p>
-                </header>
-                <div class="info">
-                    <span class="date" datetime="2018-10-28T00:00:00+02:00"><span class="month">Oct</span> <span class="day">28</span> <span class="month"> 2018</span></span>
-                    <ul class="stats">
-                                    <li><a href="mailto:?Subject=What's so naive about naive Bayes?&Body=I%20saw%20this%20and%20thought%20of%20you!%20 ./naive-Bayes.html" class="icon fa-envelope">&nbsp;</a></li>
-                                    <li><a href="http://reddit.com/submit?url=./naive-Bayes.html&title=#What's so naive about naive Bayes?" class="icon fa-reddit">&nbsp;</a></li>
-                                    <li><a href="https://twitter.com/share?url=./naive-Bayes.html&text=&hashtags=GnotC" class="icon fa-twitter">&nbsp;</a></li>
-                                    <li><a href="https://www.facebook.com/sharer.php?u=./naive-Bayes.html" class="icon fa-facebook">&nbsp;</a></li>
-                                </ul>
-                </div><!-- /.post-info -->
-                <div class="entry-content"> &nbsp; </div><!-- /.entry-content -->
-        </article>
-    <p><img alt="Naive Art" src="./images/naive-art_ivan_generalic.jpg" style="width: 1309px; height: auto; max-width: 100%;"/>
-<em>Naive art by Ivan Generalic</em></p>
+    <!-- Post content -->
+    <main class="content" role="main">
+        <article class="post">
+        <div class="inner">
+            <section class="post-content">
+                <p><em>Cover art: Naive art by Ivan Generalic</em></p>
 <p>Naive Bayes (NB) is 'naive' because it makes the assumption that features of a measurement are independent of each other. This is naive because it is (almost) never true. Here is why NB works anyway.  </p>
 <p>NB is a very intuitive classification algorithm. It asks the question, "Given these features, does this measurement belong to class A or B?", and answers it by taking the proportion of all previous measurements with the same features belonging to class A multiplied by the proportion of all measurements in class A. If this number is bigger then the corresponding calculation for class B then we say the measurement belongs in class A. Simple, right?  </p>
 <p>Of course in practice we will rarely see many measurements with identical feature sets. In fact if we had to rely on a measurement to be identical to some previously measured data points we would only be able to classify exact duplicates, making Bayes' rule practically useless for classification.  </p>
@@ -104,24 +142,88 @@
 <p>The great thing about NB is that the naive assumption actually tends to help the classification. Think of it this way: if two features are actually dependent, say, hair length and gender, then assuming they are independent means you get to double-count evidence. If both gender and long hair are more associated with being a Justin Bieber fan, then assuming independence made you even more sure that she's a Belieber. And perhaps a bit naive.</p>
 <p><em>This was previously published by the Medium.com publication Towards Data Science, <a href="https://towardsdatascience.com/whats-so-naive-about-naive-bayes-58166a6a9eba">here</a></em></p>
 <p>Δ9</p>
+            </section>
 
-  </div><!-- /.entry-content -->
-  <!-- Pagination -->
-            <div class="pagination">
-              <a class="button previous" href="./entropy-and-information-gain.html">
-             Entropy and Information Gain
-         </a>
-              <a href="./custom-pixels.html" class="button next">Music Video</a>
+            <section class="post-info">
+                <div class="post-share">
+                    <a class="twitter" href="https://twitter.com/share?text=What's so naive about naive Bayes?&amp;url=./naive-Bayes.html" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <i class="ic ic-twitter"></i><span class="hidden">Twitter</span>
+                    </a>
+                    <a class="facebook" href="https://www.facebook.com/sharer/sharer.php?u=./naive-Bayes.html" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <i class="ic ic-facebook"></i><span class="hidden">Facebook</span>
+                    </a>
+                    <a class="googleplus" href="https://plus.google.com/share?url=./naive-Bayes.html" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <i class="ic ic-googleplus"></i><span class="hidden">Google+</span>
+                    </a>
+                    <div class="clear"></div>
+                </div>
+
+                <aside class="post-tags">
+<a href="./tag/naive-bayes.html">naive-Bayes</a>                </aside>
+
+                <div class="clear"></div>
+
+
+                </section>
+
+                <script type="text/javascript">
+                    var disqus = 'chrisdinant';
+                    var disqus_shortname = 'chrisdinant';
+                    var disqus_identifier = '/naive-Bayes.html';
+                    var disqus_url = './naive-Bayes.html';
+                </script>
+                <noscript>Please enable JavaScript to view the comments.</noscript>
+                <section class="post-comments">
+                        <a id="show-disqus" class="post-comments-activate" data-disqus-identifier="/naive-Bayes.html" >Show Comments</a>
+                    <div id="disqus_thread"></div>
+                </section>
+
+                <aside class="post-nav">
+                    <a class="post-nav-next" href="./custom-pixels.html">
+                        <section class="post-nav-teaser">
+                            <i class="ic ic-arrow-left"></i>
+                                <h2 class="post-nav-title">Music Video</h2>
+                            <p class="post-nav-excerpt">Here's my children dancing around in the yard to my song. Have a watch: This video was...</p>
+                        </section>
+                    </a>
+                    <a class="post-nav-prev" href="./entropy-and-information-gain.html">
+                        <section class="post-nav-teaser">
+                            <i class="ic ic-arrow-right"></i>
+                                <h2 class="post-nav-title">Entropy and Information Gain</h2>
+                            <p class="post-nav-excerpt">Entropy and Information Gain</p>
+                        </section>
+                    </a>
+                    <div class="clear"></div>
+                </aside>
+
             </div>
-  <!-- disqus  -->         
-</div>
-</div>
-        <!-- This jQuery line finds any span that contains code highlighting classes and then selects the parent <pre> tag and adds a border. 
-        This is done as a workaround to visually distinguish the code inputs and outputs -->
-        <script>
-            $( ".hll, .n, .c, .err, .s1, .ss, .bp, .vc, .vg, .vi, .il, .kn, .nn" ).parent( "pre" ).css( "border", "1px solid #DEDEDE" );
-        </script>
-<!-- /#contentinfo -->
+        </article>
+    </main>
+      <!-- TODO : Body class -->
+    <div id="body-class" style="display: none;" class=""></div>
 
+    <footer id="footer">
+      <div class="inner">
+        <section class="credits">
+
+
+          <span class="credits-theme">Theme <a href="https://github.com/arulrajnet/attila" rel="nofollow">Attila</a></span>
+          <span class="credits-software">Published with <a href="https://github.com/getpelican/pelican" rel="nofollow">Pelican</a></span>
+        </section>
+      </div>
+    </footer>
+  </section>
+
+  <script type="text/javascript" src="./theme/js/script.js"></script>
+
+<script type="text/javascript">
+    var disqus_shortname = 'chrisdinant';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
 </body>
 </html>

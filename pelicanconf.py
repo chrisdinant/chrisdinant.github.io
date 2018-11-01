@@ -5,8 +5,14 @@ from __future__ import unicode_literals
 AUTHOR = 'Chris Dinant'
 SITENAME = 'Transferred Learnings'
 SITEURL = 'https://chrisdinant.github.io'
+SITESUBTITLE = 'I have very short long term memory'
 
 PATH = 'content'
+
+SITE_LOGO = '/extra/delta9.png'
+HEADER_COVER = '/extra/bg1.jpg'
+TWITTER_IMAGE = '/extra/delta9.png'
+HEADER_COLOR = 'black'
 
 TIMEZONE = 'Europe/Paris'
 
@@ -45,30 +51,16 @@ EXTRA_PATH_METADATA = {
     'extra/favicon.ico': {'path': 'favicon.ico'},      
 }
 
-
 MARKUP = ('md')
 
 PLUGIN_PATHS = ["/home/chris/pelican/pelican-plugins"]
-PLUGINS = ["neighbors", "better_figures_and_images", "render_math", "disqus_static"]
-
-MARKDOWN = {
-    'extension_configs': {
-        # https://pythonhosted.org/Markdown/extensions/index.html#officially-supported-extensions
-        'markdown.extensions.codehilite': {'css_class': 'highlight'},
-        'markdown.extensions.meta': {},
-        'markdown.extensions.sane_lists': {},
-        'markdown.extensions.smarty': {},
-        'markdown.extensions.toc': {'permalink': True},
-        'mdx_video': {},
-        'mdx_titlecase.mdx_titlecase:TitlecaseExtension': {},
-    },
-    'output_format': 'html5',
-    # Allow numbered lists to not start with 1. Used in following article:
-    # https://kevin.deldycke.com/2016/12/falsehoods-programmers-believe-about-falsehoods-lists/
-    # See: https://pythonhosted.org/Markdown/reference.html#lazy_ol
-    'lazy_ol': False,
-}
-
+PLUGINS = [
+    "neighbors",
+    "assets", 
+    "better_figures_and_images", 
+    "render_math", 
+    "disqus_static"
+]
 
 RESPONSIVE_IMAGES = True
 
@@ -79,8 +71,21 @@ IGNORE_FILES = [".ipynb_checkpoints"]
 
 IPYNB_USE_METACELL = True
 
-THEME = "/home/chris/pelican/pelican-themes/pelican-striped-html5up"
+THEME = "/home/chris/pelican/attila" # note, not in pelican-themes directory
 
 DISQUS_SITENAME = "chrisdinant"
 DISQUS_SECRET_KEY = "hIiLE8jkwilNIn287D5fkyjVd1esr2ZfnEv5j98i3vw5FY6AeKSP982vuSFNmZ39"
 DISQUS_PUBLIC_KEY = "xhE0WCYT9Zg931oUcHaFP2Z6rNbfeATSZuoQAAv4VEMXwv9LmDrt1SsX5Lxrz8JD"
+
+AUTHORS_BIO = {
+  "delta9": {
+    "name": "chris dinant",
+    "cover": "extra/bg1.png",
+    "image": "extra/delta9.png",
+    "website": "https://chrisdinant.github.io",
+    "linkedin": "chris-dinant",
+    "github": "chrisdinant",
+    "location": "Copenhagen",
+    "bio": "This is the place for a small biography with max 200 characters. Well, now 100 are left. Cool, hugh?"
+  }
+}

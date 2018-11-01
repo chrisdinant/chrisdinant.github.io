@@ -2,6 +2,7 @@ Title: Music Video
 Date: 2018-10-28
 Slug: custom-pixels
 headline: Custom pixel replacement for video with FFMPEG
+cover: /images/markus-spiske-78531-unsplash.jpg
 
 Here's my children dancing around in the yard to my song.  
 Have a watch:

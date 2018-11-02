@@ -211,7 +211,8 @@ For this we use the &lt;i&gt;Maximum Likelihood&lt;/i&gt; method. This tries to 
 &lt;br/&gt;
 &lt;/p&gt;
 &lt;div class="math"&gt;$$l(\beta_0,\beta_1)=\displaystyle\prod_{i:y=1}p(x_i)\displaystyle\prod_{i':y_{i'}=0}(1-p(x_i'))$$&lt;/div&gt;
-&lt;p&gt;Logistic Regression can be extended to more than two class problems, but in practice other algorithms are usually preferred for this.&lt;/p&gt;
+&lt;p&gt;Logistic Regression can be extended to more than two class problems, but in practice other algorithms are usually preferred for this.  &lt;/p&gt;
+&lt;p&gt;Δ9&lt;/p&gt;
 &lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -279,7 +280,8 @@ You estimate the &lt;i&gt;β&lt;/i&gt;'s as the values that minimize the &lt;i
 &lt;/p&gt;
 &lt;div class="math"&gt;$$\displaystyle\sum_{i=1}^n(y_i-\hat{\beta_0}-\hat{\beta_1}x_{i1}-\hat{\beta_2}x_{i2}-\dots-\hat{\beta_p}x_{ip})^2$$&lt;/div&gt;
 &lt;p&gt;&lt;strong&gt;When should you use Linear Regression?&lt;/strong&gt;&lt;br/&gt;
-As a guideline, with any regression problem, try linear regression first and move on to other methods when it is not good enough. This choice should be based on considerations like whether the model under- or overfits the data.&lt;/p&gt;
+As a guideline, with any regression problem, try linear regression first and move on to other methods when it is not good enough. This choice should be based on considerations like whether the model under- or overfits the data.  &lt;/p&gt;
+&lt;p&gt;Δ9&lt;/p&gt;
 &lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",

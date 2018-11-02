@@ -1,109 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-
-
 <head>
-          <title>Transferred Learnings</title>
-        <meta charset="utf-8" />
+    <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+
+  <title>Bayes and Binomial Theorems</title>
+
+
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="referrer" content="origin" />
+  <meta name="generator" content="Pelican" />
+  <link href="./" rel="canonical" />
+
+  <!-- Feed -->
+
+  <link href="./theme/css/style.css" type="text/css" rel="stylesheet" />
+
+  <!-- Code highlight color scheme -->
+      <link href="./theme/css/code_blocks/github.css" rel="stylesheet">
+
+
+  <!-- Custom fonts -->
+  <link href='https://fonts.googleapis.com/css?family=Montserrat:400,300' rel='stylesheet' type='text/css' />
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css" />
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+
+  <link href="./bayes-and-binomial-theorems.html" rel="canonical" />
+
+    <meta name="description" content="Our intuitions about test accuracy are often very inaccurate">
+
+    <meta name="author" content="Chris Dinant">
 
 
 
-        <link rel="stylesheet" href="/theme/css/main.css" />
-        <link rel="stylesheet" href="/theme/css/jupyter.css" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <!--[if lte IE 8]><script src="/theme/js/ie/html5shiv.js"></script><![endif]-->
-        <!--[if lte IE 8]><link rel="stylesheet" href="/theme/css/ie8.css" /><![endif]-->
+
+
+<!-- Open Graph -->
+<meta property="og:site_name" content="Transferred Learnings"/>
+<meta property="og:title" content="Bayes and Binomial Theorems"/>
+<meta property="og:description" content="Our intuitions about test accuracy are often very inaccurate"/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="./bayes-and-binomial-theorems.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2018-02-06 00:00:00+01:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="./author/chris-dinant.html">
+<meta property="article:section" content="data-science"/>
+<meta property="og:image" content=".//images/numbers.jpg">
+
+<!-- Twitter Card -->
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "name": "Bayes and Binomial Theorems",
+  "headline": "Bayes and Binomial Theorems",
+  "datePublished": "2018-02-06 00:00:00+01:00",
+  "dateModified": "",
+  "author": {
+    "@type": "Person",
+    "name": "Chris Dinant",
+    "url": "./author/chris-dinant.html"
+  },
+  "image": ".//images/numbers.jpg",
+  "url": "./bayes-and-binomial-theorems.html",
+  "description": "Our intuitions about test accuracy are often very inaccurate"
+}
+</script>
 </head>
+<!-- TODO : Body class -->
+<body class="home-template">
 
-<body>
-        <header id="banner" class="body">
-                <h1><a href="./">Transferred Learnings <strong></strong></a></h1>
-        </header><!-- /#banner -->
-<!-- Sidebar -->
-            <div id="sidebar">
+<nav id="menu">
+  <a class="close-button">Close</a>
+  <div class="nav-wrapper">
+    <p class="nav-label">Menu</p>
+    <ul>
 
-                <!-- Logo -->
-                    <h1 id="logo"><a href="/">Transferred Learnings</a></h1>
-                    <!-- Text -->
-                    <section class="box text-style1">
-                        <div class="inner">
-                            <p>
-                                <strong>My long term memory is very short</strong><br />
-                            </p>
-                        </div>
-                    </section>
-                <!-- Nav -->
-                    <nav id="nav">
-                        <ul>                            
-                            <li><a href="./pages/about-me.html">Whose blog is this?</a></li>
-                            <li><a href="./category/data-science">Data Science</a></li>
-                            <li><a href="./category/not-data-science">Not Data Science</a></li>
-                        </ul>
-                    </nav>
+              <li role="presentation"><a href="./pages/about-me.html">Whose blog is this?</a></li>
+      
+                  <li class="nav-data-science active" role="presentation"><a href="./category/data-science.html">data-science</a></li>
+                  <li role="presentation"><a href="./category/not-data-science.html">not-data-science</a></li>
 
-                <!-- Search -->
-                    <!-- <section class="box search">
-                        <form method="post" action="#">
-                            <input type="text" class="text" name="search" placeholder="Search" />
-                        </form>
-                    </section> -->
+    </ul>
+  </div>
+</nav>
+    <!-- Progressbar -->
+    <div class="progress-container">
+        <span class="progress-bar"></span>
+    </div>
 
-                
+    <!-- Page Header -->
+    <!-- Set your background image for this header on the line below. -->
+    <header id="post-header" class="has-cover">
+      <div class="inner">
+        <nav id="navigation">
+            <span class="blog-logo">
+              <a href="./"><img src="/extra/delta9.png" alt="Blog Logo" /></a>
+            </span>
+          <span id="menu-button" class="nav-button">
+            <a class="menu-button"><i class="ic ic-menu"></i> Menu</a>
+          </span>
+        </nav>
+        <h1 class="post-title">Bayes and Binomial Theorems</h1>
+        <!-- TODO : Proper class for headline -->
+          <span class="blog-description">Our intuitions about test accuracy are often very inaccurate</span>
+        <span class="post-meta">
+                <a href="./author/chris-dinant.html">Chris Dinant</a>
+            | <time datetime="Tue 06 February 2018">Tue 06 February 2018</time>
+        </span>
+        <!-- TODO : Modified check -->
+            <div class="post-cover cover" style="background-image: url('.//images/numbers.jpg')">
+      </div>
+    </header>
 
-                <!-- Recent Posts -->
-                    <section class="box recent-posts">
-                        <header>
-                            <h2>Contact Me</h2>
-                        </header>
-                        <ul>
-                            <li><a class="icon fa-envelope" href="mailto:chris.dinant@gmail.com"> Email</a></li>
-                            <li><a class="icon fa-twitter" href="https://twitter.com/chrisdinant"> Twitter</a></li>
-                            <li><a class="icon fa-linkedin" href="https://www.linkedin.com/in/chris-dinant/"> LinkedIn</a></li>
-                            <li><a class="icon fa-github" href="https://github.com/chrisdinant"> Github</a></li>
-                            
-                        </ul>
-                    </section>
+  <section id="wrapper">
+    <a class="hidden-close"></a>
 
-
-
-                <!-- Copyright -->
-                    <ul id="copyright">
-                        <li>Powered by <a href="http://getpelican.com/">Pelican</a>.</li>
-                        <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-                        <li>Modified under a <a href="https://creativecommons.org/licenses/by/3.0/">CC:BY</a> license.</li>
-                    </ul>
-
-            </div><!-- /#menu -->
-<div id="content">
-<div class="inner">
-        <article class="box post post-excerpt">
-                <header> 
-                <h2><a href="./bayes-and-binomial-theorems.html" rel="bookmark" title="Permalink to Bayes and Binomial Theorems">Bayes and Binomial Theorems</a></h2> 
-                <p>Our intuitions about test accuracy are often very inaccurate</p>
-                </header>
-                <div class="info">
-                    <span class="date" datetime="2018-02-06T00:00:00+01:00"><span class="month">Feb</span> <span class="day">06</span> <span class="month"> 2018</span></span>
-                    <ul class="stats">
-                                    <li><a href="mailto:?Subject=Bayes and Binomial Theorems&Body=I%20saw%20this%20and%20thought%20of%20you!%20 ./bayes-and-binomial-theorems.html" class="icon fa-envelope">&nbsp;</a></li>
-                                    <li><a href="http://reddit.com/submit?url=./bayes-and-binomial-theorems.html&title=#Bayes and Binomial Theorems" class="icon fa-reddit">&nbsp;</a></li>
-                                    <li><a href="https://twitter.com/share?url=./bayes-and-binomial-theorems.html&text=&hashtags=GnotC" class="icon fa-twitter">&nbsp;</a></li>
-                                    <li><a href="https://www.facebook.com/sharer.php?u=./bayes-and-binomial-theorems.html" class="icon fa-facebook">&nbsp;</a></li>
-                                </ul>
-                </div><!-- /.post-info -->
-                <div class="entry-content"> &nbsp; </div><!-- /.entry-content -->
-        </article>
-    <p><strong>Bayes Theorem</strong><br/>
+    <!-- Post content -->
+    <main class="content" role="main">
+        <article class="post">
+        <div class="inner">
+            <section class="post-content">
+                <p><strong>Bayes Theorem</strong><br/>
 In statistics there are many situations where you want to determine the probability that a sample for which you have certain measurement belongs to a certain set. Say you want to know the chance that you have HIV if you test positive. No test is perfect, so this probability will depend on the test sensitivity, but also on the specificity and on the incidence in the population, or set, that you belong to. Bayes Theorem is a simply the logic you have to apply to estimate such probabilities.<br/>
 <br/>
 As a cancer researcher my attention was naturally drawn to this paper currently trending on Pubmed: <a href="https://www.ncbi.nlm.nih.gov/pubmed/29348365/"><i>Detection and localization of surgically resectable cancers with a multi-analyte blood test.</i></a> This is a perfect practical example for applying Bayes rule! And most of the information we need is right there in the abstract: "<i>The </i>sensitivities<i> ranged from 69% to 98% for the detection of five cancer types (ovary, liver, stomach, pancreas, and esophagus)...</i>" and "<i>The </i>specificity<i> of CancerSEEK was &gt; 99%: only 7 of 812 healthy controls scored positive.</i>" Wow, a <i>sensitivity</i> of up to 98% and a <i>specificity</i> of more than 99%? This sounds like a fool proof test! Right? Now we just need to know the incidences for these cancers and we can see how likely it is that you have that type of cancer given a positive test score.<br/>
 <br/>
-<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody>
-<tr><td style="text-align: center;">
+<!-- <table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody>
+<tr><td style="text-align: center;"> -->
 <img ,="" alt="doctor john" src="./images/dr-john.jpg" style="margin-left: auto; margin-right: auto; text-align: center;width: 640px; height: auto; max-width: 100%;"/>
-</td></tr><br/>
-</tbody></table>
+<!-- </td></tr><br /></tbody></table> -->
 <p style="text-align: center; font-size: 0.8em;"><i>The Doctor is in.</i></p>
 <div class="sub">
 <br/></div>
@@ -149,27 +188,24 @@ The first part is the binomial equation and is pronounced <i>n choose k</i>, I (
 <span class="math">\(7.2^{-13}\)</span>)
 <br/>
 <br/>
-<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody>
-<tr><td style="text-align: center;">
+<!-- <table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody>
+<tr><td style="text-align: center;"> -->
 <img ,="" alt="dices" src="./images/dice.jpeg" style="margin-left: auto; margin-right: auto; text-align: center;width: 192px; height: auto; max-width: 100%;"/>
-</td></tr><br/>
-</tbody></table>
+<!-- </td></tr><br /></tbody></table> -->
 <p style="text-align: center; font-size: 0.8em;"><i></i></p>
 <br/>
 <br/>
 <br/>
 It gets a bit more interesting when you combine Bayes with the Binomial Theorem.<br/>
 Let's give a nerdy cell biologist example: Say you have two cell lines in culture (U2OS and HeLa for example) and you transfer both cell lines into a new flask. The next day you go back to the incubator and see that you have forgotten to label the flasks, so you don't know which is which. How can you find out? Here's what you could do: U2OS and HeLa don't look exactly the same under a microscope.<br/>
-<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody>
-<tr><td style="text-align: center;">
+<!-- <table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody>
+<tr><td style="text-align: center;"> -->
 <img ,="" alt="hela" src="./images/hela.jpg" style="margin-left: auto; margin-right: auto; text-align: center;width: 320px; height: auto; max-width: 100%;"/>
-</td></tr><br/>
-</tbody></table>
-<p style="text-align: center; font-size: 0.8em;"><i></i></p><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody>
-<tr><td style="text-align: center;">
+<!-- </td></tr><br /></tbody></table> -->
+<!-- <p style="text-align: center; font-size: 0.8em;"><i></i></p><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody>
+<tr><td style="text-align: center;"> -->
 <img ,="" alt="u2os" src="./images/u2os.jpg" style="margin-left: auto; margin-right: auto; text-align: center;width: 320px; height: auto; max-width: 100%;"/>
-</td></tr><br/>
-</tbody></table>
+<!-- </td></tr><br /></tbody></table> -->
 <p style="text-align: center; font-size: 0.8em;"><i></i></p>
 It's not directly straight forward unless you have a lot of experience what the difference is, but image analysis software can measure a bunch of features for each cell line and give you numbers to work with. Let's say that a feature describing the shape (<i>s</i>) of a nucleus falls within a certain range <i>r </i>(the values don't matter) 20% of the time for U2OS cells and 23% of the time for HeLa cells. Now you take one image of 180 cells of one of the dishes and measure this shape value. In 51 cells the value for <i>s </i>falls in range <i>r</i>. Now we can use Bayes and the Binomial Theorem together to determine if we're looking at U2OS or HeLa!<br/>
 <br/>
@@ -246,21 +282,79 @@ This blog post was inspired by this course on coursera.org: <a href="https://www
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 </script>
+            </section>
 
-  </div><!-- /.entry-content -->
-  <!-- Pagination -->
-            <div class="pagination">
-              <a href="./speech-Recognition.html" class="button next">Kaggle Tensorflow Speech Recognition Challenge</a>
+            <section class="post-info">
+                <div class="post-share">
+                    <a class="twitter" href="https://twitter.com/share?text=Bayes and Binomial Theorems&amp;url=./bayes-and-binomial-theorems.html" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <i class="ic ic-twitter"></i><span class="hidden">Twitter</span>
+                    </a>
+                    <a class="facebook" href="https://www.facebook.com/sharer/sharer.php?u=./bayes-and-binomial-theorems.html" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <i class="ic ic-facebook"></i><span class="hidden">Facebook</span>
+                    </a>
+                    <a class="googleplus" href="https://plus.google.com/share?url=./bayes-and-binomial-theorems.html" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <i class="ic ic-googleplus"></i><span class="hidden">Google+</span>
+                    </a>
+                    <div class="clear"></div>
+                </div>
+
+
+                <div class="clear"></div>
+
+
+                </section>
+
+                <script type="text/javascript">
+                    var disqus = 'chrisdinant';
+                    var disqus_shortname = 'chrisdinant';
+                    var disqus_identifier = '/bayes-and-binomial-theorems.html';
+                    var disqus_url = './bayes-and-binomial-theorems.html';
+                </script>
+                <noscript>Please enable JavaScript to view the comments.</noscript>
+                <section class="post-comments">
+                        <a id="show-disqus" class="post-comments-activate" data-disqus-identifier="/bayes-and-binomial-theorems.html" >Show Comments</a>
+                    <div id="disqus_thread"></div>
+                </section>
+
+                <aside class="post-nav">
+                    <a class="post-nav-next" href="./k-nearest-Neighbors.html">
+                        <section class="post-nav-teaser">
+                            <i class="ic ic-arrow-left"></i>
+                                <h2 class="post-nav-title">What is k-Nearest Neighbors?</h2>
+                            <p class="post-nav-excerpt">k-Nearest Neighbors or kNN is a classification algorithm that asigns a class to a new...</p>
+                        </section>
+                    </a>
+                    <div class="clear"></div>
+                </aside>
+
             </div>
-  <!-- disqus  -->         
-</div>
-</div>
-        <!-- This jQuery line finds any span that contains code highlighting classes and then selects the parent <pre> tag and adds a border. 
-        This is done as a workaround to visually distinguish the code inputs and outputs -->
-        <script>
-            $( ".hll, .n, .c, .err, .s1, .ss, .bp, .vc, .vg, .vi, .il, .kn, .nn" ).parent( "pre" ).css( "border", "1px solid #DEDEDE" );
-        </script>
-<!-- /#contentinfo -->
+        </article>
+    </main>
+      <!-- TODO : Body class -->
+    <div id="body-class" style="display: none;" class=""></div>
 
+    <footer id="footer">
+      <div class="inner">
+        <section class="credits">
+
+
+          <span class="credits-theme">Theme <a href="https://github.com/arulrajnet/attila" rel="nofollow">Attila</a></span>
+          <span class="credits-software">Published with <a href="https://github.com/getpelican/pelican" rel="nofollow">Pelican</a></span>
+        </section>
+      </div>
+    </footer>
+  </section>
+
+  <script type="text/javascript" src="./theme/js/script.js"></script>
+
+<script type="text/javascript">
+    var disqus_shortname = 'chrisdinant';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
 </body>
 </html>

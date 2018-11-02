@@ -1,172 +1,318 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-
-
 <head>
-        <title>Transferred Learnings</title>
-        <meta charset="utf-8" />
-        <link rel="stylesheet" href="/theme/css/main.css" />
-        <link rel="stylesheet" href="/theme/css/jupyter.css" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <!--[if lte IE 8]><script src="/theme/js/ie/html5shiv.js"></script><![endif]-->
-        <!--[if lte IE 8]><link rel="stylesheet" href="/theme/css/ie8.css" /><![endif]-->
+      <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+
+  <title>Transferred Learnings</title>
+
+
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="referrer" content="origin" />
+  <meta name="generator" content="Pelican" />
+  <link href="./" rel="canonical" />
+
+  <!-- Feed -->
+
+  <link href="./theme/css/style.css" type="text/css" rel="stylesheet" />
+
+  <!-- Code highlight color scheme -->
+      <link href="./theme/css/code_blocks/github.css" rel="stylesheet">
+
+
+  <!-- Custom fonts -->
+  <link href='https://fonts.googleapis.com/css?family=Montserrat:400,300' rel='stylesheet' type='text/css' />
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css" />
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+
+
+
+<!-- Open Graph -->
+<meta property="og:site_name" content="Transferred Learnings"/>
+<meta property="og:type" content="blog"/>
+<meta property="og:title" content="Transferred Learnings"/>
+<meta property="og:description" content="I have very short long term memory"/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="./"/>
+<meta property="og:image" content=".//extra/bg1.jpg">
+
+<!-- Twitter Card -->
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Website",
+  "name": " Transferred Learnings ",
+  "url" : "./",
+  "image": ".//extra/bg1.jpg",
+  "description": "I have very short long term memory"
+}
+</script>
 </head>
+<!-- TODO : Body class -->
+<body class="home-template">
 
-<body>
-        <header id="banner" class="body">
-                <h1><a href="./">Transferred Learnings <strong></strong></a></h1>
-        </header><!-- /#banner -->
-<!-- Sidebar -->
-            <div id="sidebar">
+<nav id="menu">
+  <a class="close-button">Close</a>
+  <div class="nav-wrapper">
+    <p class="nav-label">Menu</p>
+    <ul>
 
-                <!-- Logo -->
-                    <h1 id="logo"><a href="/">Transferred Learnings</a></h1>
-                    <!-- Text -->
-                    <section class="box text-style1">
-                        <div class="inner">
-                            <p>
-                                <strong>My long term memory is very short</strong><br />
-                            </p>
-                        </div>
-                    </section>
-                <!-- Nav -->
-                    <nav id="nav">
-                        <ul>                            
-                            <li><a href="./pages/about-me.html">Whose blog is this?</a></li>
-                            <li><a href="./category/data-science">Data Science</a></li>
-                            <li><a href="./category/not-data-science">Not Data Science</a></li>
-                        </ul>
-                    </nav>
+              <li role="presentation"><a href="./pages/about-me.html">Whose blog is this?</a></li>
+      
+                  <li role="presentation"><a href="./category/data-science.html">data-science</a></li>
+                  <li role="presentation"><a href="./category/not-data-science.html">not-data-science</a></li>
 
-                <!-- Search -->
-                    <!-- <section class="box search">
-                        <form method="post" action="#">
-                            <input type="text" class="text" name="search" placeholder="Search" />
-                        </form>
-                    </section> -->
+    </ul>
+  </div>
+</nav>
+    <!-- Page Header -->
+    <!-- Set your background image for this header on the line below. -->
+    <header id="blog-header" class="has-cover">
+      <div class="inner">
+        <nav id="navigation">
+          <span class="blog-logo">
+            <a href="./"><img src="/extra/delta9.png" alt="Blog Logo" /></a>
+          </span>
+          <span id="menu-button" class="nav-button">
+            <a class="menu-button"><i class="ic ic-menu"></i> Menu</a>
+          </span>
+        </nav>
+        <h1 class="blog-name"><a href="./">Transferred Learnings</a></h1>
+        <span class="blog-description">I have very short long term memory</span>
 
-                
-
-                <!-- Recent Posts -->
-                    <section class="box recent-posts">
-                        <header>
-                            <h2>Contact Me</h2>
-                        </header>
-                        <ul>
-                            <li><a class="icon fa-envelope" href="mailto:chris.dinant@gmail.com"> Email</a></li>
-                            <li><a class="icon fa-twitter" href="https://twitter.com/chrisdinant"> Twitter</a></li>
-                            <li><a class="icon fa-linkedin" href="https://www.linkedin.com/in/chris-dinant/"> LinkedIn</a></li>
-                            <li><a class="icon fa-github" href="https://github.com/chrisdinant"> Github</a></li>
-                            
-                        </ul>
-                    </section>
+          <div class="blog-cover cover" style="background-image: url('.//extra/bg1.jpg')">
+      </div>
+    </header>
 
 
+  <section id="wrapper">
+    <a class="hidden-close"></a>
 
-                <!-- Copyright -->
-                    <ul id="copyright">
-                        <li>Powered by <a href="http://getpelican.com/">Pelican</a>.</li>
-                        <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-                        <li>Modified under a <a href="https://creativecommons.org/licenses/by/3.0/">CC:BY</a> license.</li>
-                    </ul>
+<div id="index" class="container">
+  <main class="content" role="main">
+    <div class="extra-pagination">
+<nav class="pagination" role="pagination">
+  <div class="inner">
+    <span class="pagination-info">Page 1 / 1</span>
+    <div class="clear"></div>
+  </div>
+</nav>
+    </div>
 
-            </div><!-- /#menu -->
-<div id="content">
-<div class="inner">
-<!-- <h2>All articles</h2>
- -->
-
-        <article class="box post post-excerpt">
-                <header> 
-                <h2><a href="./custom-pixels.html" rel="bookmark" title="Permalink to Music Video">Music Video</a></h2> 
-                <p>Custom pixel replacement for video with FFMPEG</p>
-                </header>
-                <div class="info">
-                    <span class="date" datetime="2018-10-28T00:00:00+02:00"><span class="month">Oct</span> <span class="day">28</span> <span class="month"> 2018</span></span>
-                    <!-- <ul class="stats">
-                                    <li><a href="#" class="icon fa-comment">16</a></li>
-                                    <li><a href="#" class="icon fa-heart">32</a></li>
-                                    <li><a href="#" class="icon fa-twitter">64</a></li>
-                                    <li><a href="#" class="icon fa-facebook">128</a></li>
-                                </ul> -->
-                </div><!-- /.post-info -->
-                <div class="entry-content"> &nbsp; </div><!-- /.entry-content -->
+        <article class="post">
+        <div class="inner">
+            <header class="post-header">
+                <h2 class="post-title"><a href="./custom-pixels.html" rel="bookmark" title="Permalink to Music Video">Music Video</a>
+                </h2>
+                <span class="post-meta">
+                        <a href="./author/chris-dinant.html">Chris Dinant</a>
+                     | <time datetime="Sun 28 October 2018">Sun 28 October 2018</time>
+                </span>
+                <div class="clear"></div>
+            </header>
+                <section class="post-excerpt">
+                    <p>
+                        Here's my children dancing around in the yard to my song. Have a watch: This video was created by a custom python script that replaces pixels of low resolution images with jpegs of 20x20 pixels. Four different jpegs replace pixels of four grey...
+                    </p>
+                </section>
+<p>
+  <a data-disqus-identifier="/custom-pixels.html" href="./custom-pixels.html#disqus_thread">comments</a>
+</p>
+            </div>
         </article>
-        <article class="box post post-excerpt">
-                <header> 
-                <h2><a href="./naive-Bayes.html" rel="bookmark" title="Permalink to What's so naive about naive Bayes?">What's so naive about naive Bayes?</a></h2> 
-                <p>Assuming feature independence tends to help classification accuracy</p>
-                </header>
-                <div class="info">
-                    <span class="date" datetime="2018-10-28T00:00:00+02:00"><span class="month">Oct</span> <span class="day">28</span> <span class="month"> 2018</span></span>
-                    <!-- <ul class="stats">
-                                    <li><a href="#" class="icon fa-comment">16</a></li>
-                                    <li><a href="#" class="icon fa-heart">32</a></li>
-                                    <li><a href="#" class="icon fa-twitter">64</a></li>
-                                    <li><a href="#" class="icon fa-facebook">128</a></li>
-                                </ul> -->
-                </div><!-- /.post-info -->
-                <div class="entry-content"> &nbsp; </div><!-- /.entry-content -->
+        <article class="post">
+        <div class="inner">
+            <header class="post-header">
+                <h2 class="post-title"><a href="./naive-Bayes.html" rel="bookmark" title="Permalink to What's so naive about naive Bayes?">What's so naive about naive Bayes?</a>
+                </h2>
+                <span class="post-meta">
+                        <a href="./author/chris-dinant.html">Chris Dinant</a>
+                     | <time datetime="Sun 28 October 2018">Sun 28 October 2018</time>
+                </span>
+                <div class="clear"></div>
+            </header>
+                <section class="post-excerpt">
+                    <p>
+                        Cover art: Naive art by Ivan Generalic Naive Bayes (NB) is 'naive' because it makes the assumption that features of a measurement are independent of each other. This is naive because it is (almost) never true. Here is why NB works anyway. NB is a...
+                    </p>
+                </section>
+<p>
+  <a data-disqus-identifier="/naive-Bayes.html" href="./naive-Bayes.html#disqus_thread">comments</a>
+</p>
+            </div>
         </article>
-        <article class="box post post-excerpt">
-                <header> 
-                <h2><a href="./entropy-and-information-gain.html" rel="bookmark" title="Permalink to Entropy and Information Gain">Entropy and Information Gain</a></h2> 
-                <p>The more homogeneous a set, the higher the entropy and the lower the amount of information.</p>
-                </header>
-                <div class="info">
-                    <span class="date" datetime="2018-03-17T00:00:00+01:00"><span class="month">Mar</span> <span class="day">17</span> <span class="month"> 2018</span></span>
-                    <!-- <ul class="stats">
-                                    <li><a href="#" class="icon fa-comment">16</a></li>
-                                    <li><a href="#" class="icon fa-heart">32</a></li>
-                                    <li><a href="#" class="icon fa-twitter">64</a></li>
-                                    <li><a href="#" class="icon fa-facebook">128</a></li>
-                                </ul> -->
-                </div><!-- /.post-info -->
-                <div class="entry-content"> &nbsp; </div><!-- /.entry-content -->
+        <article class="post">
+        <div class="inner">
+            <header class="post-header">
+                <h2 class="post-title"><a href="./entropy-and-information-gain.html" rel="bookmark" title="Permalink to Entropy and Information Gain">Entropy and Information Gain</a>
+                </h2>
+                <span class="post-meta">
+                        <a href="./author/chris-dinant.html">Chris Dinant</a>
+                     | <time datetime="Sat 17 March 2018">Sat 17 March 2018</time>
+                </span>
+                <div class="clear"></div>
+            </header>
+                <section class="post-excerpt">
+                    <p>
+                        The more homogeneous a set, the higher the entropy and the lower the amount of information.
+                    </p>
+                </section>
+<p>
+  <a data-disqus-identifier="/entropy-and-information-gain.html" href="./entropy-and-information-gain.html#disqus_thread">comments</a>
+</p>
+            </div>
         </article>
-        <article class="box post post-excerpt">
-                <header> 
-                <h2><a href="./speech-Recognition.html" rel="bookmark" title="Permalink to Kaggle Tensorflow Speech Recognition Challenge">Kaggle Tensorflow Speech Recognition Challenge</a></h2> 
-                <p>A walk through of my approach</p>
-                </header>
-                <div class="info">
-                    <span class="date" datetime="2018-03-14T00:00:00+01:00"><span class="month">Mar</span> <span class="day">14</span> <span class="month"> 2018</span></span>
-                    <!-- <ul class="stats">
-                                    <li><a href="#" class="icon fa-comment">16</a></li>
-                                    <li><a href="#" class="icon fa-heart">32</a></li>
-                                    <li><a href="#" class="icon fa-twitter">64</a></li>
-                                    <li><a href="#" class="icon fa-facebook">128</a></li>
-                                </ul> -->
-                </div><!-- /.post-info -->
-                <div class="entry-content"> &nbsp; </div><!-- /.entry-content -->
+        <article class="post">
+        <div class="inner">
+            <header class="post-header">
+                <h2 class="post-title"><a href="./speech-Recognition.html" rel="bookmark" title="Permalink to Kaggle Tensorflow Speech Recognition Challenge">Kaggle Tensorflow Speech Recognition Challenge</a>
+                </h2>
+                <span class="post-meta">
+                        <a href="./author/chris-dinant.html">Chris Dinant</a>
+                     | <time datetime="Wed 14 March 2018">Wed 14 March 2018</time>
+                </span>
+                <div class="clear"></div>
+            </header>
+                <section class="post-excerpt">
+                    <p>
+                        From November 2017 to January 2018 the Google Brain team hosted a speech recognition challenge on Kaggle. The goal of this challenge was to write a program that can correctly identify one of 10 words being spoken in a one-second long audio file....
+                    </p>
+                </section>
+<p>
+  <a data-disqus-identifier="/speech-Recognition.html" href="./speech-Recognition.html#disqus_thread">comments</a>
+</p>
+            </div>
         </article>
-        <article class="box post post-excerpt">
-                <header> 
-                <h2><a href="./bayes-and-binomial-theorems.html" rel="bookmark" title="Permalink to Bayes and Binomial Theorems">Bayes and Binomial Theorems</a></h2> 
-                <p>Our intuitions about test accuracy are often very inaccurate</p>
-                </header>
-                <div class="info">
-                    <span class="date" datetime="2018-02-06T00:00:00+01:00"><span class="month">Feb</span> <span class="day">06</span> <span class="month"> 2018</span></span>
-                    <!-- <ul class="stats">
-                                    <li><a href="#" class="icon fa-comment">16</a></li>
-                                    <li><a href="#" class="icon fa-heart">32</a></li>
-                                    <li><a href="#" class="icon fa-twitter">64</a></li>
-                                    <li><a href="#" class="icon fa-facebook">128</a></li>
-                                </ul> -->
-                </div><!-- /.post-info -->
-                <div class="entry-content"> &nbsp; </div><!-- /.entry-content -->
+        <article class="post">
+        <div class="inner">
+            <header class="post-header">
+                <h2 class="post-title"><a href="./logistic-regression.html" rel="bookmark" title="Permalink to What is Logistic Regression?">What is Logistic Regression?</a>
+                </h2>
+                <span class="post-meta">
+                        <a href="./author/chris-dinant.html">Chris Dinant</a>
+                     | <time datetime="Tue 06 March 2018">Tue 06 March 2018</time>
+                </span>
+                <div class="clear"></div>
+            </header>
+                <section class="post-excerpt">
+                    <p>
+                        Logistic Regression is closely related to Linear Regression. Read my post on Linear Regression here Logistic Regression is a classification technique, meaning that the target Y is qualitative instead of quantitative. For example, trying to...
+                    </p>
+                </section>
+<p>
+  <a data-disqus-identifier="/logistic-regression.html" href="./logistic-regression.html#disqus_thread">comments</a>
+</p>
+            </div>
         </article>
-<!-- /#posts-list -->
+        <article class="post">
+        <div class="inner">
+            <header class="post-header">
+                <h2 class="post-title"><a href="./linear-regression.html" rel="bookmark" title="Permalink to What is Linear Regression?">What is Linear Regression?</a>
+                </h2>
+                <span class="post-meta">
+                        <a href="./author/chris-dinant.html">Chris Dinant</a>
+                     | <time datetime="Mon 05 March 2018">Mon 05 March 2018</time>
+                </span>
+                <div class="clear"></div>
+            </header>
+                <section class="post-excerpt">
+                    <p>
+                        Linear regression is used to model the relationship between continuous variables. For example to predict the price of a house when you have features like size in square meters and crime in the neighborhood etc. A linear regression function takes...
+                    </p>
+                </section>
+<p>
+  <a data-disqus-identifier="/linear-regression.html" href="./linear-regression.html#disqus_thread">comments</a>
+</p>
+            </div>
+        </article>
+        <article class="post">
+        <div class="inner">
+            <header class="post-header">
+                <h2 class="post-title"><a href="./k-nearest-Neighbors.html" rel="bookmark" title="Permalink to What is k-Nearest Neighbors?">What is k-Nearest Neighbors?</a>
+                </h2>
+                <span class="post-meta">
+                        <a href="./author/chris-dinant.html">Chris Dinant</a>
+                     | <time datetime="Sun 25 February 2018">Sun 25 February 2018</time>
+                </span>
+                <div class="clear"></div>
+            </header>
+                <section class="post-excerpt">
+                    <p>
+                        k-Nearest Neighbors or kNN is a classification algorithm that asigns a class to a new data point based on known data points that are similar, or nearby. What do you mean 'nearby'? To determine similarity of data you can use a few different...
+                    </p>
+                </section>
+<p>
+  <a data-disqus-identifier="/k-nearest-Neighbors.html" href="./k-nearest-Neighbors.html#disqus_thread">comments</a>
+</p>
+            </div>
+        </article>
+        <article class="post">
+        <div class="inner">
+            <header class="post-header">
+                <h2 class="post-title"><a href="./bayes-and-binomial-theorems.html" rel="bookmark" title="Permalink to Bayes and Binomial Theorems">Bayes and Binomial Theorems</a>
+                </h2>
+                <span class="post-meta">
+                        <a href="./author/chris-dinant.html">Chris Dinant</a>
+                     | <time datetime="Tue 06 February 2018">Tue 06 February 2018</time>
+                </span>
+                <div class="clear"></div>
+            </header>
+                <section class="post-excerpt">
+                    <p>
+                        Bayes Theorem In statistics there are many situations where you want to determine the probability that a sample for which you have certain measurement belongs to a certain set. Say you want to know the chance that you have HIV if you test...
+                    </p>
+                </section>
+<p>
+  <a data-disqus-identifier="/bayes-and-binomial-theorems.html" href="./bayes-and-binomial-theorems.html#disqus_thread">comments</a>
+</p>
+            </div>
+        </article>
+
+<nav class="pagination" role="pagination">
+  <div class="inner">
+    <span class="pagination-info">Page 1 / 1</span>
+    <div class="clear"></div>
+  </div>
+</nav>
+  </main>
 </div>
-</div><!-- /#content -->
-        <!-- This jQuery line finds any span that contains code highlighting classes and then selects the parent <pre> tag and adds a border. 
-        This is done as a workaround to visually distinguish the code inputs and outputs -->
-        <script>
-            $( ".hll, .n, .c, .err, .s1, .ss, .bp, .vc, .vg, .vi, .il, .kn, .nn" ).parent( "pre" ).css( "border", "1px solid #DEDEDE" );
-        </script>
-<!-- /#contentinfo -->
+      <!-- TODO : Body class -->
+    <div id="body-class" style="display: none;" class=""></div>
 
+    <footer id="footer">
+      <div class="inner">
+        <section class="credits">
+
+
+          <span class="credits-theme">Theme <a href="https://github.com/arulrajnet/attila" rel="nofollow">Attila</a></span>
+          <span class="credits-software">Published with <a href="https://github.com/getpelican/pelican" rel="nofollow">Pelican</a></span>
+        </section>
+      </div>
+    </footer>
+  </section>
+
+  <script type="text/javascript" src="./theme/js/script.js"></script>
+
+<script type="text/javascript">
+    var disqus_shortname = 'chrisdinant';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
 </body>
 </html>

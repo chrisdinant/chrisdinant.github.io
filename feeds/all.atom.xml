@@ -48,8 +48,7 @@ Have a watch:&lt;/p&gt;
 
     &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;stdin&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;close&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Δ9&lt;/p&gt;</summary></entry><entry><title>What's so naive about naive Bayes?</title><link href="https://chrisdinant.github.io/naive-Bayes.html" rel="alternate"></link><published>2018-10-28T00:00:00+02:00</published><updated>2018-10-28T00:00:00+02:00</updated><author><name>Chris Dinant</name></author><id>tag:chrisdinant.github.io,2018-10-28:naive-Bayes.html</id><summary type="html">&lt;p&gt;&lt;img alt="Naive Art" src="https://chrisdinant.github.io/images/naive-art_ivan_generalic.jpg" style="width: 1309px; height: auto; max-width: 100%;"/&gt;
-&lt;em&gt;Naive art by Ivan Generalic&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Δ9&lt;/p&gt;</summary></entry><entry><title>What's so naive about naive Bayes?</title><link href="https://chrisdinant.github.io/naive-Bayes.html" rel="alternate"></link><published>2018-10-28T00:00:00+02:00</published><updated>2018-10-28T00:00:00+02:00</updated><author><name>Chris Dinant</name></author><id>tag:chrisdinant.github.io,2018-10-28:naive-Bayes.html</id><summary type="html">&lt;p&gt;&lt;em&gt;Cover art: Naive art by Ivan Generalic&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;Naive Bayes (NB) is 'naive' because it makes the assumption that features of a measurement are independent of each other. This is naive because it is (almost) never true. Here is why NB works anyway.  &lt;/p&gt;
 &lt;p&gt;NB is a very intuitive classification algorithm. It asks the question, "Given these features, does this measurement belong to class A or B?", and answers it by taking the proportion of all previous measurements with the same features belonging to class A multiplied by the proportion of all measurements in class A. If this number is bigger then the corresponding calculation for class B then we say the measurement belongs in class A. Simple, right?  &lt;/p&gt;
 &lt;p&gt;Of course in practice we will rarely see many measurements with identical feature sets. In fact if we had to rely on a measurement to be identical to some previously measured data points we would only be able to classify exact duplicates, making Bayes' rule practically useless for classification.  &lt;/p&gt;
@@ -127,9 +126,7 @@ The more homogeneous a set, the higher the entropy and the lower the amount of i
         "}";
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
-&lt;/script&gt;</summary><category term="entropy"></category></entry><entry><title>Kaggle Tensorflow Speech Recognition Challenge</title><link href="https://chrisdinant.github.io/speech-Recognition.html" rel="alternate"></link><published>2018-03-14T00:00:00+01:00</published><updated>2018-03-14T00:00:00+01:00</updated><author><name>Chris Dinant</name></author><id>tag:chrisdinant.github.io,2018-03-14:speech-Recognition.html</id><summary type="html">&lt;p&gt;&lt;img alt="Spectrogram" src="https://chrisdinant.github.io/images/spec_large.png" style="width: 2000px; height: auto; max-width: 100%;"/&gt;
-&lt;em&gt;spectrogram&lt;/em&gt;&lt;/p&gt;
-&lt;hr/&gt;
+&lt;/script&gt;</summary><category term="entropy"></category></entry><entry><title>Kaggle Tensorflow Speech Recognition Challenge</title><link href="https://chrisdinant.github.io/speech-Recognition.html" rel="alternate"></link><published>2018-03-14T00:00:00+01:00</published><updated>2018-03-14T00:00:00+01:00</updated><author><name>Chris Dinant</name></author><id>tag:chrisdinant.github.io,2018-03-14:speech-Recognition.html</id><summary type="html">&lt;hr/&gt;
 &lt;p&gt;From November 2017 to January 2018 the Google Brain team hosted a speech recognition challenge on Kaggle. The goal of this challenge was to write a program that can correctly identify one of 10 words being spoken in a one-second long audio file. Having just made up my mind to start seriously studying data science with the goal of turning a new corner in my career, I decided to tackle this as my first serious kaggle challenge.
 In this post I will talk about ResNets, RNNs, 1D and 2D convolution, Connectionist Temporal Classification and more. Let's go!&lt;/p&gt;
 &lt;hr/&gt;
@@ -144,21 +141,19 @@ When you are classifying audio you can either use the raw wav data itself or you
 &lt;p&gt;Because I approached this challenge as a deep learning training exercise I implemented a bunch of different network designs. Getting practical training like this was fantastic. I learned more from this one project than I did in the ten MOOCs I started before. (Ok, I exaggerate slightly). I will discuss a few of my design attempts and the things to pay attention to when implementing them.  &lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Raw wav files, 1D convolutions&lt;/strong&gt;&lt;br/&gt;
 With spectrograms you use a specific algorithm to extract features from wav files, but you have to fine tune a bunch of parameters. A well designed neural network should be able to learn features from the raw wav files by itself and potentially get more informative features than one could get from a spectrogram. This first model is an attempt to do that. The initial design was heavily inspired by a Kaggle discussion post by user ttagu99. This is the result of an early attempt with a 6-layer 1D convolutional network.&lt;/p&gt;
-&lt;table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"&gt;&lt;tbody&gt;
-&lt;tr&gt;&lt;td style="text-align: center;"&gt;
-&lt;img ,="" alt="classification and confusion reports" src="https://chrisdinant.github.io/images/confusion.png" style="margin-left: auto; margin-right: auto; text-align: center;width: 640px; height: auto; max-width: 100%;"/&gt;
-&lt;/td&gt;&lt;/tr&gt;
-&lt;/tbody&gt;&lt;/table&gt;
-&lt;p style="text-align: center; font-size: 0.8em;"&gt;&lt;i&gt;The network scores on the validation set. Top: sklearn classification report. Bottom: sklearn confusion matrix.&lt;/i&gt;&lt;/p&gt;
+&lt;!-- &lt;table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"&gt;&lt;tbody&gt;
+&lt;tr&gt;&lt;td style="text-align: center;"&gt; --&gt;
+&lt;p&gt;&lt;img ,="" alt="classification and confusion reports" src="https://chrisdinant.github.io/images/confusion.png" style="margin-left: auto; margin-right: auto; text-align: center;width: 640px; height: auto; max-width: 100%;"/&gt;
+&lt;!-- &lt;/td&gt;&lt;/tr&gt;&lt;br /&gt;&lt;/tbody&gt;&lt;/table&gt; --&gt;
+&lt;p style="text-align: center; font-size: 0.8em;"&gt;&lt;i&gt;The network scores on the validation set. Top: sklearn classification report. Bottom: sklearn confusion matrix.&lt;/i&gt;&lt;/p&gt;&lt;/p&gt;
 &lt;p&gt;It is not very effective yet. Some of the mistakes it makes are easy to understand. It often confuses 'no' with 'go' and 'off' with 'up'. Theses words have very similar vowel sounds, so confusion can be expected. Some mistakes are less obvious: does it really think 'right' is 'left' 16 times? Maybe it's the 't' at the end? This image also illustrates how unbalanced the classes are if you combine all the 'extra' classes into one 'unknown' class (~500 vs ~8300 samples). I dealt with this by using the 'class_weight' argument in the Keras fit function. This parameter accepts a dictionary mapping classes to a weight float and 'rebalances' the training set by punishing misclassification of an underrepresented class more heavily. Another way of balancing the training set better is by creating batches with equal amounts of samples from each class. I assume one would use the leftover 'unknown' samples in subsequent epochs, but I haven't tried this myself. I don't know which balancing trick is best. After some tweaking of the Conv1D model I got to a score on the Kaggle leaderboard of around 83%. Not very good yet, but instead of tweaking more on this model now I wanted to try some other network architectures.  &lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;ResNet&lt;/strong&gt;&lt;br/&gt;
 A residual neural network, or ResNet, is basically a deep convolutional NN with shortcuts. Every couple of layers there is an identity connection back to a layer a few levels up. These shortcut connections are thought to help the network generalize better. And this definitely works: I don't need any dropout layers anymore. What happens is that the network depth defaults to using as many shortcut connections as possible. This keeps the network small and therefore helps generalization. The residual layers in between the shortcuts are updated only when needed.  &lt;/p&gt;
-&lt;table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"&gt;&lt;tbody&gt;
-&lt;tr&gt;&lt;td style="text-align: center;"&gt;
-&lt;img ,="" alt="resnet" src="https://chrisdinant.github.io/images/resnet.png" style="margin-left: auto; margin-right: auto; text-align: center;width: 414px; height: auto; max-width: 100%;"/&gt;
-&lt;/td&gt;&lt;/tr&gt;
-&lt;/tbody&gt;&lt;/table&gt;
-&lt;p style="text-align: center; font-size: 0.8em;"&gt;&lt;i&gt;Small subset of ResNet model with two shortcut connections&lt;/i&gt;&lt;/p&gt;
+&lt;!-- &lt;table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"&gt;&lt;tbody&gt;
+&lt;tr&gt;&lt;td style="text-align: center;"&gt; --&gt;
+&lt;p&gt;&lt;img ,="" alt="resnet" src="https://chrisdinant.github.io/images/resnet.png" style="margin-left: auto; margin-right: auto; text-align: center;width: 414px; height: auto; max-width: 100%;"/&gt;
+&lt;!-- &lt;/td&gt;&lt;/tr&gt;&lt;br /&gt;&lt;/tbody&gt;&lt;/table&gt; --&gt;
+&lt;p style="text-align: center; font-size: 0.8em;"&gt;&lt;i&gt;Small subset of ResNet model with two shortcut connections&lt;/i&gt;&lt;/p&gt;&lt;/p&gt;
 &lt;p&gt;Blocks of 2 Conv2D layers with BatchNormalization and ReLu activation are separated by a connection layer adding the previous connection layer to the output of the blocks. Every three of such blocks is then further separated by a Conv2D layer with stride 2 in order to learn larger scale features. In Keras, this is how I implemented this:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;filters&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;32&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;64&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;128&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="n"&gt;input_img&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Input&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;shape&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;61&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;75&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
 
@@ -201,12 +196,11 @@ One axis of a spectrogram represents the frequency and the other axis the time d
 &lt;p&gt;&lt;strong&gt;Connectionist Temporal Classification (speech-to-text)&lt;/strong&gt;&lt;br/&gt;
 Around the time of the submission deadline for the Kaggle challenge the final module of Andrew Ng’s Coursera deep learning with python course about sequence models was opened to the public. I had applied some RNN layers in the combined model above, but I did not really know how it worked, so I took the course to learn all about RNNs. This post is not a review for this course, but suffice it to say I would recommend it to everyone interested in the math internals of RNNs. Besides the basics and not-so-basics of RNNs, I was particularly intrigued with a speech-to-text method that Andrew mentions but doesn’t really go deeper into called Connectionist Temporal Classification, or CTC. I was really excited by this because I have had an idea for a project in the back of my mind involving speech-to-text for a while, but it was still very abstract, I didn’t know at all where to start. But now someone was actually giving me a very concrete place to start.
 A speech-to-text model takes a spectrogram (or raw wav data) as input and outputs letters or words. What such a network needs to do is identify so-called phonemes in each RNN input, translate them into letters and combine letters into correct words.&lt;/p&gt;
-&lt;table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"&gt;&lt;tbody&gt;
-&lt;tr&gt;&lt;td style="text-align: center;"&gt;
-&lt;img ,="" alt="ctc" src="https://chrisdinant.github.io/images/CTC_example.png" style="margin-left: auto; margin-right: auto; text-align: center;width: 237px; height: auto; max-width: 100%;"/&gt;
-&lt;/td&gt;&lt;/tr&gt;
-&lt;/tbody&gt;&lt;/table&gt;
-&lt;p style="text-align: center; font-size: 0.8em;"&gt;&lt;i&gt;&lt;/i&gt;&lt;/p&gt;
+&lt;!-- &lt;table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"&gt;&lt;tbody&gt;
+&lt;tr&gt;&lt;td style="text-align: center;"&gt; --&gt;
+&lt;p&gt;&lt;img ,="" alt="ctc" src="https://chrisdinant.github.io/images/CTC_example.png" style="margin-left: auto; margin-right: auto; text-align: center;width: 237px; height: auto; max-width: 100%;"/&gt;
+&lt;!-- &lt;/td&gt;&lt;/tr&gt;&lt;br /&gt;&lt;/tbody&gt;&lt;/table&gt; --&gt;
+&lt;p style="text-align: center; font-size: 0.8em;"&gt;&lt;i&gt;&lt;/i&gt;&lt;/p&gt;&lt;/p&gt;
 &lt;p&gt;So for spoken English words, you want to network to output one-hot vectors with length 28 (the alphabet plus ‘space’ and ‘blank’) for each timepoint and then somehow determine how ‘wrong’ the prediction is so we can do backprop. This is what CTC does. It takes the output , ”&lt;em&gt; _ &lt;/em&gt; Y _ EEEE _ SSS _ _ ”, for example and reduces it to ‘yes’ by collapsing connecting multiples of letters and ignoring ‘blanks’ between different letters. If the output gives a ‘blank’ between two identical letters (“E _ E”) it considers it as two separate letters. A ‘blank’ should not be confused with a ‘space’, but I didn’t have to worry about this because all my inputs were single words.
 With Keras you can use the backend function ctc_batch_cost() for the implementation, but it requires four parameters (y_true, y_pred, input_length and label_length) instead of only y_true and y_pred, which means you can’t use it as a conventional loss function and plug it into your compile statement. I found a repo on github with a working Keras implementation of Baidu’s DeepSpeech model, which uses CTC, and took the parts I needed for mine.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;y_pred&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;TimeDistributed&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Dense&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;output_dim&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;activation&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;'softmax'&lt;/span&gt;&lt;span class="p"&gt;))(&lt;/span&gt;&lt;span class="n"&gt;X&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -247,16 +241,232 @@ It’s been 15 years since I left University. It was great fun to learn so much 
 &lt;hr/&gt;
 &lt;p&gt;&lt;em&gt;Originally published with &lt;a href="https://towardsdatascience.com/kaggle-tensorflow-speech-recognition-challenge-b46a3bca2501"&gt;Towards Data Science&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;Implementation of the ResNet and CTC models at &lt;a href="https://github.com/chrisdinant/speech"&gt;https://github.com/chrisdinant/speech&lt;/a&gt;&lt;/em&gt;&lt;br/&gt;
-Δ9&lt;/p&gt;</summary></entry><entry><title>Bayes and Binomial Theorems</title><link href="https://chrisdinant.github.io/bayes-and-binomial-theorems.html" rel="alternate"></link><published>2018-02-06T00:00:00+01:00</published><updated>2018-02-06T00:00:00+01:00</updated><author><name>Chris Dinant</name></author><id>tag:chrisdinant.github.io,2018-02-06:bayes-and-binomial-theorems.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;Bayes Theorem&lt;/strong&gt;&lt;br/&gt;
+Δ9&lt;/p&gt;</summary></entry><entry><title>What is Logistic Regression?</title><link href="https://chrisdinant.github.io/logistic-regression.html" rel="alternate"></link><published>2018-03-06T00:00:00+01:00</published><updated>2018-03-06T00:00:00+01:00</updated><author><name>Chris Dinant</name></author><id>tag:chrisdinant.github.io,2018-03-06:logistic-regression.html</id><summary type="html">&lt;p&gt;&lt;em&gt;Logistic Regression is closely related to Linear Regression. Read my post on Linear Regression &lt;a href="https://chrisdinant.github.io/linear-regression.html"&gt;here&lt;/a&gt;&lt;/em&gt; &lt;/p&gt;
+&lt;p&gt;Logistic Regression is a classification technique, meaning that the target &lt;i&gt;Y&lt;/i&gt; is qualitative instead of quantitative. For example, trying to predict whether a customer will stop doing business with you, a.k.a. churn.&lt;br/&gt;
+Logistic Regression models the probability that a measurement belongs to a class:&lt;br/&gt;&lt;/p&gt;
+&lt;div class="math"&gt;$$P(Y=k|X=x)$$&lt;/div&gt;
+&lt;p&gt;If we would try to predict the target value directly, (let's say churn = 1 and not-churn = 0), as you would with Linear Regression, the model might output negative target values or values larger than 1 for certain predictor values. Probabilities smaller than zero or larger than 1 make no sense, so instead we can use the logistic, or sigmoid, function to model probabilities.&lt;br/&gt;
+&lt;/p&gt;
+&lt;div class="math"&gt;$$p(X)=\dfrac{e^{\beta_0+\beta_1X}}{1+e^{\beta_0+\beta_1X}}$$&lt;/div&gt;
+&lt;p&gt;This is also:
+&lt;br/&gt;
+&lt;/p&gt;
+&lt;div class="math"&gt;$$p(X)=\dfrac{1}{1+e^{-\beta_0-\beta_1X}}$$&lt;/div&gt;
+&lt;p&gt;which is the form you usually see it in when it is used as the activation function in a neural network layer.&lt;br/&gt;
+This function will only output values between 0 and 1, which you can then use as is if you need probabilities (i.e. the probability that a customer will churn), or you can use a threshold, say at p(x) &amp;gt; 0.5 for class 1 if you want to do classification.&lt;br/&gt;
+&lt;br/&gt;
+&lt;b&gt;How do you fit the Logistic Regression model to data?&lt;/b&gt;&lt;br/&gt;
+For this we use the &lt;i&gt;Maximum Likelihood&lt;/i&gt; method. This tries to maximize the product of the logistic function for all &lt;i&gt;x&lt;/i&gt;'s where &lt;i&gt;y = 1&lt;/i&gt; and one minus this where &lt;i&gt;y = 0&lt;/i&gt;:&lt;br/&gt;
+&lt;br/&gt;
+&lt;/p&gt;
+&lt;div class="math"&gt;$$l(\beta_0,\beta_1)=\displaystyle\prod_{i:y=1}p(x_i)\displaystyle\prod_{i':y_{i'}=0}(1-p(x_i'))$$&lt;/div&gt;
+&lt;p&gt;Logistic Regression can be extended to more than two class problems, but in practice other algorithms are usually preferred for this.&lt;/p&gt;
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</summary></entry><entry><title>What is Linear Regression?</title><link href="https://chrisdinant.github.io/linear-regression.html" rel="alternate"></link><published>2018-03-05T00:00:00+01:00</published><updated>2018-03-05T00:00:00+01:00</updated><author><name>Chris Dinant</name></author><id>tag:chrisdinant.github.io,2018-03-05:linear-regression.html</id><summary type="html">&lt;p&gt;Linear regression is used to model the relationship between continuous variables. For example to predict the price of a house when you have features like size in square meters and crime in the neighborhood etc.  A linear regression function takes the form of&lt;br/&gt;
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\hat{y}=\hat{\beta_0}+\hat{\beta_1}x_1+\hat{\beta_2}x_2+\dots+\hat{\beta_p}x_p$$&lt;/div&gt;
+&lt;p&gt;Here &lt;i&gt;y &lt;/i&gt;is the target we're trying to predict (house price), the &lt;i&gt;x'&lt;/i&gt;s are the &lt;i&gt;p &lt;/i&gt;features or predictors (size, crime) and the &lt;i&gt;β&lt;/i&gt;'s are the coefficients or the parameters that we are trying to estimate by fitting the model to data. The little hats on top of the &lt;i&gt;y &lt;/i&gt;and &lt;i&gt;β&lt;/i&gt;'s are called hats, and indicate we are dealing with estimates here.&lt;br/&gt;
+With multiple features it is called Multiple Linear Regression and when there's only one feature it is Simple Linear Regression.&lt;br/&gt;
+For Linear Regression the function does not have to be linear with regards to the predictors as long as it is linear in the parameters. This means that you can model interactions between predictors by, for example, multiplying &lt;i&gt;x&lt;/i&gt;'s if this makes a better fit.&lt;br/&gt;
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\hat{y}=\hat{\beta_0}+\hat{\beta_1}x_1+\hat{\beta_2}x_2+\hat{\beta_3}x_1x_2+\dots+\hat{\beta_p}x_p$$&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;How do you fit a model to data?&lt;/strong&gt;&lt;br/&gt;
+You estimate the &lt;i&gt;β&lt;/i&gt;'s as the values that minimize the &lt;i&gt;sum of squared residuals, &lt;/i&gt;which is the squared difference between the actual value &lt;i&gt;y&lt;/i&gt; and the estimated &lt;i&gt;y-hat &lt;/i&gt;summed for all &lt;i&gt;x&lt;/i&gt;'s. Or&lt;br/&gt;
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\displaystyle\sum_{i=1}^n(y_i-\hat{\beta_0}-\hat{\beta_1}x_{i1}-\hat{\beta_2}x_{i2}-\dots-\hat{\beta_p}x_{ip})^2$$&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;When should you use Linear Regression?&lt;/strong&gt;&lt;br/&gt;
+As a guideline, with any regression problem, try linear regression first and move on to other methods when it is not good enough. This choice should be based on considerations like whether the model under- or overfits the data.&lt;/p&gt;
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</summary></entry><entry><title>What is k-Nearest Neighbors?</title><link href="https://chrisdinant.github.io/k-nearest-Neighbors.html" rel="alternate"></link><published>2018-02-25T00:00:00+01:00</published><updated>2018-02-25T00:00:00+01:00</updated><author><name>Chris Dinant</name></author><id>tag:chrisdinant.github.io,2018-02-25:k-nearest-Neighbors.html</id><summary type="html">&lt;p&gt;k-Nearest Neighbors or kNN is a classification algorithm that asigns a class to a new data point based on known data points that are similar, or nearby.&lt;br/&gt;
+&lt;br/&gt;
+&lt;b&gt;What do you mean 'nearby'?&lt;/b&gt;&lt;br/&gt;
+To determine similarity of data you can use a few different distance algorithms. For example &lt;i&gt;Euclidian distance&lt;/i&gt;, which is the square root of the sum of squares of the difference of the parameters of data points v and w.&lt;br/&gt;
+&lt;/p&gt;
+&lt;div class="math"&gt;$$d=\sqrt{(v_1 - w_1)^2 + ...+(v_n - w_n)^2}$$&lt;/div&gt;
+&lt;p&gt;Or the &lt;i&gt;City Block/Manhattan distance&lt;/i&gt; (yes that's what it's called) which is the sum of the absolute differences of v and w. &lt;br/&gt;
+&lt;/p&gt;
+&lt;div class="math"&gt;$$d=|(v_1 - w_1)| + ...+|(v_n - w_n)|$$&lt;/div&gt;
+&lt;p&gt;Or the &lt;i&gt;Cosine distance&lt;/i&gt;, which measures the "angle" between two parameter vectors v and w.&lt;br/&gt;
+&lt;/p&gt;
+&lt;div class="math"&gt;$$d=\Bigg(1-\dfrac{vw'}{\sqrt{(vv')(ww')}}\Bigg)$$&lt;/div&gt;
+&lt;p&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;br/&gt;
+&lt;br/&gt;
+&lt;b&gt;What does kNN do?&lt;/b&gt;&lt;br/&gt;
+It goes through all the known data points and measures the distance to the new point. Then it assigns the class of the majority of &lt;i&gt;k&lt;/i&gt; nearest data points to the new measurement. Yes, it goes through all training data every time you run this algorithm! No model is actually created. This is called a &lt;i&gt;lazy learning &lt;/i&gt;technique.&lt;br/&gt;
+&lt;br/&gt;
+&lt;b&gt;When should you use kNN?&lt;/b&gt;&lt;br/&gt;
+kNN is useful mostly when your parameter vectors are not too long. Or in other words, the dimensionality of your data is small. This is because the more dimensions, the more distances become similar to the average distance of any two points, even if these points have different labels. Basically, all distances become bigger and bigger; even if two points are in the same class, they will be very far apart in multi dimensional space. This is called the &lt;i&gt;curse of dimensionality.&lt;/i&gt;&lt;/p&gt;
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</summary></entry><entry><title>Bayes and Binomial Theorems</title><link href="https://chrisdinant.github.io/bayes-and-binomial-theorems.html" rel="alternate"></link><published>2018-02-06T00:00:00+01:00</published><updated>2018-02-06T00:00:00+01:00</updated><author><name>Chris Dinant</name></author><id>tag:chrisdinant.github.io,2018-02-06:bayes-and-binomial-theorems.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;Bayes Theorem&lt;/strong&gt;&lt;br/&gt;
 In statistics there are many situations where you want to determine the probability that a sample for which you have certain measurement belongs to a certain set. Say you want to know the chance that you have HIV if you test positive. No test is perfect, so this probability will depend on the test sensitivity, but also on the specificity and on the incidence in the population, or set, that you belong to. Bayes Theorem is a simply the logic you have to apply to estimate such probabilities.&lt;br/&gt;
 &lt;br/&gt;
 As a cancer researcher my attention was naturally drawn to this paper currently trending on Pubmed: &lt;a href="https://www.ncbi.nlm.nih.gov/pubmed/29348365/"&gt;&lt;i&gt;Detection and localization of surgically resectable cancers with a multi-analyte blood test.&lt;/i&gt;&lt;/a&gt; This is a perfect practical example for applying Bayes rule! And most of the information we need is right there in the abstract: "&lt;i&gt;The &lt;/i&gt;sensitivities&lt;i&gt; ranged from 69% to 98% for the detection of five cancer types (ovary, liver, stomach, pancreas, and esophagus)...&lt;/i&gt;" and "&lt;i&gt;The &lt;/i&gt;specificity&lt;i&gt; of CancerSEEK was &amp;gt; 99%: only 7 of 812 healthy controls scored positive.&lt;/i&gt;" Wow, a &lt;i&gt;sensitivity&lt;/i&gt; of up to 98% and a &lt;i&gt;specificity&lt;/i&gt; of more than 99%? This sounds like a fool proof test! Right? Now we just need to know the incidences for these cancers and we can see how likely it is that you have that type of cancer given a positive test score.&lt;br/&gt;
 &lt;br/&gt;
-&lt;table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"&gt;&lt;tbody&gt;
-&lt;tr&gt;&lt;td style="text-align: center;"&gt;
+&lt;!-- &lt;table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"&gt;&lt;tbody&gt;
+&lt;tr&gt;&lt;td style="text-align: center;"&gt; --&gt;
 &lt;img ,="" alt="doctor john" src="https://chrisdinant.github.io/images/dr-john.jpg" style="margin-left: auto; margin-right: auto; text-align: center;width: 640px; height: auto; max-width: 100%;"/&gt;
-&lt;/td&gt;&lt;/tr&gt;&lt;br/&gt;
-&lt;/tbody&gt;&lt;/table&gt;
+&lt;!-- &lt;/td&gt;&lt;/tr&gt;&lt;br /&gt;&lt;/tbody&gt;&lt;/table&gt; --&gt;
 &lt;p style="text-align: center; font-size: 0.8em;"&gt;&lt;i&gt;The Doctor is in.&lt;/i&gt;&lt;/p&gt;
 &lt;div class="sub"&gt;
 &lt;br/&gt;&lt;/div&gt;
@@ -302,27 +512,24 @@ The first part is the binomial equation and is pronounced &lt;i&gt;n choose k&lt
 &lt;span class="math"&gt;\(7.2^{-13}\)&lt;/span&gt;)
 &lt;br/&gt;
 &lt;br/&gt;
-&lt;table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"&gt;&lt;tbody&gt;
-&lt;tr&gt;&lt;td style="text-align: center;"&gt;
+&lt;!-- &lt;table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"&gt;&lt;tbody&gt;
+&lt;tr&gt;&lt;td style="text-align: center;"&gt; --&gt;
 &lt;img ,="" alt="dices" src="https://chrisdinant.github.io/images/dice.jpeg" style="margin-left: auto; margin-right: auto; text-align: center;width: 192px; height: auto; max-width: 100%;"/&gt;
-&lt;/td&gt;&lt;/tr&gt;&lt;br/&gt;
-&lt;/tbody&gt;&lt;/table&gt;
+&lt;!-- &lt;/td&gt;&lt;/tr&gt;&lt;br /&gt;&lt;/tbody&gt;&lt;/table&gt; --&gt;
 &lt;p style="text-align: center; font-size: 0.8em;"&gt;&lt;i&gt;&lt;/i&gt;&lt;/p&gt;
 &lt;br/&gt;
 &lt;br/&gt;
 &lt;br/&gt;
 It gets a bit more interesting when you combine Bayes with the Binomial Theorem.&lt;br/&gt;
 Let's give a nerdy cell biologist example: Say you have two cell lines in culture (U2OS and HeLa for example) and you transfer both cell lines into a new flask. The next day you go back to the incubator and see that you have forgotten to label the flasks, so you don't know which is which. How can you find out? Here's what you could do: U2OS and HeLa don't look exactly the same under a microscope.&lt;br/&gt;
-&lt;table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"&gt;&lt;tbody&gt;
-&lt;tr&gt;&lt;td style="text-align: center;"&gt;
+&lt;!-- &lt;table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"&gt;&lt;tbody&gt;
+&lt;tr&gt;&lt;td style="text-align: center;"&gt; --&gt;
 &lt;img ,="" alt="hela" src="https://chrisdinant.github.io/images/hela.jpg" style="margin-left: auto; margin-right: auto; text-align: center;width: 320px; height: auto; max-width: 100%;"/&gt;
-&lt;/td&gt;&lt;/tr&gt;&lt;br/&gt;
-&lt;/tbody&gt;&lt;/table&gt;
-&lt;p style="text-align: center; font-size: 0.8em;"&gt;&lt;i&gt;&lt;/i&gt;&lt;/p&gt;&lt;table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"&gt;&lt;tbody&gt;
-&lt;tr&gt;&lt;td style="text-align: center;"&gt;
+&lt;!-- &lt;/td&gt;&lt;/tr&gt;&lt;br /&gt;&lt;/tbody&gt;&lt;/table&gt; --&gt;
+&lt;!-- &lt;p style="text-align: center; font-size: 0.8em;"&gt;&lt;i&gt;&lt;/i&gt;&lt;/p&gt;&lt;table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"&gt;&lt;tbody&gt;
+&lt;tr&gt;&lt;td style="text-align: center;"&gt; --&gt;
 &lt;img ,="" alt="u2os" src="https://chrisdinant.github.io/images/u2os.jpg" style="margin-left: auto; margin-right: auto; text-align: center;width: 320px; height: auto; max-width: 100%;"/&gt;
-&lt;/td&gt;&lt;/tr&gt;&lt;br/&gt;
-&lt;/tbody&gt;&lt;/table&gt;
+&lt;!-- &lt;/td&gt;&lt;/tr&gt;&lt;br /&gt;&lt;/tbody&gt;&lt;/table&gt; --&gt;
 &lt;p style="text-align: center; font-size: 0.8em;"&gt;&lt;i&gt;&lt;/i&gt;&lt;/p&gt;
 It's not directly straight forward unless you have a lot of experience what the difference is, but image analysis software can measure a bunch of features for each cell line and give you numbers to work with. Let's say that a feature describing the shape (&lt;i&gt;s&lt;/i&gt;) of a nucleus falls within a certain range &lt;i&gt;r &lt;/i&gt;(the values don't matter) 20% of the time for U2OS cells and 23% of the time for HeLa cells. Now you take one image of 180 cells of one of the dishes and measure this shape value. In 51 cells the value for &lt;i&gt;s &lt;/i&gt;falls in range &lt;i&gt;r&lt;/i&gt;. Now we can use Bayes and the Binomial Theorem together to determine if we're looking at U2OS or HeLa!&lt;br/&gt;
 &lt;br/&gt;

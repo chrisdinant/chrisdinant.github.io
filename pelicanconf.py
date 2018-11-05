@@ -37,7 +37,8 @@ SOCIAL = (('You can add links in your config file', '#'),
 
 DEFAULT_PAGINATION = 10
 
-DISPLAY_PAGES_ON_MENU = False
+DISPLAY_PAGES_ON_MENU = True
+HEADER_COVERS_BY_CATEGORY = {'data-science': '/extra/dark.jpg', 'not-data-science': '/images/markus-spiske-78531-unsplash.jpg'}
 
 # Uncomment following line if you want document-relative URLs when developing
 RELATIVE_URLS = True
@@ -59,11 +60,11 @@ PLUGINS = [
     "assets", 
     "better_figures_and_images", 
     "render_math", 
-    "disqus_static"
+    "disqus_static",
+    "pelican-open_graph"
 ]
 
 RESPONSIVE_IMAGES = True
-
 
 # if you create jupyter files in the content dir, snapshots are saved with the same
 # metadata. These need to be ignored. 
@@ -73,19 +74,21 @@ IPYNB_USE_METACELL = True
 
 THEME = "/home/chris/pelican/attila" # note, not in pelican-themes directory
 
+GOOGLE_SITE_VERIFICATION = "yQh84bCkno9EjLcuqA5P2dztLWkwgr5WVqTJa9Za_6g"
+
 DISQUS_SITENAME = "chrisdinant"
 DISQUS_SECRET_KEY = "hIiLE8jkwilNIn287D5fkyjVd1esr2ZfnEv5j98i3vw5FY6AeKSP982vuSFNmZ39"
 DISQUS_PUBLIC_KEY = "xhE0WCYT9Zg931oUcHaFP2Z6rNbfeATSZuoQAAv4VEMXwv9LmDrt1SsX5Lxrz8JD"
 
 AUTHORS_BIO = {
-  "delta9": {
+  "chris dinant": {
     "name": "chris dinant",
     "cover": "extra/bg1.png",
     "image": "extra/delta9.png",
-    "website": "https://chrisdinant.github.io",
+    "twitter": "chrisdinant",
     "linkedin": "chris-dinant",
     "github": "chrisdinant",
     "location": "Copenhagen",
-    "bio": "This is the place for a small biography with max 200 characters. Well, now 100 are left. Cool, hugh?"
+    "bio": "Only if you can explain something in simple terms do you really understand it. That's what I'm trying to do with this blog."
   }
 }

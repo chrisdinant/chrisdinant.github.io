@@ -1,7 +1,10 @@
 Title: Music Video
 Date: 2018-10-28
 Slug: custom-pixels
+tags: python, youtube, video, ffmpeg, pipe
+og_image: /images/markus-spiske-78531-unsplash.jpg
 headline: Custom pixel replacement for video with FFMPEG
+Summary: I made a script that replaces pixels in movies with 20x20 size jpgs.
 cover: /images/markus-spiske-78531-unsplash.jpg
 
 Here's my children dancing around in the yard to my song.  

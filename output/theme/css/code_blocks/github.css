@@ -7,7 +7,6 @@
 
 .highlight pre {
   overflow-x: auto;       // this sets the scrolling in x
-  font-size: 0.2em
 }
 
 .highlight pre code {

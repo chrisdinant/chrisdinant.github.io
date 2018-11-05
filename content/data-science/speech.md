@@ -1,10 +1,14 @@
 Title: Kaggle Tensorflow Speech Recognition Challenge
 Date: 2018-03-14
+tags: kaggle, tensorflow, speech, recognition, walk-through, data science, spectrogram, resnet, rnn, ctc
+og_image: /images/resnet.png
 headline: A walk through of my approach
+Summary: A walk-through of my approach to the Kaggle Tensorflow Speech Recognition Challenge
 Slug: speech-Recognition
+cover: /images/spec_large.png
 
-![Spectrogram]({filename}/images/spec_large.png)
-*spectrogram*
+
+*Read this story on [Medium.com](https://towardsdatascience.com/kaggle-tensorflow-speech-recognition-challenge-b46a3bca2501)*
 ---
 
 From November 2017 to January 2018 the Google Brain team hosted a speech recognition challenge on Kaggle. The goal of this challenge was to write a program that can correctly identify one of 10 words being spoken in a one-second long audio file. Having just made up my mind to start seriously studying data science with the goal of turning a new corner in my career, I decided to tackle this as my first serious kaggle challenge.
@@ -30,11 +34,11 @@ Because I approached this challenge as a deep learning training exercise I imple
 **Raw wav files, 1D convolutions**  
 With spectrograms you use a specific algorithm to extract features from wav files, but you have to fine tune a bunch of parameters. A well designed neural network should be able to learn features from the raw wav files by itself and potentially get more informative features than one could get from a spectrogram. This first model is an attempt to do that. The initial design was heavily inspired by a Kaggle discussion post by user ttagu99. This is the result of an early attempt with a 6-layer 1D convolutional network.
 
-<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody>
-<tr><td style="text-align: center;">
+<!-- <table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody>
+<tr><td style="text-align: center;"> -->
 <img src="{filename}/images/confusion.png", alt="classification and confusion reports", style="margin-left: auto; margin-right: auto; text-align: center;"/>
-</td></tr>  
-</tbody></table>
+<!-- </td></tr>  
+</tbody></table> -->
 <p style="text-align: center; font-size: 0.8em;"><i>The network scores on the validation set. Top: sklearn classification report. Bottom: sklearn confusion matrix.</i></p>
 
 
@@ -43,11 +47,11 @@ It is not very effective yet. Some of the mistakes it makes are easy to understa
 **ResNet**  
 A residual neural network, or ResNet, is basically a deep convolutional NN with shortcuts. Every couple of layers there is an identity connection back to a layer a few levels up. These shortcut connections are thought to help the network generalize better. And this definitely works: I don't need any dropout layers anymore. What happens is that the network depth defaults to using as many shortcut connections as possible. This keeps the network small and therefore helps generalization. The residual layers in between the shortcuts are updated only when needed.  
 
-<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody>
-<tr><td style="text-align: center;">
+<!-- <table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody>
+<tr><td style="text-align: center;"> -->
 <img src="{filename}/images/resnet.png", alt="resnet", style="margin-left: auto; margin-right: auto; text-align: center;"/>
-</td></tr>  
-</tbody></table>
+<!-- </td></tr>  
+</tbody></table> -->
 <p style="text-align: center; font-size: 0.8em;"><i>Small subset of ResNet model with two shortcut connections</i></p>
 
 Blocks of 2 Conv2D layers with BatchNormalization and ReLu activation are separated by a connection layer adding the previous connection layer to the output of the blocks. Every three of such blocks is then further separated by a Conv2D layer with stride 2 in order to learn larger scale features. In Keras, this is how I implemented this:
@@ -101,11 +105,11 @@ We combine the 2nd and 3rd dimensions into one large vector resulting in 8 timep
 Around the time of the submission deadline for the Kaggle challenge the final module of Andrew Ng’s Coursera deep learning with python course about sequence models was opened to the public. I had applied some RNN layers in the combined model above, but I did not really know how it worked, so I took the course to learn all about RNNs. This post is not a review for this course, but suffice it to say I would recommend it to everyone interested in the math internals of RNNs. Besides the basics and not-so-basics of RNNs, I was particularly intrigued with a speech-to-text method that Andrew mentions but doesn’t really go deeper into called Connectionist Temporal Classification, or CTC. I was really excited by this because I have had an idea for a project in the back of my mind involving speech-to-text for a while, but it was still very abstract, I didn’t know at all where to start. But now someone was actually giving me a very concrete place to start.
 A speech-to-text model takes a spectrogram (or raw wav data) as input and outputs letters or words. What such a network needs to do is identify so-called phonemes in each RNN input, translate them into letters and combine letters into correct words.
 
-<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody>
-<tr><td style="text-align: center;">
+<!-- <table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody>
+<tr><td style="text-align: center;"> -->
 <img src="{filename}/images/CTC_example.png", alt="ctc", style="margin-left: auto; margin-right: auto; text-align: center;"/>
-</td></tr>  
-</tbody></table>
+<!-- </td></tr>  
+</tbody></table> -->
 <p style="text-align: center; font-size: 0.8em;"><i></i></p>
 
 So for spoken English words, you want to network to output one-hot vectors with length 28 (the alphabet plus ‘space’ and ‘blank’) for each timepoint and then somehow determine how ‘wrong’ the prediction is so we can do backprop. This is what CTC does. It takes the output , ”_ _ _ Y _ EEEE _ SSS _ _ ”, for example and reduces it to ‘yes’ by collapsing connecting multiples of letters and ignoring ‘blanks’ between different letters. If the output gives a ‘blank’ between two identical letters (“E _ E”) it considers it as two separate letters. A ‘blank’ should not be confused with a ‘space’, but I didn’t have to worry about this because all my inputs were single words.

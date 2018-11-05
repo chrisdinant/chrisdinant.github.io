@@ -1,17 +1,21 @@
 Title: Bayes and Binomial Theorems
 Date: 2018-02-06
+tags: bayes, binomial, data science, tests
+og_image: /images/dice.jpeg
 headline: Our intuitions about test accuracy are often very inaccurate
+Summary: An explanation of how to use and combine the Bayes and Binomial Theorems
+cover: /images/numbers.jpg
 
 **Bayes Theorem**  
 In statistics there are many situations where you want to determine the probability that a sample for which you have certain measurement belongs to a certain set. Say you want to know the chance that you have HIV if you test positive. No test is perfect, so this probability will depend on the test sensitivity, but also on the specificity and on the incidence in the population, or set, that you belong to. Bayes Theorem is a simply the logic you have to apply to estimate such probabilities.<br />
 <br />
 As a cancer researcher my attention was naturally drawn to this paper currently trending on Pubmed: <a href="https://www.ncbi.nlm.nih.gov/pubmed/29348365/"><i>Detection and localization of surgically resectable cancers with a multi-analyte blood test.</i></a> This is a perfect practical example for applying Bayes rule! And most of the information we need is right there in the abstract: "<i>The </i>sensitivities<i> ranged from 69% to 98% for the detection of five cancer types (ovary, liver, stomach, pancreas, and esophagus)...</i>" and "<i>The </i>specificity<i> of CancerSEEK was &gt; 99%: only 7 of 812 healthy controls scored positive.</i>" Wow, a <i>sensitivity</i> of up to 98% and a <i>specificity</i> of more than 99%? This sounds like a fool proof test! Right? Now we just need to know the incidences for these cancers and we can see how likely it is that you have that type of cancer given a positive test score.<br />
 <br />
-<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody>
-<tr><td style="text-align: center;">
+<!-- <table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody>
+<tr><td style="text-align: center;"> -->
 <img src="{filename}/images/dr-john.jpg", alt="doctor john", style="margin-left: auto; margin-right: auto; text-align: center;"/>
-</td></tr>  
-</tbody></table>
+<!-- </td></tr>  
+</tbody></table> -->
 <p style="text-align: center; font-size: 0.8em;"><i>The Doctor is in.</i></p>
 <div class="sub">
 <br /></div>
@@ -49,27 +53,27 @@ The first part is the binomial equation and is pronounced <i>n choose k</i>, I (
 $7.2^{-13}$)
 <br />
 <br />
-<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody>
-<tr><td style="text-align: center;">
+<!-- <table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody>
+<tr><td style="text-align: center;"> -->
 <img src="{filename}/images/dice.jpeg", alt="dices", style="margin-left: auto; margin-right: auto; text-align: center;"/>
-</td></tr>  
-</tbody></table>
+<!-- </td></tr>  
+</tbody></table> -->
 <p style="text-align: center; font-size: 0.8em;"><i></i></p>
 <br />
 <br />
 <br />
 It gets a bit more interesting when you combine Bayes with the Binomial Theorem.<br />
 Let's give a nerdy cell biologist example: Say you have two cell lines in culture (U2OS and HeLa for example) and you transfer both cell lines into a new flask. The next day you go back to the incubator and see that you have forgotten to label the flasks, so you don't know which is which. How can you find out? Here's what you could do: U2OS and HeLa don't look exactly the same under a microscope.<br />
-<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody>
-<tr><td style="text-align: center;">
+<!-- <table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody>
+<tr><td style="text-align: center;"> -->
 <img src="{filename}/images/hela.jpg", alt="hela", style="margin-left: auto; margin-right: auto; text-align: center;"/>
-</td></tr>  
-</tbody></table>
-<p style="text-align: center; font-size: 0.8em;"><i></i></p><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody>
-<tr><td style="text-align: center;">
+<!-- </td></tr>  
+</tbody></table> -->
+<!-- <p style="text-align: center; font-size: 0.8em;"><i></i></p><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody>
+<tr><td style="text-align: center;"> -->
 <img src="{filename}/images/u2os.jpg", alt="u2os", style="margin-left: auto; margin-right: auto; text-align: center;"/>
-</td></tr>  
-</tbody></table>
+<!-- </td></tr>  
+</tbody></table> -->
 <p style="text-align: center; font-size: 0.8em;"><i></i></p>
 It's not directly straight forward unless you have a lot of experience what the difference is, but image analysis software can measure a bunch of features for each cell line and give you numbers to work with. Let's say that a feature describing the shape (<i>s</i>) of a nucleus falls within a certain range <i>r&nbsp;</i>(the values don't matter) 20% of the time for U2OS cells and 23% of the time for HeLa cells. Now you take one image of 180 cells of one of the dishes and measure this shape value. In 51 cells the value for <i>s </i>falls in range <i>r</i>. Now we can use Bayes and the Binomial Theorem together to determine if we're looking at U2OS or HeLa!<br />
 <br />

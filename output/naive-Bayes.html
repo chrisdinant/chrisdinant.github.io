@@ -6,8 +6,25 @@
   <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
+  <meta name="google-site-verification" content="yQh84bCkno9EjLcuqA5P2dztLWkwgr5WVqTJa9Za_6g">
 
   <title>What's so naive about naive Bayes?</title>
+
+
+  <meta property="og:title" content="What&#39;s so naive about naive Bayes?" />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="/images/naive-art_ivan_generalic.jpg" />
+  <meta property="og:url" content="https://chrisdinant.github.io/naive-Bayes.html" />
+  <meta property="og:description" content="Assuming feature independence tends to help classification accuracy" />
+  <meta property="og:locale" content="" />
+  <meta property="og:site_name" content="Transferred Learnings" />
+  <meta property="article:published_time" content="2018-10-28" />
+  <meta property="article:section" content="data-science" />
+  <meta property="article:tag" content="naive Bayes" />
+  <meta property="article:tag" content="features" />
+  <meta property="article:tag" content="classification" />
+  <meta property="article:tag" content="accuracy" />
+  <meta property="article:tag" content="data science" />
 
 
   <meta name="HandheldFriendly" content="True" />
@@ -42,7 +59,11 @@
 
     <meta name="author" content="Chris Dinant">
 
-    <meta name="tags" content="naive-Bayes">
+    <meta name="tags" content="naive Bayes">
+    <meta name="tags" content="features">
+    <meta name="tags" content="classification">
+    <meta name="tags" content="accuracy">
+    <meta name="tags" content="data science">
 
 
 
@@ -58,7 +79,11 @@
 <meta property="article:modified_time" content=""/>
 <meta property="article:author" content="./author/chris-dinant.html">
 <meta property="article:section" content="data-science"/>
-<meta property="article:tag" content="naive-Bayes"/>
+<meta property="article:tag" content="naive Bayes"/>
+<meta property="article:tag" content="features"/>
+<meta property="article:tag" content="classification"/>
+<meta property="article:tag" content="accuracy"/>
+<meta property="article:tag" content="data science"/>
 <meta property="og:image" content=".//images/naive-art_ivan_generalic.jpg">
 
 <!-- Twitter Card -->
@@ -91,6 +116,9 @@
     <p class="nav-label">Menu</p>
     <ul>
 
+              <li role="presentation"><a href="./pages/about-me.html">Whose blog is this?</a></li>
+              <li role="presentation"><a href="./pages/purpose.html">The purpose of this blog</a></li>
+      
                   <li class="nav-data-science active" role="presentation"><a href="./category/data-science.html">data-science</a></li>
                   <li role="presentation"><a href="./category/not-data-science.html">not-data-science</a></li>
 
@@ -118,7 +146,7 @@
         <!-- TODO : Proper class for headline -->
           <span class="blog-description">Assuming feature independence tends to help classification accuracy</span>
         <span class="post-meta">
-                <a href="./author/chris-dinant.html">Chris Dinant</a>
+                <a href="./author/chris-dinant.html">chris dinant</a>
             | <time datetime="Sun 28 October 2018">Sun 28 October 2018</time>
         </span>
         <!-- TODO : Modified check -->
@@ -159,22 +187,39 @@
                 </div>
 
                 <aside class="post-tags">
-<a href="./tag/naive-bayes.html">naive-Bayes</a>                </aside>
+<a href="./tag/naive-bayes.html">naive Bayes</a><a href="./tag/features.html">features</a><a href="./tag/classification.html">classification</a><a href="./tag/accuracy.html">accuracy</a><a href="./tag/data-science.html">data science</a>                </aside>
 
                 <div class="clear"></div>
 
+                <aside class="post-author">
+
+
+                        <figure class="post-author-avatar">
+                            <img src="./extra/delta9.png" alt="chris dinant" />
+                        </figure>
+                    <div class="post-author-bio">
+                        <h4 class="post-author-name"><a href="./author/chris-dinant.html">chris dinant</a></h4>
+                            <p class="post-author-about">Only if you can explain something in simple terms do you really understand it. That's what I'm trying to do with this blog.</p>
+                            <span class="post-author-location"><i class="ic ic-location"></i> Copenhagen</span>
+                        <!-- Social linkes in alphabet order. -->
+                            <span class="post-author-github"><a target="_blank" href="https://github.com/chrisdinant"><i class="ic ic-link"></i> GitHub</a></span>
+                            <span class="post-author-linkedin"><a target="_blank" href="https://www.linkedin.com/in/chris-dinant"><i class="ic ic-link"></i> LinkedIn</a></span>
+                            <span class="post-author-twitter"><a target="_blank" href="https://twitter.com/chrisdinant"><i class="ic ic-twitter"></i> Twitter</a></span>
+                    </div>
+                    <div class="clear"></div>
+                </aside>
 
                 </section>
 
                 <script type="text/javascript">
                     var disqus = 'chrisdinant';
                     var disqus_shortname = 'chrisdinant';
-                    var disqus_identifier = '/naive-Bayes.html';
+                    var disqus_identifier = 'naive-bayes';
                     var disqus_url = './naive-Bayes.html';
                 </script>
                 <noscript>Please enable JavaScript to view the comments.</noscript>
                 <section class="post-comments">
-                        <a id="show-disqus" class="post-comments-activate" data-disqus-identifier="/naive-Bayes.html" >Show Comments</a>
+                        <a id="show-disqus" class="post-comments-activate" data-disqus-identifier="naive-bayes" >Show Comments</a>
                     <div id="disqus_thread"></div>
                 </section>
 
@@ -183,14 +228,14 @@
                         <section class="post-nav-teaser">
                             <i class="ic ic-arrow-left"></i>
                                 <h2 class="post-nav-title">Music Video</h2>
-                            <p class="post-nav-excerpt">Here's my children dancing around in the yard to my song. Have a watch: This video was...</p>
+                            <p class="post-nav-excerpt">I made a script that replaces pixels in movies with 20x20 size jpgs.</p>
                         </section>
                     </a>
                     <a class="post-nav-prev" href="./entropy-and-information-gain.html">
                         <section class="post-nav-teaser">
                             <i class="ic ic-arrow-right"></i>
                                 <h2 class="post-nav-title">Entropy and Information Gain</h2>
-                            <p class="post-nav-excerpt">Entropy and Information Gain</p>
+                            <p class="post-nav-excerpt">The more homogeneous a set, the higher the entropy and the lower the amount of information.</p>
                         </section>
                     </a>
                     <div class="clear"></div>

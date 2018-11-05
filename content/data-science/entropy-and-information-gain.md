@@ -1,10 +1,12 @@
 Title: Entropy and Information Gain
 Date: 2018-03-17
-Tags: entropy
+Tags: entropy, information, decision-tree, datascience
+og_image: /images/tree.jpg
 Slug: entropy-and-information-gain
 author: Chris Dinant
-headline: The more homogeneous a set, the higher the entropy and the lower the amount of information.
-Summary: Entropy and Information Gain
+Summary: The more homogeneous a set, the higher the entropy and the lower the amount of information.
+cover: /images/tree.jpg
+
 
 Neither 'Entropy' nor 'Information' are concepts with very intuitive definitions. Most people learn about entropy in chemistry class where it is used to describe the amount of 'order' in a system. But how do you translate 'order' into a mathematical equation? And what about information?  
 

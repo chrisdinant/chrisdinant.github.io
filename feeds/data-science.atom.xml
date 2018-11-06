@@ -1,5 +1,151 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Transferred Learnings</title><link href="https://chrisdinant.github.io/" rel="alternate"></link><link href="https://chrisdinant.github.io/feeds/data-science.atom.xml" rel="self"></link><id>https://chrisdinant.github.io/</id><updated>2018-10-28T00:00:00+02:00</updated><entry><title>What's so naive about naive Bayes?</title><link href="https://chrisdinant.github.io/naive-Bayes.html" rel="alternate"></link><published>2018-10-28T00:00:00+02:00</published><updated>2018-10-28T00:00:00+02:00</updated><author><name>Chris Dinant</name></author><id>tag:chrisdinant.github.io,2018-10-28:naive-Bayes.html</id><summary type="html">&lt;p&gt;&lt;em&gt;Cover art: Naive art by Ivan Generalic&lt;/em&gt;&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Transferred Learnings</title><link href="https://chrisdinant.github.io/" rel="alternate"></link><link href="https://chrisdinant.github.io/feeds/data-science.atom.xml" rel="self"></link><id>https://chrisdinant.github.io/</id><updated>2018-11-03T00:00:00+01:00</updated><entry><title>What is Gradient Descent?</title><link href="https://chrisdinant.github.io/gradient-descent.html" rel="alternate"></link><published>2018-11-03T00:00:00+01:00</published><updated>2018-11-03T00:00:00+01:00</updated><author><name>chris dinant</name></author><id>tag:chrisdinant.github.io,2018-11-03:gradient-descent.html</id><summary type="html">&lt;p&gt;Fitting a machine learning model means finding optimal values for the parameters of the model. Sometimes this can be done in one step (when a closed form solution is available), but more often than not even if this can be done it is computationally prohibitively expensive. That is why most of the time iterative methods such as gradient descent are used for optimization problems.  &lt;/p&gt;
+&lt;p&gt;With gradient descent at every iteration the parameters &lt;span class="math"&gt;\(w\)&lt;/span&gt; and &lt;span class="math"&gt;\(b\)&lt;/span&gt; (for &lt;em&gt;weights&lt;/em&gt; and &lt;em&gt;biases&lt;/em&gt;) are adjusted a certain amount in the direction that results in the reduction of the cost function &lt;span class="math"&gt;\(J\)&lt;/span&gt;. So how do we determine the direction and amount to adjust? We use the gradient of the cost function with regards to the parameters.  &lt;/p&gt;
+&lt;p&gt;Here's how calculate this gradient:  &lt;/p&gt;
+&lt;p&gt;The cost function takes the output of the model &lt;span class="math"&gt;\(\hat{y}\)&lt;/span&gt; and compares it with the actual value of the training sample, &lt;span class="math"&gt;\(y\)&lt;/span&gt;, to determine how &lt;em&gt;wrong&lt;/em&gt; the model is at this stage of training. Often you see functions like &lt;em&gt;mean squared error&lt;/em&gt; (MSE) or &lt;em&gt;cross entropy&lt;/em&gt; used for this. The &lt;span class="math"&gt;\(\hat{y}\)&lt;/span&gt; value in turn is determined by the activation  at the output layer (if we are talking about a neural network), which in the case of a binary classification problem would probably be a sigmoid function. And the input to this sigmoid function would be a linear function in the style of &lt;/p&gt;
+&lt;div class="math"&gt;$$z=w_1x_1 + w_2x_2 + ... + w_Nx_N + b$$&lt;/div&gt;
+&lt;p&gt; for a fully-connected layer with &lt;span class="math"&gt;\(N\)&lt;/span&gt; neurons. Now, to take the derivative of cost function &lt;span class="math"&gt;\(J\)&lt;/span&gt; with regards to the parameters you take the (partial) derivatives of &lt;span class="math"&gt;\(J\)&lt;/span&gt; at each of the above steps and multiply them with each other. This is called the chain rule. It goes as follows:  &lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;If we are using cross entropy, the derivative of &lt;span class="math"&gt;\(J\)&lt;/span&gt; with regards to &lt;span class="math"&gt;\(\hat{y}\)&lt;/span&gt; is:  &lt;div class="math"&gt;$$\frac{\partial{J}}{\partial{\hat{y}}}=-\frac{y}{\hat{y}}+\frac{1-y}{1-\hat{y}}$$&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;One step down the derivative of &lt;span class="math"&gt;\(\hat{y}\)&lt;/span&gt; with regards to the output of the linear function (let's call it &lt;span class="math"&gt;\(z\)&lt;/span&gt;) is:
+&lt;div class="math"&gt;$$\frac{\partial{\hat{y}}}{\partial{z}}=\hat{y}(1-\hat{y})$$&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;And the partial derivative for the parameters is:
+&lt;div class="math"&gt;$$\frac{\partial{z}}{\partial{w_n}}=x_n$$&lt;/div&gt; for all the weights and simply &lt;span class="math"&gt;\(1\)&lt;/span&gt; for bias &lt;span class="math"&gt;\(b\)&lt;/span&gt;.  &lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;A funny thing about using a sigmoid activation function in the output layer and cross entropy as the loss function is that with the chain rule this end of the network simplifies to:
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\frac{\partial{J}}{\partial{w_n}}=\frac{\partial{J}}{\partial{\hat{y}}}\frac{\partial{\hat{y}}}{\partial{z}}\frac{\partial{z}}{\partial{w_n}}=x_n(\hat{y}-y)$$&lt;/div&gt;
+&lt;p&gt;
+for the weights and &lt;span class="math"&gt;\(\hat{y}-y\)&lt;/span&gt; for the bias. Isn't that nice and simple?&lt;/p&gt;
+&lt;p&gt;Now we can adjust the parameters as follows:
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\Delta{w_n}=-\alpha{\frac{\partial{J}}{\partial{w_n}}}$$&lt;/div&gt;
+&lt;p&gt;
+We use a small scalar &lt;span class="math"&gt;\(\alpha\)&lt;/span&gt; here, always &lt;span class="math"&gt;\(&amp;lt;1\)&lt;/span&gt; and often &lt;span class="math"&gt;\(&amp;lt;0.01\)&lt;/span&gt;, in order not to update the parameters in too large steps because this usually leads to increasing &lt;span class="math"&gt;\(J\)&lt;/span&gt; instead of decreasing it. This &lt;span class="math"&gt;\(\alpha\)&lt;/span&gt; is called the &lt;em&gt;learning rate&lt;/em&gt;.  &lt;/p&gt;
+&lt;hr/&gt;
+&lt;p&gt;With multi-layer networks the &lt;span class="math"&gt;\(x_n\)&lt;/span&gt; in the above equations is equivalent to the output of the previous activation layer. So to continue back propagation into the upstream layer you take the derivative of &lt;span class="math"&gt;\(z\)&lt;/span&gt; with regards to this activation (let's call it &lt;span class="math"&gt;\(a^{[l-1]}\)&lt;/span&gt; instead of &lt;span class="math"&gt;\(x\)&lt;/span&gt; now to make clear that we are not dealing with the features of the input sample but the activation of upstream layer &lt;span class="math"&gt;\(l-1\)&lt;/span&gt;):
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\frac{\partial{z}}{\partial{a_n^{[l-1]}}}=w_n$$&lt;/div&gt;
+&lt;p&gt;Next we need the derivative of this activation function &lt;span class="math"&gt;\(a^{[l-1]}\)&lt;/span&gt; with regards to &lt;span class="math"&gt;\(z^{[l-1]}\)&lt;/span&gt;. Obviously the formula for this derivation depends on which activation function you choose. Here are some common ones:  &lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;function&lt;/th&gt;
+&lt;th align="center"&gt;&lt;div style="text-align: center"&gt;equation&lt;/div&gt;&lt;/th&gt;
+&lt;th align="center"&gt;&lt;div style="text-align: center"&gt;derivative&lt;/div&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Linear&lt;/td&gt;
+&lt;td align="center"&gt;
+&lt;div class="math"&gt;$$f(x)=x$$&lt;/div&gt;
+&lt;/td&gt;
+&lt;td align="center"&gt;
+&lt;div class="math"&gt;$$f'(x)=1$$&lt;/div&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Sigmoid&lt;/td&gt;
+&lt;td align="center"&gt;
+&lt;div class="math"&gt;$$f(x)=\frac{1}{1+e^{-x}}$$&lt;/div&gt;
+&lt;/td&gt;
+&lt;td align="center"&gt;
+&lt;div class="math"&gt;$$f'(x)=f(x)(1-f(x))$$&lt;/div&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;ReLU&lt;/td&gt;
+&lt;td align="center"&gt;
+&lt;div class="math"&gt;$$f(x)=\begin{cases}  0 &amp;amp; \text{for }x&amp;lt;0\\  x &amp;amp; \text{for }x\ge0\end{cases}$$&lt;/div&gt;
+&lt;/td&gt;
+&lt;td align="center"&gt;
+&lt;div class="math"&gt;$$f(x)=\begin{cases}  0 &amp;amp; \text{for }x&amp;lt;0\\  1 &amp;amp; \text{for }x\ge0\end{cases}$$&lt;/div&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Tanh&lt;/td&gt;
+&lt;td align="center"&gt;
+&lt;div class="math"&gt;$$f(x)=\frac{2}{1+e^{-2x}}-1$$&lt;/div&gt;
+&lt;/td&gt;
+&lt;td align="center"&gt;
+&lt;div class="math"&gt;$$f'(x)=1-f(x)^2$$&lt;/div&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Say we use Tanh:
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\frac{\partial{a_n^{[l-1]}}}{\partial{z^{[l-1]}}}=1-a_n^{[l-1]2}$$&lt;/div&gt;
+&lt;p&gt;
+And finally the derivative with regards to the parameters of layer &lt;span class="math"&gt;\(l-1\)&lt;/span&gt;:
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\frac{\partial{z^{[l-1]}}}{\partial{w_n^{[l-1]}}}=x_n^{[l-1]}$$&lt;/div&gt;
+&lt;p&gt;Again we apply the chain rule to update of the weights in layer &lt;span class="math"&gt;\(l-1\)&lt;/span&gt;:
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\Delta{w_n^{[l-1]}}=-\alpha{\frac{\partial{J}}{\partial{w_n^{[l-1]}}}}=-\alpha{x_n^{[l-1]}(1-a_n^{[l-1]2})w_n(\hat{y}-y)}$$&lt;/div&gt;
+&lt;p&gt;
+where &lt;span class="math"&gt;\(a_n^{[l-1]}\)&lt;/span&gt; is the output of tanh&lt;span class="math"&gt;\((x^{[l-1]})\)&lt;/span&gt; and &lt;span class="math"&gt;\(\hat{y}\)&lt;/span&gt; the output of sigmoid&lt;span class="math"&gt;\((x)\)&lt;/span&gt;.  &lt;/p&gt;
+&lt;hr/&gt;
+&lt;p&gt;Now we have seen how to do back propagation by gradient descent for a two-layer neural network. I have not talked about how to deal with batches of data and how to vectorize these calculations for faster computation. We will have to wait for a later post to talk about those topics.   &lt;/p&gt;
+&lt;p&gt;Δ9&lt;/p&gt;
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</summary><category term="gradient descent"></category><category term="partial derivative"></category><category term="cost function"></category><category term="weights"></category><category term="biases"></category><category term="neural network"></category><category term="deep learning"></category><category term="data science"></category></entry><entry><title>What's so naive about naive Bayes?</title><link href="https://chrisdinant.github.io/naive-Bayes.html" rel="alternate"></link><published>2018-10-28T00:00:00+02:00</published><updated>2018-10-28T00:00:00+02:00</updated><author><name>Chris Dinant</name></author><id>tag:chrisdinant.github.io,2018-10-28:naive-Bayes.html</id><summary type="html">&lt;p&gt;&lt;em&gt;Cover art: Naive art by Ivan Generalic&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;Naive Bayes (NB) is 'naive' because it makes the assumption that features of a measurement are independent of each other. This is naive because it is (almost) never true. Here is why NB works anyway.  &lt;/p&gt;
 &lt;p&gt;NB is a very intuitive classification algorithm. It asks the question, "Given these features, does this measurement belong to class A or B?", and answers it by taking the proportion of all previous measurements with the same features belonging to class A multiplied by the proportion of all measurements in class A. If this number is bigger then the corresponding calculation for class B then we say the measurement belongs in class A. Simple, right?  &lt;/p&gt;
 &lt;p&gt;Of course in practice we will rarely see many measurements with identical feature sets. In fact if we had to rely on a measurement to be identical to some previously measured data points we would only be able to classify exact duplicates, making Bayes' rule practically useless for classification.  &lt;/p&gt;
@@ -356,7 +502,8 @@ To determine similarity of data you can use a few different distance algorithms.
 It goes through all the known data points and measures the distance to the new point. Then it assigns the class of the majority of &lt;i&gt;k&lt;/i&gt; nearest data points to the new measurement. Yes, it goes through all training data every time you run this algorithm! No model is actually created. This is called a &lt;i&gt;lazy learning &lt;/i&gt;technique.&lt;br/&gt;
 &lt;br/&gt;
 &lt;b&gt;When should you use kNN?&lt;/b&gt;&lt;br/&gt;
-kNN is useful mostly when your parameter vectors are not too long. Or in other words, the dimensionality of your data is small. This is because the more dimensions, the more distances become similar to the average distance of any two points, even if these points have different labels. Basically, all distances become bigger and bigger; even if two points are in the same class, they will be very far apart in multi dimensional space. This is called the &lt;i&gt;curse of dimensionality.&lt;/i&gt;&lt;/p&gt;
+kNN is useful mostly when your parameter vectors are not too long. Or in other words, the dimensionality of your data is small. This is because the more dimensions, the more distances become similar to the average distance of any two points, even if these points have different labels. Basically, all distances become bigger and bigger; even if two points are in the same class, they will be very far apart in multi dimensional space. This is called the &lt;i&gt;curse of dimensionality.&lt;/i&gt; &lt;/p&gt;
+&lt;p&gt;Δ9&lt;/p&gt;
 &lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",

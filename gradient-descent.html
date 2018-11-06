@@ -13,8 +13,9 @@
 
   <meta property="og:title" content="What is Gradient Descent?" />
   <meta property="og:type" content="article" />
-  <meta property="og:url" content="https://chrisdinant.github.io/drafts/gradient-descent.html" />
-  <meta property="og:description" content="Gradient descent updates the parameters of a model so that the output of the cost function is reduced." />
+  <meta property="og:image" content="/images/descending.jpg" />
+  <meta property="og:url" content="https://chrisdinant.github.io/gradient-descent.html" />
+  <meta property="og:description" content="I explain partial derivatives, chain rule, learning rate and more." />
   <meta property="og:locale" content="" />
   <meta property="og:site_name" content="Transferred Learnings" />
   <meta property="article:published_time" content="2018-11-03" />
@@ -57,7 +58,7 @@
   <![endif]-->
 
 
-  <link href="https://chrisdinant.github.io/drafts/gradient-descent.html" rel="canonical" />
+  <link href="https://chrisdinant.github.io/gradient-descent.html" rel="canonical" />
 
     <meta name="description" content="Gradient descent updates the parameters of a model so that the output of the cost function is reduced.">
 
@@ -80,7 +81,7 @@
 <meta property="og:title" content="What is Gradient Descent?"/>
 <meta property="og:description" content="Gradient descent updates the parameters of a model so that the output of the cost function is reduced."/>
 <meta property="og:locale" content="en_US"/>
-<meta property="og:url" content="https://chrisdinant.github.io/drafts/gradient-descent.html"/>
+<meta property="og:url" content="https://chrisdinant.github.io/gradient-descent.html"/>
 <meta property="og:type" content="article"/>
 <meta property="article:published_time" content="2018-11-03 00:00:00+01:00"/>
 <meta property="article:modified_time" content=""/>
@@ -94,7 +95,7 @@
 <meta property="article:tag" content="neural network"/>
 <meta property="article:tag" content="deep learning"/>
 <meta property="article:tag" content="data science"/>
-<meta property="og:image" content="https://chrisdinant.github.io//extra/bg1.jpg">
+<meta property="og:image" content="https://chrisdinant.github.io//images/descending.jpg">
 
 <!-- Twitter Card -->
 
@@ -111,8 +112,8 @@
     "name": "chris dinant",
     "url": "https://chrisdinant.github.io/author/chris-dinant.html"
   },
-  "image": "https://chrisdinant.github.io//extra/bg1.jpg",
-  "url": "https://chrisdinant.github.io/drafts/gradient-descent.html",
+  "image": "https://chrisdinant.github.io//images/descending.jpg",
+  "url": "https://chrisdinant.github.io/gradient-descent.html",
   "description": "Gradient descent updates the parameters of a model so that the output of the cost function is reduced."
 }
 </script>
@@ -154,12 +155,13 @@
         </nav>
         <h1 class="post-title">What is Gradient Descent?</h1>
         <!-- TODO : Proper class for headline -->
+          <span class="blog-description">Gradient descent updates the parameters of a model so that the output of the cost function is reduced.</span>
         <span class="post-meta">
                 <a href="https://chrisdinant.github.io/author/chris-dinant.html">chris dinant</a>
             | <time datetime="Sat 03 November 2018">Sat 03 November 2018</time>
         </span>
         <!-- TODO : Modified check -->
-            <div class="post-cover cover" style="background-image: url('https://chrisdinant.github.io//extra/bg1.jpg')">
+            <div class="post-cover cover" style="background-image: url('https://chrisdinant.github.io//images/descending.jpg')">
       </div>
     </header>
 
@@ -171,8 +173,98 @@
         <article class="post">
         <div class="inner">
             <section class="post-content">
-                <div class="math">$$J(w,b)$$</div>
-<div class="math">$$w=w-\alpha{\frac{\partial{J(w,b)}}{\partial{w}}}$$</div>
+                <p>Fitting a machine learning model means finding optimal values for the parameters of the model. Sometimes this can be done in one step (when a closed form solution is available), but more often than not even if this can be done it is computationally prohibitively expensive. That is why most of the time iterative methods such as gradient descent are used for optimization problems.  </p>
+<p>With gradient descent at every iteration the parameters <span class="math">\(w\)</span> and <span class="math">\(b\)</span> (for <em>weights</em> and <em>biases</em>) are adjusted a certain amount in the direction that results in the reduction of the cost function <span class="math">\(J\)</span>. So how do we determine the direction and amount to adjust? We use the gradient of the cost function with regards to the parameters.  </p>
+<p>Here's how calculate this gradient:  </p>
+<p>The cost function takes the output of the model <span class="math">\(\hat{y}\)</span> and compares it with the actual value of the training sample, <span class="math">\(y\)</span>, to determine how <em>wrong</em> the model is at this stage of training. Often you see functions like <em>mean squared error</em> (MSE) or <em>cross entropy</em> used for this. The <span class="math">\(\hat{y}\)</span> value in turn is determined by the activation  at the output layer (if we are talking about a neural network), which in the case of a binary classification problem would probably be a sigmoid function. And the input to this sigmoid function would be a linear function in the style of </p>
+<div class="math">$$z=w_1x_1 + w_2x_2 + ... + w_Nx_N + b$$</div>
+<p> for a fully-connected layer with <span class="math">\(N\)</span> neurons. Now, to take the derivative of cost function <span class="math">\(J\)</span> with regards to the parameters you take the (partial) derivatives of <span class="math">\(J\)</span> at each of the above steps and multiply them with each other. This is called the chain rule. It goes as follows:  </p>
+<ol>
+<li>If we are using cross entropy, the derivative of <span class="math">\(J\)</span> with regards to <span class="math">\(\hat{y}\)</span> is:  <div class="math">$$\frac{\partial{J}}{\partial{\hat{y}}}=-\frac{y}{\hat{y}}+\frac{1-y}{1-\hat{y}}$$</div>
+</li>
+<li>One step down the derivative of <span class="math">\(\hat{y}\)</span> with regards to the output of the linear function (let's call it <span class="math">\(z\)</span>) is:
+<div class="math">$$\frac{\partial{\hat{y}}}{\partial{z}}=\hat{y}(1-\hat{y})$$</div>
+</li>
+<li>And the partial derivative for the parameters is:
+<div class="math">$$\frac{\partial{z}}{\partial{w_n}}=x_n$$</div> for all the weights and simply <span class="math">\(1\)</span> for bias <span class="math">\(b\)</span>.  </li>
+</ol>
+<p>A funny thing about using a sigmoid activation function in the output layer and cross entropy as the loss function is that with the chain rule this end of the network simplifies to:
+</p>
+<div class="math">$$\frac{\partial{J}}{\partial{w_n}}=\frac{\partial{J}}{\partial{\hat{y}}}\frac{\partial{\hat{y}}}{\partial{z}}\frac{\partial{z}}{\partial{w_n}}=x_n(\hat{y}-y)$$</div>
+<p>
+for the weights and <span class="math">\(\hat{y}-y\)</span> for the bias. Isn't that nice and simple?</p>
+<p>Now we can adjust the parameters as follows:
+</p>
+<div class="math">$$\Delta{w_n}=-\alpha{\frac{\partial{J}}{\partial{w_n}}}$$</div>
+<p>
+We use a small scalar <span class="math">\(\alpha\)</span> here, always <span class="math">\(&lt;1\)</span> and often <span class="math">\(&lt;0.01\)</span>, in order not to update the parameters in too large steps because this usually leads to increasing <span class="math">\(J\)</span> instead of decreasing it. This <span class="math">\(\alpha\)</span> is called the <em>learning rate</em>.  </p>
+<hr/>
+<p>With multi-layer networks the <span class="math">\(x_n\)</span> in the above equations is equivalent to the output of the previous activation layer. So to continue back propagation into the upstream layer you take the derivative of <span class="math">\(z\)</span> with regards to this activation (let's call it <span class="math">\(a^{[l-1]}\)</span> instead of <span class="math">\(x\)</span> now to make clear that we are not dealing with the features of the input sample but the activation of upstream layer <span class="math">\(l-1\)</span>):
+</p>
+<div class="math">$$\frac{\partial{z}}{\partial{a_n^{[l-1]}}}=w_n$$</div>
+<p>Next we need the derivative of this activation function <span class="math">\(a^{[l-1]}\)</span> with regards to <span class="math">\(z^{[l-1]}\)</span>. Obviously the formula for this derivation depends on which activation function you choose. Here are some common ones:  </p>
+<table>
+<thead>
+<tr>
+<th>function</th>
+<th align="center"><div style="text-align: center">equation</div></th>
+<th align="center"><div style="text-align: center">derivative</div></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Linear</td>
+<td align="center">
+<div class="math">$$f(x)=x$$</div>
+</td>
+<td align="center">
+<div class="math">$$f'(x)=1$$</div>
+</td>
+</tr>
+<tr>
+<td>Sigmoid</td>
+<td align="center">
+<div class="math">$$f(x)=\frac{1}{1+e^{-x}}$$</div>
+</td>
+<td align="center">
+<div class="math">$$f'(x)=f(x)(1-f(x))$$</div>
+</td>
+</tr>
+<tr>
+<td>ReLU</td>
+<td align="center">
+<div class="math">$$f(x)=\begin{cases}  0 &amp; \text{for }x&lt;0\\  x &amp; \text{for }x\ge0\end{cases}$$</div>
+</td>
+<td align="center">
+<div class="math">$$f(x)=\begin{cases}  0 &amp; \text{for }x&lt;0\\  1 &amp; \text{for }x\ge0\end{cases}$$</div>
+</td>
+</tr>
+<tr>
+<td>Tanh</td>
+<td align="center">
+<div class="math">$$f(x)=\frac{2}{1+e^{-2x}}-1$$</div>
+</td>
+<td align="center">
+<div class="math">$$f'(x)=1-f(x)^2$$</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Say we use Tanh:
+</p>
+<div class="math">$$\frac{\partial{a_n^{[l-1]}}}{\partial{z^{[l-1]}}}=1-a_n^{[l-1]2}$$</div>
+<p>
+And finally the derivative with regards to the parameters of layer <span class="math">\(l-1\)</span>:
+</p>
+<div class="math">$$\frac{\partial{z^{[l-1]}}}{\partial{w_n^{[l-1]}}}=x_n^{[l-1]}$$</div>
+<p>Again we apply the chain rule to update of the weights in layer <span class="math">\(l-1\)</span>:
+</p>
+<div class="math">$$\Delta{w_n^{[l-1]}}=-\alpha{\frac{\partial{J}}{\partial{w_n^{[l-1]}}}}=-\alpha{x_n^{[l-1]}(1-a_n^{[l-1]2})w_n(\hat{y}-y)}$$</div>
+<p>
+where <span class="math">\(a_n^{[l-1]}\)</span> is the output of tanh<span class="math">\((x^{[l-1]})\)</span> and <span class="math">\(\hat{y}\)</span> the output of sigmoid<span class="math">\((x)\)</span>.  </p>
+<hr/>
+<p>Now we have seen how to do back propagation by gradient descent for a two-layer neural network. I have not talked about how to deal with batches of data and how to vectorize these calculations for faster computation. We will have to wait for a later post to talk about those topics.   </p>
+<p>Δ9</p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -232,13 +324,13 @@
 
             <section class="post-info">
                 <div class="post-share">
-                    <a class="twitter" href="https://twitter.com/share?text=What is Gradient Descent?&amp;url=https://chrisdinant.github.io/drafts/gradient-descent.html" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <a class="twitter" href="https://twitter.com/share?text=What is Gradient Descent?&amp;url=https://chrisdinant.github.io/gradient-descent.html" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
                     <i class="ic ic-twitter"></i><span class="hidden">Twitter</span>
                     </a>
-                    <a class="facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://chrisdinant.github.io/drafts/gradient-descent.html" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <a class="facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://chrisdinant.github.io/gradient-descent.html" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
                     <i class="ic ic-facebook"></i><span class="hidden">Facebook</span>
                     </a>
-                    <a class="googleplus" href="https://plus.google.com/share?url=https://chrisdinant.github.io/drafts/gradient-descent.html" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <a class="googleplus" href="https://plus.google.com/share?url=https://chrisdinant.github.io/gradient-descent.html" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
                     <i class="ic ic-googleplus"></i><span class="hidden">Google+</span>
                     </a>
                     <div class="clear"></div>
@@ -269,8 +361,26 @@
 
                 </section>
 
+                <script type="text/javascript">
+                    var disqus = 'chrisdinant';
+                    var disqus_shortname = 'chrisdinant';
+                    var disqus_identifier = '/gradient-descent.html';
+                    var disqus_url = 'https://chrisdinant.github.io/gradient-descent.html';
+                </script>
+                <noscript>Please enable JavaScript to view the comments.</noscript>
+                <section class="post-comments">
+                        <a id="show-disqus" class="post-comments-activate" data-disqus-identifier="/gradient-descent.html" >Show Comments</a>
+                    <div id="disqus_thread"></div>
+                </section>
 
                 <aside class="post-nav">
+                    <a class="post-nav-prev" href="https://chrisdinant.github.io/custom-pixels.html">
+                        <section class="post-nav-teaser">
+                            <i class="ic ic-arrow-right"></i>
+                                <h2 class="post-nav-title">Music Video</h2>
+                            <p class="post-nav-excerpt">I made a script that replaces pixels in movies with 20x20 size jpgs.</p>
+                        </section>
+                    </a>
                     <div class="clear"></div>
                 </aside>
 

@@ -123,7 +123,7 @@
             </header>
                 <section class="post-excerpt">
                     <p>
-                        I explain partial derivatives, chain rule, learning rate and more.
+                        <p>Fitting a machine learning model means finding optimal values for the parameters of the model. Sometimes this can be done in one step (when a closed form solution is available), but more often than not even if this can be done it is computationally prohibitively expensive. That is why most ...</p>
                     </p>
                 </section>
 <p>
@@ -144,7 +144,7 @@
             </header>
                 <section class="post-excerpt">
                     <p>
-                        I made a script that replaces pixels in movies with 20x20 size jpgs.
+                        <p>I made a script that replaces pixels in movies with 20x20 size jpgs.</p>
                     </p>
                 </section>
 <p>
@@ -165,7 +165,9 @@
             </header>
                 <section class="post-excerpt">
                     <p>
-                        Assuming feature independence tends to help classification accuracy
+                        <p><em>Cover art: Naive art by Ivan Generalic</em></p>
+<p>Naive Bayes (NB) is 'naive' because it makes the assumption that features of a measurement are independent of each other. This is naive because it is (almost) never true. Here is why NB works anyway.  </p>
+<p>NB is a very intuitive classification algorithm. It ...</p>
                     </p>
                 </section>
 <p>
@@ -186,7 +188,8 @@
             </header>
                 <section class="post-excerpt">
                     <p>
-                        The more homogeneous a set, the higher the entropy and the lower the amount of information.
+                        <p>Neither 'Entropy' nor 'Information' are concepts with very intuitive definitions. Most people learn about entropy in chemistry class where it is used to describe the amount of 'order' in a system. But how do you translate 'order' into a mathematical equation? And what about information?  </p>
+<p>In data science the terms ...</p>
                     </p>
                 </section>
 <p>
@@ -207,7 +210,9 @@
             </header>
                 <section class="post-excerpt">
                     <p>
-                        A walk-through of my approach to the Kaggle Tensorflow Speech Recognition Challenge
+                        <p><em>Read this story on <a href="https://towardsdatascience.com/kaggle-tensorflow-speech-recognition-challenge-b46a3bca2501">Medium.com</a></em> </p>
+<hr/>
+<p>From November 2017 to January 2018 the Google Brain team hosted a speech recognition challenge on Kaggle. The goal of this challenge was to write a program that can correctly identify one of 10 words being spoken in a one-second long audio file. Having ...</p></hr/>
                     </p>
                 </section>
 <p>
@@ -228,7 +233,9 @@
             </header>
                 <section class="post-excerpt">
                     <p>
-                        A short explanation of Logistic Regression
+                        <p><em>Logistic Regression is closely related to Linear Regression. Read my post on Linear Regression <a href="https://chrisdinant.github.io/linear-regression.html">here</a></em> </p>
+<p>Logistic Regression is a classification technique, meaning that the target <i>Y</i> is qualitative instead of quantitative. For example, trying to predict whether a customer will stop doing business with you, a.k.a. churn.<br/>
+Logistic ...</br/></p>
                     </p>
                 </section>
 <p>
@@ -249,7 +256,63 @@
             </header>
                 <section class="post-excerpt">
                     <p>
-                        A short explanation of Linear Regression
+                        <p>Linear regression is used to model the relationship between continuous variables. For example to predict the price of a house when you have features like size in square meters and crime in the neighborhood etc.  A linear regression function takes the form of<br/>
+</p>
+<div class="math">$$\hat{y}=\hat{\beta_0}+\hat{\beta_1}x_1+\hat{\beta_2}x_2+\dots+\hat{\beta_p}x_p$$ ...</div><script type='text/javascript'>if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
                     </p>
                 </section>
 <p>
@@ -270,7 +333,10 @@
             </header>
                 <section class="post-excerpt">
                     <p>
-                        A short explanation of k-Nearest Neighbors
+                        <p>k-Nearest Neighbors or kNN is a classification algorithm that asigns a class to a new data point based on known data points that are similar, or nearby.<br/>
+<br/>
+<b>What do you mean 'nearby'?</b><br/>
+To determine similarity of data you can use a few different distance algorithms. For example <i>Euclidian distance</i>, which ...</br/></br/></br/></p>
                     </p>
                 </section>
 <p>
@@ -291,7 +357,8 @@
             </header>
                 <section class="post-excerpt">
                     <p>
-                        An explanation of how to use and combine the Bayes and Binomial Theorems
+                        <p><strong>Bayes Theorem</strong><br/>
+In statistics there are many situations where you want to determine the probability that a sample for which you have certain measurement belongs to a certain set. Say you want to know the chance that you have HIV if you test positive. No test is perfect, so this ...</br/></p>
                     </p>
                 </section>
 <p>

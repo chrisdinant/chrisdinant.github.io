@@ -15,7 +15,7 @@
   <meta property="og:type" content="article" />
   <meta property="og:image" content="/images/descending.jpg" />
   <meta property="og:url" content="https://chrisdinant.github.io/gradient-descent.html" />
-  <meta property="og:description" content="Fitting a machine learning model means finding optimal values for the parameters of the model. Sometimes this can be done in one step (when a closed form solution is available), but more often than not even if this can be done it is computationally prohibitively expensive. That is why most ..." />
+  <meta property="og:description" content="Fitting a machine learning model means finding optimal values for the parameters of the model. Sometimes this can be done in one step (when a closed form solution is available), but more often than not even if this can be done it is computationally prohibitively expensive. That is why most …" />
   <meta property="og:locale" content="" />
   <meta property="og:site_name" content="Transferred Learnings" />
   <meta property="article:published_time" content="2018-11-03" />
@@ -34,16 +34,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="referrer" content="origin" />
   <meta name="generator" content="Pelican" />
-  <link href="https://chrisdinant.github.io/" rel="canonical" />
+  <link href="./" rel="canonical" />
 
   <!-- Feed -->
-        <link href="https://chrisdinant.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Transferred Learnings Full Atom Feed" />
-          <link href="https://chrisdinant.github.io/feeds/data-science.atom.xml" type="application/atom+xml" rel="alternate" title="Transferred Learnings Categories Atom Feed" />
 
-  <link href="https://chrisdinant.github.io/theme/css/style.css" type="text/css" rel="stylesheet" />
+  <link href="./theme/css/style.css" type="text/css" rel="stylesheet" />
 
   <!-- Code highlight color scheme -->
-      <link href="https://chrisdinant.github.io/theme/css/code_blocks/github.css" rel="stylesheet">
+      <link href="./theme/css/code_blocks/github.css" rel="stylesheet">
 
 
   <!-- Custom fonts -->
@@ -58,7 +56,7 @@
   <![endif]-->
 
 
-  <link href="https://chrisdinant.github.io/gradient-descent.html" rel="canonical" />
+  <link href="./gradient-descent.html" rel="canonical" />
 
     <meta name="description" content="Gradient descent updates the parameters of a model so that the output of the cost function is reduced.">
 
@@ -81,11 +79,11 @@
 <meta property="og:title" content="What is Gradient Descent?"/>
 <meta property="og:description" content="Gradient descent updates the parameters of a model so that the output of the cost function is reduced."/>
 <meta property="og:locale" content="en_US"/>
-<meta property="og:url" content="https://chrisdinant.github.io/gradient-descent.html"/>
+<meta property="og:url" content="./gradient-descent.html"/>
 <meta property="og:type" content="article"/>
 <meta property="article:published_time" content="2018-11-03 00:00:00+01:00"/>
 <meta property="article:modified_time" content=""/>
-<meta property="article:author" content="https://chrisdinant.github.io/author/chris-dinant.html">
+<meta property="article:author" content="./author/chris-dinant.html">
 <meta property="article:section" content="data-science"/>
 <meta property="article:tag" content="gradient descent"/>
 <meta property="article:tag" content="partial derivative"/>
@@ -95,7 +93,7 @@
 <meta property="article:tag" content="neural network"/>
 <meta property="article:tag" content="deep learning"/>
 <meta property="article:tag" content="data science"/>
-<meta property="og:image" content="https://chrisdinant.github.io//images/descending.jpg">
+<meta property="og:image" content=".//images/descending.jpg">
 
 <!-- Twitter Card -->
 
@@ -110,10 +108,10 @@
   "author": {
     "@type": "Person",
     "name": "chris dinant",
-    "url": "https://chrisdinant.github.io/author/chris-dinant.html"
+    "url": "./author/chris-dinant.html"
   },
-  "image": "https://chrisdinant.github.io//images/descending.jpg",
-  "url": "https://chrisdinant.github.io/gradient-descent.html",
+  "image": ".//images/descending.jpg",
+  "url": "./gradient-descent.html",
   "description": "Gradient descent updates the parameters of a model so that the output of the cost function is reduced."
 }
 </script>
@@ -127,11 +125,11 @@
     <p class="nav-label">Menu</p>
     <ul>
 
-              <li role="presentation"><a href="https://chrisdinant.github.io/pages/about-me.html">Whose blog is this?</a></li>
-              <li role="presentation"><a href="https://chrisdinant.github.io/pages/purpose.html">The purpose of this blog</a></li>
+              <li role="presentation"><a href="./pages/about-me.html">Whose blog is this?</a></li>
+              <li role="presentation"><a href="./pages/purpose.html">The purpose of this blog</a></li>
       
-                  <li class="nav-data-science active" role="presentation"><a href="https://chrisdinant.github.io/category/data-science.html">data-science</a></li>
-                  <li role="presentation"><a href="https://chrisdinant.github.io/category/not-data-science.html">not-data-science</a></li>
+                  <li class="nav-data-science active" role="presentation"><a href="./category/data-science.html">data-science</a></li>
+                  <li role="presentation"><a href="./category/not-data-science.html">not-data-science</a></li>
 
     </ul>
   </div>
@@ -147,7 +145,7 @@
       <div class="inner">
         <nav id="navigation">
             <span class="blog-logo">
-              <a href="https://chrisdinant.github.io/"><img src="/extra/delta9.png" alt="Blog Logo" /></a>
+              <a href="./"><img src="/extra/delta9.png" alt="Blog Logo" /></a>
             </span>
           <span id="menu-button" class="nav-button">
             <a class="menu-button"><i class="ic ic-menu"></i> Menu</a>
@@ -157,11 +155,11 @@
         <!-- TODO : Proper class for headline -->
           <span class="blog-description">Gradient descent updates the parameters of a model so that the output of the cost function is reduced.</span>
         <span class="post-meta">
-                <a href="https://chrisdinant.github.io/author/chris-dinant.html">chris dinant</a>
+                <a href="./author/chris-dinant.html">chris dinant</a>
             | <time datetime="Sat 03 November 2018">Sat 03 November 2018</time>
         </span>
         <!-- TODO : Modified check -->
-            <div class="post-cover cover" style="background-image: url('https://chrisdinant.github.io//images/descending.jpg')">
+            <div class="post-cover cover" style="background-image: url('.//images/descending.jpg')">
       </div>
     </header>
 
@@ -280,10 +278,13 @@ where <span class="math">\(a_n^{[l-1]}\)</span> is the output of tanh<span class
     mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
     mathjaxscript.type = 'text/javascript';
     mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
-    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
         "MathJax.Hub.Config({" +
         "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
         "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
         "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
         "    displayAlign: '"+ align +"'," +
@@ -297,6 +298,8 @@ where <span class="math">\(a_n^{[l-1]}\)</span> is the output of tanh<span class
         "        preview: 'TeX'," +
         "    }, " +
         "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
         "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
         "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
         "    }, " +
@@ -317,6 +320,8 @@ where <span class="math">\(a_n^{[l-1]}\)</span> is the output of tanh<span class
                 "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
             "});" +
         "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 </script>
@@ -324,20 +329,20 @@ where <span class="math">\(a_n^{[l-1]}\)</span> is the output of tanh<span class
 
             <section class="post-info">
                 <div class="post-share">
-                    <a class="twitter" href="https://twitter.com/share?text=What is Gradient Descent?&amp;url=https://chrisdinant.github.io/gradient-descent.html" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <a class="twitter" href="https://twitter.com/share?text=What is Gradient Descent?&amp;url=./gradient-descent.html" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
                     <i class="ic ic-twitter"></i><span class="hidden">Twitter</span>
                     </a>
-                    <a class="facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://chrisdinant.github.io/gradient-descent.html" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <a class="facebook" href="https://www.facebook.com/sharer/sharer.php?u=./gradient-descent.html" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
                     <i class="ic ic-facebook"></i><span class="hidden">Facebook</span>
                     </a>
-                    <a class="googleplus" href="https://plus.google.com/share?url=https://chrisdinant.github.io/gradient-descent.html" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <a class="googleplus" href="https://plus.google.com/share?url=./gradient-descent.html" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
                     <i class="ic ic-googleplus"></i><span class="hidden">Google+</span>
                     </a>
                     <div class="clear"></div>
                 </div>
 
                 <aside class="post-tags">
-<a href="https://chrisdinant.github.io/tag/gradient-descent.html">gradient descent</a><a href="https://chrisdinant.github.io/tag/partial-derivative.html">partial derivative</a><a href="https://chrisdinant.github.io/tag/cost-function.html">cost function</a><a href="https://chrisdinant.github.io/tag/weights.html">weights</a><a href="https://chrisdinant.github.io/tag/biases.html">biases</a><a href="https://chrisdinant.github.io/tag/neural-network.html">neural network</a><a href="https://chrisdinant.github.io/tag/deep-learning.html">deep learning</a><a href="https://chrisdinant.github.io/tag/data-science.html">data science</a>                </aside>
+<a href="./tag/gradient-descent.html">gradient descent</a><a href="./tag/partial-derivative.html">partial derivative</a><a href="./tag/cost-function.html">cost function</a><a href="./tag/weights.html">weights</a><a href="./tag/biases.html">biases</a><a href="./tag/neural-network.html">neural network</a><a href="./tag/deep-learning.html">deep learning</a><a href="./tag/data-science.html">data science</a>                </aside>
 
                 <div class="clear"></div>
 
@@ -345,10 +350,10 @@ where <span class="math">\(a_n^{[l-1]}\)</span> is the output of tanh<span class
 
 
                         <figure class="post-author-avatar">
-                            <img src="https://chrisdinant.github.io/extra/delta9.png" alt="chris dinant" />
+                            <img src="./extra/delta9.png" alt="chris dinant" />
                         </figure>
                     <div class="post-author-bio">
-                        <h4 class="post-author-name"><a href="https://chrisdinant.github.io/author/chris-dinant.html">chris dinant</a></h4>
+                        <h4 class="post-author-name"><a href="./author/chris-dinant.html">chris dinant</a></h4>
                             <p class="post-author-about">Only if you can explain something in simple terms do you really understand it. That's what I'm trying to do with this blog.</p>
                             <span class="post-author-location"><i class="ic ic-location"></i> Copenhagen</span>
                         <!-- Social linkes in alphabet order. -->
@@ -365,7 +370,7 @@ where <span class="math">\(a_n^{[l-1]}\)</span> is the output of tanh<span class
                     var disqus = 'chrisdinant';
                     var disqus_shortname = 'chrisdinant';
                     var disqus_identifier = '/gradient-descent.html';
-                    var disqus_url = 'https://chrisdinant.github.io/gradient-descent.html';
+                    var disqus_url = './gradient-descent.html';
                 </script>
                 <noscript>Please enable JavaScript to view the comments.</noscript>
                 <section class="post-comments">
@@ -374,7 +379,7 @@ where <span class="math">\(a_n^{[l-1]}\)</span> is the output of tanh<span class
                 </section>
 
                 <aside class="post-nav">
-                    <a class="post-nav-prev" href="https://chrisdinant.github.io/custom-pixels.html">
+                    <a class="post-nav-prev" href="./custom-pixels.html">
                         <section class="post-nav-teaser">
                             <i class="ic ic-arrow-right"></i>
                                 <h2 class="post-nav-title">Music Video</h2>
@@ -402,16 +407,8 @@ where <span class="math">\(a_n^{[l-1]}\)</span> is the output of tanh<span class
     </footer>
   </section>
 
-  <script type="text/javascript" src="https://chrisdinant.github.io/theme/js/script.js"></script>
+  <script type="text/javascript" src="./theme/js/script.js"></script>
 
-    <!-- Global Site Tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-128571275-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'UA-128571275-1', { 'anonymize_ip': true });
-    </script>
 <script type="text/javascript">
     var disqus_shortname = 'chrisdinant';
     (function () {

@@ -15,7 +15,7 @@
   <meta property="og:type" content="article" />
   <meta property="og:image" content="/extra/delta9.png" />
   <meta property="og:url" content="https://chrisdinant.github.io/linear-regression.html" />
-  <meta property="og:description" content="A short explanation of Linear Regression" />
+  <meta property="og:description" content="Linear regression is used to model the relationship between continuous variables. For example to predict the price of a house when you have features like size in square meters and crime in the neighborhood etc. A linear regression function takes the form of $$\hat{y}=\hat{\beta_0}+\hat{\beta_1}x_1 …" />
   <meta property="og:locale" content="" />
   <meta property="og:site_name" content="Transferred Learnings" />
   <meta property="article:published_time" content="2018-03-05" />
@@ -115,6 +115,7 @@
       
                   <li class="nav-data-science active" role="presentation"><a href="./category/data-science.html">data-science</a></li>
                   <li role="presentation"><a href="./category/not-data-science.html">not-data-science</a></li>
+                  <li role="presentation"><a href="./category/philosophy.html">philosophy</a></li>
 
     </ul>
   </div>
@@ -138,6 +139,7 @@
         </nav>
         <h1 class="post-title">What is Linear Regression?</h1>
         <!-- TODO : Proper class for headline -->
+          <span class="blog-description">A short explanation of Linear Regression</span>
         <span class="post-meta">
                 <a href="./author/chris-dinant.html">chris dinant</a>
             | <time datetime="Mon 05 March 2018">Mon 05 March 2018</time>
@@ -164,8 +166,8 @@ For Linear Regression the function does not have to be linear with regards to th
 </p>
 <div class="math">$$\hat{y}=\hat{\beta_0}+\hat{\beta_1}x_1+\hat{\beta_2}x_2+\hat{\beta_3}x_1x_2+\dots+\hat{\beta_p}x_p$$</div>
 <p><strong>How do you fit a model to data?</strong><br/>
-You estimate the <i>β</i>'s as the values that minimize the <i>sum of squared residuals, </i>which is the squared difference between the actual value <i>y</i> and the estimated <i>y-hat </i>summed for all <i>x</i>'s. Or<br/>
-</p>
+You estimate the <i>β</i>'s as the values that minimize the <i>sum of squared residuals, </i>which is the squared difference between the actual value <i>y</i> and the estimated <i>y-hat </i>summed for all <i>x</i>'s. Or<br>
+</br></p>
 <div class="math">$$\displaystyle\sum_{i=1}^n(y_i-\hat{\beta_0}-\hat{\beta_1}x_{i1}-\hat{\beta_2}x_{i2}-\dots-\hat{\beta_p}x_{ip})^2$$</div>
 <p><strong>When should you use Linear Regression?</strong><br/>
 As a guideline, with any regression problem, try linear regression first and move on to other methods when it is not good enough. This choice should be based on considerations like whether the model under- or overfits the data.  </p>
@@ -185,10 +187,13 @@ As a guideline, with any regression problem, try linear regression first and mov
     mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
     mathjaxscript.type = 'text/javascript';
     mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
-    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
         "MathJax.Hub.Config({" +
         "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
         "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
         "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
         "    displayAlign: '"+ align +"'," +
@@ -202,6 +207,8 @@ As a guideline, with any regression problem, try linear regression first and mov
         "        preview: 'TeX'," +
         "    }, " +
         "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
         "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
         "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
         "    }, " +
@@ -222,6 +229,8 @@ As a guideline, with any regression problem, try linear regression first and mov
                 "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
             "});" +
         "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 </script>
@@ -283,14 +292,14 @@ As a guideline, with any regression problem, try linear regression first and mov
                         <section class="post-nav-teaser">
                             <i class="ic ic-arrow-left"></i>
                                 <h2 class="post-nav-title">What is Logistic Regression?</h2>
-                            <p class="post-nav-excerpt">A short explanation of Logistic Regression</p>
+                            <p class="post-nav-excerpt">Logistic Regression is closely related to Linear Regression. Read my post on Linear...</p>
                         </section>
                     </a>
                     <a class="post-nav-prev" href="./k-nearest-Neighbors.html">
                         <section class="post-nav-teaser">
                             <i class="ic ic-arrow-right"></i>
                                 <h2 class="post-nav-title">What is k-Nearest Neighbors?</h2>
-                            <p class="post-nav-excerpt">A short explanation of k-Nearest Neighbors</p>
+                            <p class="post-nav-excerpt">k-Nearest Neighbors or kNN is a classification algorithm that asigns a class to a new...</p>
                         </section>
                     </a>
                     <div class="clear"></div>

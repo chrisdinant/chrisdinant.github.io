@@ -2,7 +2,7 @@ Title: What is Linear Regression?
 Date: 2018-03-05
 tags: linear, regression, data science
 og_image: /extra/delta9.png
-Summary: A short explanation of Linear Regression
+headline: A short explanation of Linear Regression
 slug: linear-regression
 
 Linear regression is used to model the relationship between continuous variables. For example to predict the price of a house when you have features like size in square meters and crime in the neighborhood etc.&nbsp; A linear regression function takes the form of<br />

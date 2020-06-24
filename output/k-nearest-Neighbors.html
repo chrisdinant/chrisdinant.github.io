@@ -15,7 +15,7 @@
   <meta property="og:type" content="article" />
   <meta property="og:image" content="/extra/delta9.png" />
   <meta property="og:url" content="https://chrisdinant.github.io/k-nearest-Neighbors.html" />
-  <meta property="og:description" content="A short explanation of k-Nearest Neighbors" />
+  <meta property="og:description" content="k-Nearest Neighbors or kNN is a classification algorithm that asigns a class to a new data point based on known data points that are similar, or nearby. What do you mean &#39;nearby&#39;? To determine similarity of data you can use a few different distance algorithms. For example Euclidian distance, which …" />
   <meta property="og:locale" content="" />
   <meta property="og:site_name" content="Transferred Learnings" />
   <meta property="article:published_time" content="2018-02-25" />
@@ -121,6 +121,7 @@
       
                   <li class="nav-data-science active" role="presentation"><a href="./category/data-science.html">data-science</a></li>
                   <li role="presentation"><a href="./category/not-data-science.html">not-data-science</a></li>
+                  <li role="presentation"><a href="./category/philosophy.html">philosophy</a></li>
 
     </ul>
   </div>
@@ -144,6 +145,7 @@
         </nav>
         <h1 class="post-title">What is k-Nearest Neighbors?</h1>
         <!-- TODO : Proper class for headline -->
+          <span class="blog-description">A short explanation of k-Nearest Neighbors</span>
         <span class="post-meta">
                 <a href="./author/chris-dinant.html">chris dinant</a>
             | <time datetime="Sun 25 February 2018">Sun 25 February 2018</time>
@@ -181,7 +183,8 @@ To determine similarity of data you can use a few different distance algorithms.
 It goes through all the known data points and measures the distance to the new point. Then it assigns the class of the majority of <i>k</i> nearest data points to the new measurement. Yes, it goes through all training data every time you run this algorithm! No model is actually created. This is called a <i>lazy learning </i>technique.<br/>
 <br/>
 <b>When should you use kNN?</b><br/>
-kNN is useful mostly when your parameter vectors are not too long. Or in other words, the dimensionality of your data is small. This is because the more dimensions, the more distances become similar to the average distance of any two points, even if these points have different labels. Basically, all distances become bigger and bigger; even if two points are in the same class, they will be very far apart in multi dimensional space. This is called the <i>curse of dimensionality.</i></p>
+kNN is useful mostly when your parameter vectors are not too long. Or in other words, the dimensionality of your data is small. This is because the more dimensions, the more distances become similar to the average distance of any two points, even if these points have different labels. Basically, all distances become bigger and bigger; even if two points are in the same class, they will be very far apart in multi dimensional space. This is called the <i>curse of dimensionality.</i> </p>
+<p>Δ9</p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -197,10 +200,13 @@ kNN is useful mostly when your parameter vectors are not too long. Or in other w
     mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
     mathjaxscript.type = 'text/javascript';
     mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
-    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
         "MathJax.Hub.Config({" +
         "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
         "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
         "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
         "    displayAlign: '"+ align +"'," +
@@ -214,6 +220,8 @@ kNN is useful mostly when your parameter vectors are not too long. Or in other w
         "        preview: 'TeX'," +
         "    }, " +
         "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
         "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
         "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
         "    }, " +
@@ -234,6 +242,8 @@ kNN is useful mostly when your parameter vectors are not too long. Or in other w
                 "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
             "});" +
         "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 </script>
@@ -295,14 +305,14 @@ kNN is useful mostly when your parameter vectors are not too long. Or in other w
                         <section class="post-nav-teaser">
                             <i class="ic ic-arrow-left"></i>
                                 <h2 class="post-nav-title">What is Linear Regression?</h2>
-                            <p class="post-nav-excerpt">A short explanation of Linear Regression</p>
+                            <p class="post-nav-excerpt">Linear regression is used to model the relationship between continuous variables. For...</p>
                         </section>
                     </a>
                     <a class="post-nav-prev" href="./bayes-and-binomial-theorems.html">
                         <section class="post-nav-teaser">
                             <i class="ic ic-arrow-right"></i>
                                 <h2 class="post-nav-title">Bayes and Binomial Theorems</h2>
-                            <p class="post-nav-excerpt">An explanation of how to use and combine the Bayes and Binomial Theorems</p>
+                            <p class="post-nav-excerpt">Bayes Theorem In statistics there are many situations where you want to determine the...</p>
                         </section>
                     </a>
                     <div class="clear"></div>

@@ -15,7 +15,7 @@
   <meta property="og:type" content="article" />
   <meta property="og:image" content="/images/dice.jpeg" />
   <meta property="og:url" content="https://chrisdinant.github.io/bayes-and-binomial-theorems.html" />
-  <meta property="og:description" content="An explanation of how to use and combine the Bayes and Binomial Theorems" />
+  <meta property="og:description" content="Bayes Theorem In statistics there are many situations where you want to determine the probability that a sample for which you have certain measurement belongs to a certain set. Say you want to know the chance that you have HIV if you test positive. No test is perfect, so this …" />
   <meta property="og:locale" content="" />
   <meta property="og:site_name" content="Transferred Learnings" />
   <meta property="article:published_time" content="2018-02-06" />
@@ -118,6 +118,7 @@
       
                   <li class="nav-data-science active" role="presentation"><a href="./category/data-science.html">data-science</a></li>
                   <li role="presentation"><a href="./category/not-data-science.html">not-data-science</a></li>
+                  <li role="presentation"><a href="./category/philosophy.html">philosophy</a></li>
 
     </ul>
   </div>
@@ -160,20 +161,20 @@
         <div class="inner">
             <section class="post-content">
                 <p><strong>Bayes Theorem</strong><br/>
-In statistics there are many situations where you want to determine the probability that a sample for which you have certain measurement belongs to a certain set. Say you want to know the chance that you have HIV if you test positive. No test is perfect, so this probability will depend on the test sensitivity, but also on the specificity and on the incidence in the population, or set, that you belong to. Bayes Theorem is a simply the logic you have to apply to estimate such probabilities.<br/>
+In statistics there are many situations where you want to determine the probability that a sample for which you have certain measurement belongs to a certain set. Say you want to know the chance that you have HIV if you test positive. No test is perfect, so this probability will depend on the test sensitivity, but also on the specificity and on the incidence in the population, or set, that you belong to. Bayes Theorem is a simply the logic you have to apply to estimate such probabilities.<br>
 <br/>
 As a cancer researcher my attention was naturally drawn to this paper currently trending on Pubmed: <a href="https://www.ncbi.nlm.nih.gov/pubmed/29348365/"><i>Detection and localization of surgically resectable cancers with a multi-analyte blood test.</i></a> This is a perfect practical example for applying Bayes rule! And most of the information we need is right there in the abstract: "<i>The </i>sensitivities<i> ranged from 69% to 98% for the detection of five cancer types (ovary, liver, stomach, pancreas, and esophagus)...</i>" and "<i>The </i>specificity<i> of CancerSEEK was &gt; 99%: only 7 of 812 healthy controls scored positive.</i>" Wow, a <i>sensitivity</i> of up to 98% and a <i>specificity</i> of more than 99%? This sounds like a fool proof test! Right? Now we just need to know the incidences for these cancers and we can see how likely it is that you have that type of cancer given a positive test score.<br/>
 <br/>
 <!-- <table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody>
 <tr><td style="text-align: center;"> -->
 <img ,="" alt="doctor john" src="./images/dr-john.jpg" style="margin-left: auto; margin-right: auto; text-align: center;width: 640px; height: auto; max-width: 100%;"/>
-<!-- </td></tr><br /></tbody></table> -->
+<!-- </td></tr><br></tbody></table> -->
 <p style="text-align: center; font-size: 0.8em;"><i>The Doctor is in.</i></p>
 <div class="sub">
 <br/></div>
 This is Bayes Theorem in math notation:<br/>
 <br/>
-</p>
+</br></p>
 <div class="math">$$P(A|B)=\dfrac{P(B|A)\cdot{P(A)}}{P(B)}$$</div>
 <p>
 <br/>
@@ -216,7 +217,7 @@ The first part is the binomial equation and is pronounced <i>n choose k</i>, I (
 <!-- <table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody>
 <tr><td style="text-align: center;"> -->
 <img ,="" alt="dices" src="./images/dice.jpeg" style="margin-left: auto; margin-right: auto; text-align: center;width: 192px; height: auto; max-width: 100%;"/>
-<!-- </td></tr><br /></tbody></table> -->
+<!-- </td></tr><br></tbody></table> -->
 <p style="text-align: center; font-size: 0.8em;"><i></i></p>
 <br/>
 <br/>
@@ -226,11 +227,11 @@ Let's give a nerdy cell biologist example: Say you have two cell lines in cultur
 <!-- <table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody>
 <tr><td style="text-align: center;"> -->
 <img ,="" alt="hela" src="./images/hela.jpg" style="margin-left: auto; margin-right: auto; text-align: center;width: 320px; height: auto; max-width: 100%;"/>
-<!-- </td></tr><br /></tbody></table> -->
+<!-- </td></tr><br></tbody></table> -->
 <!-- <p style="text-align: center; font-size: 0.8em;"><i></i></p><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody>
 <tr><td style="text-align: center;"> -->
 <img ,="" alt="u2os" src="./images/u2os.jpg" style="margin-left: auto; margin-right: auto; text-align: center;width: 320px; height: auto; max-width: 100%;"/>
-<!-- </td></tr><br /></tbody></table> -->
+<!-- </td></tr><br></tbody></table> -->
 <p style="text-align: center; font-size: 0.8em;"><i></i></p>
 It's not directly straight forward unless you have a lot of experience what the difference is, but image analysis software can measure a bunch of features for each cell line and give you numbers to work with. Let's say that a feature describing the shape (<i>s</i>) of a nucleus falls within a certain range <i>r </i>(the values don't matter) 20% of the time for U2OS cells and 23% of the time for HeLa cells. Now you take one image of 180 cells of one of the dishes and measure this shape value. In 51 cells the value for <i>s </i>falls in range <i>r</i>. Now we can use Bayes and the Binomial Theorem together to determine if we're looking at U2OS or HeLa!<br/>
 <br/>
@@ -267,10 +268,13 @@ This blog post was inspired by this course on coursera.org: <a href="https://www
     mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
     mathjaxscript.type = 'text/javascript';
     mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
-    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
         "MathJax.Hub.Config({" +
         "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
         "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
         "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
         "    displayAlign: '"+ align +"'," +
@@ -284,6 +288,8 @@ This blog post was inspired by this course on coursera.org: <a href="https://www
         "        preview: 'TeX'," +
         "    }, " +
         "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
         "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
         "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
         "    }, " +
@@ -304,6 +310,8 @@ This blog post was inspired by this course on coursera.org: <a href="https://www
                 "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
             "});" +
         "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 </script>
@@ -365,7 +373,7 @@ This blog post was inspired by this course on coursera.org: <a href="https://www
                         <section class="post-nav-teaser">
                             <i class="ic ic-arrow-left"></i>
                                 <h2 class="post-nav-title">What is k-Nearest Neighbors?</h2>
-                            <p class="post-nav-excerpt">A short explanation of k-Nearest Neighbors</p>
+                            <p class="post-nav-excerpt">k-Nearest Neighbors or kNN is a classification algorithm that asigns a class to a new...</p>
                         </section>
                     </a>
                     <div class="clear"></div>

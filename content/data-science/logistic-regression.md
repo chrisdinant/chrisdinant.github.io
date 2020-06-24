@@ -2,7 +2,7 @@ Title: What is Logistic Regression?
 slug: logistic-regression
 tags: logistic, regression, classification, data science
 og_image: /extra/delta9.png
-Summary: A short explanation of Logistic Regression
+headline: A short explanation of Logistic Regression
 Date: 2018-03-06
 
 *Logistic Regression is closely related to Linear Regression. Read my post on Linear Regression [here]({filename}/data-science/linear-regression.md)*  

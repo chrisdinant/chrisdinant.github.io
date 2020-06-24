@@ -2,13 +2,12 @@ Title: Kaggle Tensorflow Speech Recognition Challenge
 Date: 2018-03-14
 tags: kaggle, tensorflow, speech, recognition, walk-through, data science, spectrogram, resnet, rnn, ctc
 og_image: /images/resnet.png
-headline: A walk through of my approach
-Summary: A walk-through of my approach to the Kaggle Tensorflow Speech Recognition Challenge
+headline: A walk through of my approach to the Kaggle Tensorflow Speech Recognition Challenge
 Slug: speech-Recognition
 cover: /images/spec_large.png
 
+*Read this story on [Medium.com](https://towardsdatascience.com/kaggle-tensorflow-speech-recognition-challenge-b46a3bca2501)*  
 
-*Read this story on [Medium.com](https://towardsdatascience.com/kaggle-tensorflow-speech-recognition-challenge-b46a3bca2501)*
 ---
 
 From November 2017 to January 2018 the Google Brain team hosted a speech recognition challenge on Kaggle. The goal of this challenge was to write a program that can correctly identify one of 10 words being spoken in a one-second long audio file. Having just made up my mind to start seriously studying data science with the goal of turning a new corner in my career, I decided to tackle this as my first serious kaggle challenge.
@@ -24,7 +23,7 @@ One important thing you need to do to clean up the data was mentioned in a Discu
 **Preprocessing**  
 When you are classifying audio you can either use the raw wav data itself or you can transform the audio into spectrograms. A spectrogram is a visual representation of sound with a time and a frequency axis and pixel intensities representing the amplitude or energy of the sound at that moment and at that frequency. There's bunch of parameters to play around with when making spectrograms that will affect how much information can be extracted from the frequency or the time domains. I haven't done an exhaustive analysis of all these parameters with regards to suitability for deep learning because it would take forever. Instead I plotted a bunch of spectrograms with different dimensions and intensity ranges etc for different words and picked what looked easiest to classify as a different word visually.  
 
-<img src="{filename}/images/yes_specs.png", alt="yes_spectrograms", style="width: 100%;"/>
+<img src="{static}/images/yes_specs.png", alt="yes_spectrograms", style="width: 100%;"/>
 *Some different visualizations of the audio source of someone saying 'yes'. I chose the spectrogram in the right bottom as input for most of my networks. The advantage of using spectrograms over raw wav data is that you can approach it as an image classification problem, which most of us are already very familiar with. I attempted both approaches.*  
 
 To speed up eventual training of the network I decided to do most of the preprocessing separately and save individual train and validation sets as numpy arrays in .npy files. The amount of data is small enough that this can be done on my home pc. Google Brain suggests that you split the data in 'train' 'validation' and 'test' sets based on file names in a 'validation.txt' and 'test.txt' file that they supply. Since they also supply a test set on Kaggle that is used for the leaderboard scoring I decided to combine the 'validation' and 'test' text files into one validation set. Preprocessing included creating spectrograms, normalizing around zero, creating 'label' or 'Y' arrays with integers 0–11 for the ten main classes plus 'silence' and 'unknown'. For the CTC model I did not use the 'unknown' label. All 32 classes were treated as equal.  
@@ -36,7 +35,7 @@ With spectrograms you use a specific algorithm to extract features from wav file
 
 <!-- <table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody>
 <tr><td style="text-align: center;"> -->
-<img src="{filename}/images/confusion.png", alt="classification and confusion reports", style="margin-left: auto; margin-right: auto; text-align: center;"/>
+<img src="{static}/images/confusion.png", alt="classification and confusion reports", style="margin-left: auto; margin-right: auto; text-align: center;"/>
 <!-- </td></tr>  
 </tbody></table> -->
 <p style="text-align: center; font-size: 0.8em;"><i>The network scores on the validation set. Top: sklearn classification report. Bottom: sklearn confusion matrix.</i></p>
@@ -49,7 +48,7 @@ A residual neural network, or ResNet, is basically a deep convolutional NN with 
 
 <!-- <table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody>
 <tr><td style="text-align: center;"> -->
-<img src="{filename}/images/resnet.png", alt="resnet", style="margin-left: auto; margin-right: auto; text-align: center;"/>
+<img src="{static}/images/resnet.png", alt="resnet", style="margin-left: auto; margin-right: auto; text-align: center;"/>
 <!-- </td></tr>  
 </tbody></table> -->
 <p style="text-align: center; font-size: 0.8em;"><i>Small subset of ResNet model with two shortcut connections</i></p>
@@ -107,7 +106,7 @@ A speech-to-text model takes a spectrogram (or raw wav data) as input and output
 
 <!-- <table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody>
 <tr><td style="text-align: center;"> -->
-<img src="{filename}/images/CTC_example.png", alt="ctc", style="margin-left: auto; margin-right: auto; text-align: center;"/>
+<img src="{static}/images/CTC_example.png", alt="ctc", style="margin-left: auto; margin-right: auto; text-align: center;"/>
 <!-- </td></tr>  
 </tbody></table> -->
 <p style="text-align: center; font-size: 0.8em;"><i></i></p>

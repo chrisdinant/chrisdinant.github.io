@@ -14,7 +14,7 @@ Have a watch:
 
 This video was created by a custom python script that replaces pixels of low resolution images with jpegs of 20x20 pixels. Four different jpegs replace pixels of four grey intensity ranges. The python script uses ffmpeg to pipe individual frames of a video to the pixel replacement function and then pipe the new images into a new video file. In this video I use two jpeg sets, one with dots and lines and one with colored circles that look like hama beads (<http://www.hama.dk/welcome-to-a-color>...).  
 
-Here's the import piece of code that extracts frames, replaces pixels and saves the frames back into a video:
+Here's the important piece of code that extracts frames, replaces pixels and saves the frames back into a video:
 ```python
 def extract_frames(rate = 6, outf = 'perl_light2.avi'):    
     command = [FFMPEG_BIN,

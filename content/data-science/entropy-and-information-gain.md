@@ -4,7 +4,7 @@ Tags: entropy, information, decision-tree, datascience
 og_image: /images/tree.jpg
 Slug: entropy-and-information-gain
 author: Chris Dinant
-Summary: The more homogeneous a set, the higher the entropy and the lower the amount of information.
+headline: The more homogeneous a set, the higher the entropy and the lower the amount of information.
 cover: /images/tree.jpg
 
 

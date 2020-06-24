@@ -2,7 +2,7 @@ Title: What is k-Nearest Neighbors?
 Date: 2018-02-25
 tags: knn, kNN, k-nearest, neighbors, data science
 og_image: /extra/delta9.png
-Summary: A short explanation of k-Nearest Neighbors
+headline: A short explanation of k-Nearest Neighbors
 slug: k-nearest-Neighbors
 
 
@@ -25,4 +25,6 @@ $$d=\Bigg(1-\dfrac{vw'}{\sqrt{(vv')(ww')}}\Bigg)$$
 It goes through all the known data points and measures the distance to the new point. Then it assigns the class of the majority of&nbsp;<i>k</i>&nbsp;nearest data points to the new measurement. Yes, it goes through all training data every time you run this algorithm! No model is actually created. This is called a <i>lazy learning </i>technique.<br />
 <br />
 <b>When should you use kNN?</b><br />
-kNN is useful mostly when your parameter vectors are not too long. Or in other words, the dimensionality of your data is small. This is because the more dimensions, the more distances become similar to the average distance of any two points, even if these points have different labels. Basically, all distances become bigger and bigger; even if two points are in the same class, they will be very far apart in multi dimensional space. This is called the <i>curse of dimensionality.</i>
+kNN is useful mostly when your parameter vectors are not too long. Or in other words, the dimensionality of your data is small. This is because the more dimensions, the more distances become similar to the average distance of any two points, even if these points have different labels. Basically, all distances become bigger and bigger; even if two points are in the same class, they will be very far apart in multi dimensional space. This is called the <i>curse of dimensionality.</i>  
+
+&#916;9

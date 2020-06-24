@@ -5,7 +5,6 @@ tags: naive Bayes, features, classification, accuracy, data science
 og_image: /images/naive-art_ivan_generalic.jpg
 headline: Assuming feature independence tends to help classification accuracy
 cover: /images/naive-art_ivan_generalic.jpg
-Summary: Assuming feature independence tends to help classification accuracy
 disqus_identifier: naive-bayes
 
 *Cover art: Naive art by Ivan Generalic*

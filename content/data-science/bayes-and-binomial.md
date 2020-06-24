@@ -3,7 +3,6 @@ Date: 2018-02-06
 tags: bayes, binomial, data science, tests
 og_image: /images/dice.jpeg
 headline: Our intuitions about test accuracy are often very inaccurate
-Summary: An explanation of how to use and combine the Bayes and Binomial Theorems
 cover: /images/numbers.jpg
 
 **Bayes Theorem**  
@@ -13,7 +12,7 @@ As a cancer researcher my attention was naturally drawn to this paper currently 
 <br />
 <!-- <table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody>
 <tr><td style="text-align: center;"> -->
-<img src="{filename}/images/dr-john.jpg", alt="doctor john", style="margin-left: auto; margin-right: auto; text-align: center;"/>
+<img src="{static}/images/dr-john.jpg", alt="doctor john", style="margin-left: auto; margin-right: auto; text-align: center;"/>
 <!-- </td></tr>  
 </tbody></table> -->
 <p style="text-align: center; font-size: 0.8em;"><i>The Doctor is in.</i></p>
@@ -55,7 +54,7 @@ $7.2^{-13}$)
 <br />
 <!-- <table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody>
 <tr><td style="text-align: center;"> -->
-<img src="{filename}/images/dice.jpeg", alt="dices", style="margin-left: auto; margin-right: auto; text-align: center;"/>
+<img src="{static}/images/dice.jpeg", alt="dices", style="margin-left: auto; margin-right: auto; text-align: center;"/>
 <!-- </td></tr>  
 </tbody></table> -->
 <p style="text-align: center; font-size: 0.8em;"><i></i></p>
@@ -66,12 +65,12 @@ It gets a bit more interesting when you combine Bayes with the Binomial Theorem.
 Let's give a nerdy cell biologist example: Say you have two cell lines in culture (U2OS and HeLa for example) and you transfer both cell lines into a new flask. The next day you go back to the incubator and see that you have forgotten to label the flasks, so you don't know which is which. How can you find out? Here's what you could do: U2OS and HeLa don't look exactly the same under a microscope.<br />
 <!-- <table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody>
 <tr><td style="text-align: center;"> -->
-<img src="{filename}/images/hela.jpg", alt="hela", style="margin-left: auto; margin-right: auto; text-align: center;"/>
+<img src="{static}/images/hela.jpg", alt="hela", style="margin-left: auto; margin-right: auto; text-align: center;"/>
 <!-- </td></tr>  
 </tbody></table> -->
 <!-- <p style="text-align: center; font-size: 0.8em;"><i></i></p><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody>
 <tr><td style="text-align: center;"> -->
-<img src="{filename}/images/u2os.jpg", alt="u2os", style="margin-left: auto; margin-right: auto; text-align: center;"/>
+<img src="{static}/images/u2os.jpg", alt="u2os", style="margin-left: auto; margin-right: auto; text-align: center;"/>
 <!-- </td></tr>  
 </tbody></table> -->
 <p style="text-align: center; font-size: 0.8em;"><i></i></p>

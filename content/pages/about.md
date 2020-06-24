@@ -5,11 +5,12 @@ Slug: about-me
 author: Chris Dinant
 headline: The blog which is whose
 Summary: About Me
+og_image: /images/chris_dinant_small.JPG
 
 
 This is me:
 
-<img src="{filename}/images/chris_dinant_small.JPG", alt="Picture of me", style="width: 200px;"/>
+<img src="{static}/images/chris_dinant_small.JPG", alt="Picture of me", style="width: 200px;"/>
 
 
 Chris

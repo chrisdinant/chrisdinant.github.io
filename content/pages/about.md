@@ -16,10 +16,11 @@ This is me:
 Chris
 
 10 years ago
+(update 2020: 12 years ago)
 
 I am older now.
 
-But it's ok. I have very short long term memory.  
+My short long term memory is quite long.  
 
 ```python
 from keras.layers import LSTM

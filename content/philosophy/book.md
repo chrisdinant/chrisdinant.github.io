@@ -50,9 +50,9 @@ And a ton of other questions that I have been pondering but won't list here for 
 
 We can also just dismiss the intuition of a libertarian free will and call it an illusion. Rationally I'm tempted to do this, but at the same time, I'm not convinced it is correct. My main objection against libertarian free will is really:
 
-<i>How can a brain that consists of molecules inside a universe that is ruled by natural laws be the only thing in the universe that can make a choice between alternative futures?</i>
+<i>How can a brain that consists of molecules inside a universe that is ruled by natural laws somehow be free from these laws to choose one alternative future over another?</i>
 
-I have the feeling that the answer to this question can be found by deeply studying complex systems which I think involves reverse-engineering our consciousness. So that is what I will try to do, intensively study complex systems and intelligence research.
+I have the feeling, maybe it's more a suspicion, that the answer to this question can be found by deeply studying complex systems, which I think involves reverse-engineering our consciousness. So that is what I will try to do, intensively study complex systems and intelligence research.
 
 Here are some other topics related to the Free Will question that I would love to address in later posts:
 

@@ -6,7 +6,7 @@ author: chris dinant
 headline: But why?
 Summary: a short back-story
 
-About two years ago something changed. I'm not exactly sure what caused it, but I decided to learn to code. I found a fantastic website called 'freeCodeCamp.org' and proceeded to blast through the exercises and modules until about halfway through the back end development certification part. By now I had done tons of javascript algorithm exercises and created a bunch of projects (hosted on
+Not too long ago, depending on when I wrote this, I decided to learn to code. I found a fantastic website called 'freeCodeCamp.org' and proceeded to blast through the exercises and modules until about halfway through the back end development certification part. By now I had done tons of javascript algorithm exercises and created a bunch of projects (hosted on
 <a href="https://codepen.io/chrisdinant/" style="text-decoration: none;" target="_blank">https://codepen.io/chrisdinant/</a>) and a few small websites.<br />
 <br />
 <blockquote class="embedly-card">
@@ -25,11 +25,14 @@ I have always known that my real passion was not science itself, or music or som
 <br />
 My passion is learning.<br />
 <br />
-And I have come to the conclusion that for someone who loves analising data and learning new things all the time, DataScience is the ultimate profession.<br />
+And I have come to the conclusion that for someone who loves analyzing data and learning new things all the time, DataScience&#8482; is the ultimate profession.<br />
 <br />
 That's why I have set my mind on becoming a data scientist.<br />
 <br />
 On this blog I will post some of the things that I learn or have learned on the way to hopefully be of use to other people who are just starting to study DataScience.<br />
 <br />
 <br />
+
+<i> Update 2020: I decided to talk about more than just data science on this blog now. Currently I have expanded my interests with the study of consciousness and free will so you should see a couple of posts on these topics float by as well.</i>
+
 &#916;9

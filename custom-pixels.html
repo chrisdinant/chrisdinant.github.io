@@ -121,6 +121,7 @@
       
                   <li role="presentation"><a href="./category/data-science.html">data-science</a></li>
                   <li class="nav-not-data-science active" role="presentation"><a href="./category/not-data-science.html">not-data-science</a></li>
+                  <li role="presentation"><a href="./category/philosophy.html">philosophy</a></li>
 
     </ul>
   </div>
@@ -167,7 +168,7 @@ Have a watch:</p>
 <iframe allow="autoplay; encrypted-media" allowfullscreen="" frameborder="0" height="315" src="https://www.youtube.com/embed/7qvhSWrXff4" width="560"></iframe>
 <p>This video was created by a custom python script that replaces pixels of low resolution images with jpegs of 20x20 pixels. Four different jpegs replace pixels of four grey intensity ranges. The python script uses ffmpeg to pipe individual frames of a video to the pixel replacement function and then pipe the new images into a new video file. In this video I use two jpeg sets, one with dots and lines and one with colored circles that look like hama beads (<a href="http://www.hama.dk/welcome-to-a-color">http://www.hama.dk/welcome-to-a-color</a>...).  </p>
 <p>Here's the important piece of code that extracts frames, replaces pixels and saves the frames back into a video:</p>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">extract_frames</span><span class="p">(</span><span class="n">rate</span> <span class="o">=</span> <span class="mi">6</span><span class="p">,</span> <span class="n">outf</span> <span class="o">=</span> <span class="s1">'perl_light2.avi'</span><span class="p">):</span>    
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">extract_frames</span><span class="p">(</span><span class="n">rate</span> <span class="o">=</span> <span class="mi">6</span><span class="p">,</span> <span class="n">outf</span> <span class="o">=</span> <span class="s1">'perl_light2.avi'</span><span class="p">):</span>    
     <span class="n">command</span> <span class="o">=</span> <span class="p">[</span><span class="n">FFMPEG_BIN</span><span class="p">,</span>
                 <span class="s1">'-i'</span><span class="p">,</span> <span class="s1">'IMG_1981.MOV'</span><span class="p">,</span>
                 <span class="s1">'-f'</span><span class="p">,</span> <span class="s1">'image2pipe'</span><span class="p">,</span>
@@ -210,7 +211,7 @@ Have a watch:</p>
         <span class="n">p</span><span class="o">.</span><span class="n">stdin</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
 
     <span class="n">p</span><span class="o">.</span><span class="n">stdin</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</pre></div>
+</code></pre></div>
 <p>Δ9</p>
             </section>
 
